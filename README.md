@@ -1,0 +1,1 @@
+# licenta_2022_frontend
