@@ -1,7 +1,16 @@
 import React from 'react'
+import { FullPageContainer, PageContainer, SideMenuContainer } from './Layout.styles'
 
-export const Layout = () => {
+interface PropType {
+  children: any;
+} 
+export const Layout = ({children}: PropType) => {
   return (
-    <div>Layout</div>
+    <FullPageContainer>
+      <SideMenuContainer/>
+      <PageContainer>
+      {children}
+      </PageContainer>      
+    </FullPageContainer>    
   )
 }
