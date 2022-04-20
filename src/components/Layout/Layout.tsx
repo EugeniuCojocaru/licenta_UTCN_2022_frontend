@@ -1,4 +1,5 @@
 import React from 'react'
+import { SideMenu } from '../SideMenu';
 import { FullPageContainer, PageContainer, SideMenuContainer } from './Layout.styles'
 
 interface PropType {
@@ -7,7 +8,9 @@ interface PropType {
 export const Layout = ({children}: PropType) => {
   return (
     <FullPageContainer>
-      <SideMenuContainer/>
+      <SideMenuContainer>
+        <SideMenu/>
+      </SideMenuContainer>
       <PageContainer>
       {children}
       </PageContainer>      
