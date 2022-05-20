@@ -18,5 +18,9 @@ export const AddItemContainer = styled.div`
 /* Section item  */
 export const SectionItemContainer = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  border: 0.5px solid #000;
+  padding-left: 8px;
 `;

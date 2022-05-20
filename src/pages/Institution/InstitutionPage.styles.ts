@@ -22,5 +22,6 @@ export const SectionContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-content: flex-start;
-  padding: 16px;
+  padding: 8px 16px;
+  gap: 8px;
 `;
