@@ -5,3 +5,8 @@ export interface InstitutionHierarchyType {
 export interface InstitutionHierarchyCreateDto {
   name: string;
 }
+
+export interface FacultyCreateDto {
+  name: string;
+  institutionId: string;
+}
