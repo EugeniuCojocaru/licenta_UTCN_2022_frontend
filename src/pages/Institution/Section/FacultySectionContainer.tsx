@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
-  FacultyCreateDto,
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
 } from "../../../common";
 import { createFaculty } from "../../../service/facultyService";
-import {
-  createInstitutions,
-  getFacultiesForInstitution,
-  getInstitutions,
-} from "../../../service/institutionService";
+import { getFacultiesForInstitution } from "../../../service/institutionService";
 import { SectionContainer } from "../InstitutionPage.styles";
 import { Section } from "./Section";
 interface Props {
@@ -43,10 +38,6 @@ const FacultySectionContainer = ({
     if (response) setRefreshUI(!refreshUI);
   };
 
-  const handleGetFacultiesForInstitution = async (idInstitution: string) => {
-    const response = await getFacultiesForInstitution(idInstitution);
-  };
-
   return (
     <SectionContainer>
       <Section
@@ -56,6 +47,7 @@ const FacultySectionContainer = ({
         handleCreate={handleAddFaculty}
         handleShowChildren={shouldLoadDepartments}
         canShowChildren
+        showAddButton={!!idInstitution}
       />
     </SectionContainer>
   );

@@ -16,6 +16,7 @@ interface PropType {
   handleCreate: (name: InstitutionHierarchyCreateDto) => void;
   canShowChildren?: boolean;
   handleShowChildren?: (idParent: string) => void;
+  showAddButton?: boolean;
 }
 export const Section = ({
   labelTextField,
@@ -24,6 +25,7 @@ export const Section = ({
   handleCreate,
   handleShowChildren,
   canShowChildren = false,
+  showAddButton = false,
 }: PropType) => {
   const [addState, setAddState] = useState<boolean>(false);
   const [addValue, setAddValue] = useState<string>("");
@@ -31,6 +33,32 @@ export const Section = ({
   const handleCreateResource = () => {
     setAddState(false);
     handleCreate({ name: addValue });
+  };
+
+  const loadAddButton = () => {
+    return !addState ? (
+      <IconButton onClick={() => setAddState(true)}>
+        <AddIcon />
+      </IconButton>
+    ) : (
+      <AddItemContainer>
+        <TextField
+          fullWidth
+          variant="standard"
+          size="small"
+          placeholder={labelTextField}
+          value={addValue || ""}
+          onChange={(e) => setAddValue(e.target.value)}
+        />
+
+        <IconButton onClick={() => handleCreateResource()}>
+          <CheckIcon />
+        </IconButton>
+        <IconButton onClick={() => setAddState(false)}>
+          <ClearIcon />
+        </IconButton>
+      </AddItemContainer>
+    );
   };
   return (
     <>
@@ -44,29 +72,8 @@ export const Section = ({
           handleShowChildren={handleShowChildren}
         />
       ))}
-      {!addState ? (
-        <IconButton onClick={() => setAddState(true)}>
-          <AddIcon />
-        </IconButton>
-      ) : (
-        <AddItemContainer>
-          <TextField
-            fullWidth
-            variant="standard"
-            size="small"
-            placeholder={labelTextField}
-            value={addValue || ""}
-            onChange={(e) => setAddValue(e.target.value)}
-          />
 
-          <IconButton onClick={() => handleCreateResource()}>
-            <CheckIcon />
-          </IconButton>
-          <IconButton onClick={() => setAddState(false)}>
-            <ClearIcon />
-          </IconButton>
-        </AddItemContainer>
-      )}
+      {showAddButton && loadAddButton()}
     </>
   );
 };

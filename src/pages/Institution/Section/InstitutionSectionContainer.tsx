@@ -46,6 +46,7 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
         handleCreate={handleAddInstitution}
         handleShowChildren={handleGetFacultiesForInstitution}
         canShowChildren
+        showAddButton
       />
     </SectionContainer>
   );

@@ -7,6 +7,7 @@ import {
   PageLayout,
   SectionContainer,
 } from "./InstitutionPage.styles";
+import DepartmentSectionContainer from "./Section/DepartmentSectionContainer";
 import FacultySectionContainer from "./Section/FacultySectionContainer";
 import InstitutionSectionContainer from "./Section/InstitutionSectionContainer";
 
@@ -15,16 +16,13 @@ export const InstitutionPage = () => {
   const [idFaculty, setIdFaculty] = useState<string>("");
   const [idDepartment, setIdDepartment] = useState<string>("");
 
-  useEffect(() => {}, [idInstitution]);
+  useEffect(() => {
+    setIdFaculty("");
+  }, [idInstitution]);
 
   useEffect(() => {
-    const fetchData = () => {};
-    fetchData();
+    setIdDepartment("");
   }, [idFaculty]);
-  useEffect(() => {
-    const fetchData = () => {};
-    fetchData();
-  }, [idDepartment]);
 
   return (
     <Layout>
@@ -36,7 +34,10 @@ export const InstitutionPage = () => {
             idInstitution={idInstitution}
             shouldLoadDepartments={setIdFaculty}
           />
-          <SectionContainer>3</SectionContainer>
+          <DepartmentSectionContainer
+            idFaculty={idFaculty}
+            shouldLoadFieldsOfStudy={setIdDepartment}
+          />
           <SectionContainer>4</SectionContainer>
         </DataContainer>
       </PageLayout>

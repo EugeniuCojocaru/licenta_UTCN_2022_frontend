@@ -10,3 +10,11 @@ export interface FacultyCreateDto {
   name: string;
   institutionId: string;
 }
+export interface DepartmentCreateDto {
+  name: string;
+  facultyId: string;
+}
+export interface FieldOfStudyCreateDto {
+  name: string;
+  departmentId: string;
+}

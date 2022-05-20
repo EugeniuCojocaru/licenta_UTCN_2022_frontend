@@ -13,7 +13,7 @@ export const getFaculties = async () => {
 export const getDepartmentsForFaculties = async (idFaculty: string) => {
   try {
     const response = await getAxiosInstance().get(
-      `/api/faculties/${idFaculty}/departments`
+      `/api/institutions/${idFaculty}/faculties`
     );
     console.log({ response });
     return response;
