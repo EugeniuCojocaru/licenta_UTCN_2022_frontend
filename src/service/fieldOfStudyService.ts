@@ -1,32 +1,22 @@
-import { FacultyCreateDto, InstitutionHierarchyCreateDto } from "../common";
+import { FieldOfStudyCreateDto } from "../common";
 import getAxiosInstance from "./axiosInstance";
 
-export const getFaculties = async () => {
+export const getFieldsOfStudy = async () => {
   try {
-    const response = await getAxiosInstance().get(`/api/faculties`);
+    const response = await getAxiosInstance().get(`/api/fieldsOfStudy`);
     return response;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getDepartmentsForFaculties = async (idFaculty: string) => {
-  try {
-    const response = await getAxiosInstance().get(
-      `/api/institutions/${idFaculty}/faculties`
-    );
-    console.log({ response });
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const createFaculty = async (newFaculty: FacultyCreateDto) => {
+export const createFieldOfStudy = async (
+  newFieldOfStudy: FieldOfStudyCreateDto
+) => {
   try {
     const response = await getAxiosInstance().post(
-      `/api/faculties`,
-      newFaculty
+      `/api/fieldsOfStudy`,
+      newFieldOfStudy
     );
     return response;
   } catch (error) {

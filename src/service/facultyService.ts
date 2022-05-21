@@ -1,4 +1,4 @@
-import { FacultyCreateDto, InstitutionHierarchyCreateDto } from "../common";
+import { FacultyCreateDto } from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getFaculties = async () => {

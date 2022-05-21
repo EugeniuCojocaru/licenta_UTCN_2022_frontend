@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { InstitutionHierarchyType } from "../../common";
 import { Layout } from "../../components/Layout";
-import { getFacultiesForInstitution } from "../../service/institutionService";
-import {
-  DataContainer,
-  PageLayout,
-  SectionContainer,
-} from "./InstitutionPage.styles";
+import { DataContainer, PageLayout } from "./InstitutionPage.styles";
 import DepartmentSectionContainer from "./Section/DepartmentSectionContainer";
 import FacultySectionContainer from "./Section/FacultySectionContainer";
+import FieldOfStudySectionContainer from "./Section/FieldOfStudySectionCOntainer";
 import InstitutionSectionContainer from "./Section/InstitutionSectionContainer";
 
 export const InstitutionPage = () => {
@@ -18,6 +13,7 @@ export const InstitutionPage = () => {
 
   useEffect(() => {
     setIdFaculty("");
+    setIdDepartment("");
   }, [idInstitution]);
 
   useEffect(() => {
@@ -38,7 +34,7 @@ export const InstitutionPage = () => {
             idFaculty={idFaculty}
             shouldLoadFieldsOfStudy={setIdDepartment}
           />
-          <SectionContainer>4</SectionContainer>
+          <FieldOfStudySectionContainer idDepartment={idDepartment} />
         </DataContainer>
       </PageLayout>
     </Layout>
