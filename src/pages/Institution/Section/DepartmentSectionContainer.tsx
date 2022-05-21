@@ -46,9 +46,13 @@ const DepartmentSectionContainer = ({
         title="Departments"
         data={data}
         handleCreate={handleAddDepartment}
+        handleUpdate={() => new Promise<boolean>((resolve, reject) => {})}
         handleShowChildren={shouldLoadFieldsOfStudy}
         canShowChildren
         showAddButton={!!idFaculty}
+        refreshUI={() => {
+          setRefreshUI(!refreshUI);
+        }}
       />
     </SectionContainer>
   );

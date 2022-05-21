@@ -24,3 +24,7 @@ export const SectionItemContainer = styled.div`
   border: 0.5px solid #000;
   padding-left: 8px;
 `;
+export const SectionItemEditContainer = styled.div`
+  display: flex;
+  flex: 2;
+`;

@@ -18,3 +18,8 @@ export interface FieldOfStudyCreateDto {
   name: string;
   departmentId: string;
 }
+export interface InstitutionHierarchyUpdateDto {
+  id: string;
+  name: string;
+  idParent?: string;
+}

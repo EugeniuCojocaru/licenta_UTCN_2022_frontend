@@ -42,7 +42,11 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
         title="Fields of study"
         data={data}
         handleCreate={handleAddFieldOfStudy}
+        handleUpdate={() => new Promise<boolean>((resolve, reject) => {})}
         showAddButton={!!idDepartment}
+        refreshUI={() => {
+          setRefreshUI(!refreshUI);
+        }}
       />
     </SectionContainer>
   );

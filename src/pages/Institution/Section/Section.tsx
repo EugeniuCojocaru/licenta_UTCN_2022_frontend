@@ -7,6 +7,7 @@ import { AddItemContainer } from "./Section.styles";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
+  InstitutionHierarchyUpdateDto,
 } from "../../../common";
 import SectionItem from "./SectionItem";
 interface PropType {
@@ -14,16 +15,20 @@ interface PropType {
   title: string;
   data: InstitutionHierarchyType[];
   handleCreate: (name: InstitutionHierarchyCreateDto) => void;
+  handleUpdate: (name: InstitutionHierarchyUpdateDto) => Promise<boolean>;
   canShowChildren?: boolean;
   handleShowChildren?: (idParent: string) => void;
   showAddButton?: boolean;
+  refreshUI: any;
 }
 export const Section = ({
   labelTextField,
   title,
   data,
   handleCreate,
+  handleUpdate,
   handleShowChildren,
+  refreshUI,
   canShowChildren = false,
   showAddButton = false,
 }: PropType) => {
@@ -67,9 +72,10 @@ export const Section = ({
       {data.map((value) => (
         <SectionItem
           item={value}
-          handleUpdate={() => console.log("updatee")}
           canShowChildren={canShowChildren}
           handleShowChildren={handleShowChildren}
+          handleUpdate={handleUpdate}
+          refreshUI={refreshUI}
         />
       ))}
 

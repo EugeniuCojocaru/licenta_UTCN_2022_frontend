@@ -1,4 +1,8 @@
-import { InstitutionHierarchyCreateDto } from "../common";
+import {
+  InstitutionHierarchyCreateDto,
+  InstitutionHierarchyType,
+  InstitutionHierarchyUpdateDto,
+} from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getInstitutions = async () => {
@@ -27,6 +31,20 @@ export const createInstitutions = async (
 ) => {
   try {
     const response = await getAxiosInstance().post(`/api/institutions`, name);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateInstitutions = async (
+  newInstitution: InstitutionHierarchyUpdateDto
+) => {
+  try {
+    const response = await getAxiosInstance().put(
+      `/api/institutions`,
+      newInstitution
+    );
     return response;
   } catch (error) {
     console.error(error);
