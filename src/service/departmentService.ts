@@ -1,4 +1,4 @@
-import { DepartmentCreateDto } from "../common";
+import { DepartmentCreateDto, InstitutionHierarchyUpdateDto } from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getDepartments = async () => {
@@ -27,6 +27,24 @@ export const createDepartment = async (newDepartment: DepartmentCreateDto) => {
     const response = await getAxiosInstance().post(
       `/api/department`,
       newDepartment
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateDepartment = async (
+  updatedDepartment: InstitutionHierarchyUpdateDto
+) => {
+  try {
+    const response = await getAxiosInstance().put(
+      `/api/department`,
+      {
+        id: updatedDepartment.id,
+        name: updatedDepartment.name,
+      },
+      { params: { facultyId: updatedDepartment.idParent } }
     );
     return response;
   } catch (error) {

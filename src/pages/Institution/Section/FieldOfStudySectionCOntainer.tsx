@@ -4,7 +4,10 @@ import {
   InstitutionHierarchyType,
 } from "../../../common";
 import { getFieldsOfStudyForDepartment } from "../../../service/departmentService";
-import { createFieldOfStudy } from "../../../service/fieldOfStudyService";
+import {
+  createFieldOfStudy,
+  updateFieldOfStudy,
+} from "../../../service/fieldOfStudyService";
 
 import { SectionContainer } from "../InstitutionPage.styles";
 import { Section } from "./Section";
@@ -35,6 +38,17 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
     if (response) setRefreshUI(!refreshUI);
   };
 
+  const handleUpdateFieldOfStudy = async (
+    updatedFieldOfStudy: InstitutionHierarchyType
+  ): Promise<boolean> => {
+    const response = await updateFieldOfStudy({
+      ...updatedFieldOfStudy,
+      idParent: idDepartment,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
+
   return (
     <SectionContainer>
       <Section
@@ -42,7 +56,7 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
         title="Fields of study"
         data={data}
         handleCreate={handleAddFieldOfStudy}
-        handleUpdate={() => new Promise<boolean>((resolve, reject) => {})}
+        handleUpdate={handleUpdateFieldOfStudy}
         showAddButton={!!idDepartment}
         refreshUI={() => {
           setRefreshUI(!refreshUI);

@@ -3,7 +3,10 @@ import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
 } from "../../../common";
-import { createDepartment } from "../../../service/departmentService";
+import {
+  createDepartment,
+  updateDepartment,
+} from "../../../service/departmentService";
 import { getDepartmentsForFaculties } from "../../../service/facultyService";
 
 import { SectionContainer } from "../InstitutionPage.styles";
@@ -39,6 +42,17 @@ const DepartmentSectionContainer = ({
     if (response) setRefreshUI(!refreshUI);
   };
 
+  const handleUpdateDepartment = async (
+    updatedDepartment: InstitutionHierarchyType
+  ): Promise<boolean> => {
+    const response = await updateDepartment({
+      ...updatedDepartment,
+      idParent: idFaculty,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
+
   return (
     <SectionContainer>
       <Section
@@ -46,7 +60,7 @@ const DepartmentSectionContainer = ({
         title="Departments"
         data={data}
         handleCreate={handleAddDepartment}
-        handleUpdate={() => new Promise<boolean>((resolve, reject) => {})}
+        handleUpdate={handleUpdateDepartment}
         handleShowChildren={shouldLoadFieldsOfStudy}
         canShowChildren
         showAddButton={!!idFaculty}

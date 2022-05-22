@@ -1,4 +1,7 @@
-import { FieldOfStudyCreateDto } from "../common";
+import {
+  FieldOfStudyCreateDto,
+  InstitutionHierarchyUpdateDto,
+} from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getFieldsOfStudy = async () => {
@@ -17,6 +20,24 @@ export const createFieldOfStudy = async (
     const response = await getAxiosInstance().post(
       `/api/fieldsOfStudy`,
       newFieldOfStudy
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateFieldOfStudy = async (
+  updatedFieldOfStudy: InstitutionHierarchyUpdateDto
+) => {
+  try {
+    const response = await getAxiosInstance().put(
+      `/api/fieldsOfStudy`,
+      {
+        id: updatedFieldOfStudy.id,
+        name: updatedFieldOfStudy.name,
+      },
+      { params: { departmentId: updatedFieldOfStudy.idParent } }
     );
     return response;
   } catch (error) {
