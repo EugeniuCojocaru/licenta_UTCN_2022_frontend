@@ -13,7 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 interface Props {
   item: InstitutionHierarchyType;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
-  handleDelete?: () => void;
+  handleDelete: (id: string) => Promise<boolean>;
   canShowChildren: boolean;
   //handleShowChildren?: (idParent: string) => void;
   handleShowChildren: any;
@@ -22,6 +22,7 @@ interface Props {
 const SectionItem = ({
   item,
   handleUpdate,
+  handleDelete,
   handleShowChildren,
   canShowChildren,
   refreshUI,
@@ -37,12 +38,25 @@ const SectionItem = ({
     handleUpdate(newItem)
       .then(() => {
         setEdit(false);
+        setNewName(item.name);
         refreshUI();
       })
       .catch(() => {
         setNewName(item.name);
       });
   };
+
+  const handleDeleteEvent = async () => {
+    handleDelete(item.id)
+      .then(() => {
+        setEdit(false);
+        refreshUI();
+      })
+      .catch(() => {
+        //TODO: add error notification
+      });
+  };
+
   const handleKeyPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleUpdateEvent();
@@ -69,11 +83,7 @@ const SectionItem = ({
           </Tooltip>
           <Tooltip title="Delete" arrow>
             <IconButton>
-              <DeleteOutlineIcon
-                onClick={() => {
-                  setEdit(false);
-                }}
-              />
+              <DeleteOutlineIcon onClick={() => handleDeleteEvent()} />
             </IconButton>
           </Tooltip>
           <Tooltip title="Cancel" arrow>

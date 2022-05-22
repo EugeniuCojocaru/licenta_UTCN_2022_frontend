@@ -1,4 +1,8 @@
-import { FacultyCreateDto, InstitutionHierarchyUpdateDto } from "../common";
+import {
+  FacultyCreateDto,
+  InstitutionHierarchyDeleteDto,
+  InstitutionHierarchyUpdateDto,
+} from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getFaculties = async () => {
@@ -45,6 +49,19 @@ export const updateFaculty = async (
         name: updatedFaculty.name,
       },
       { params: { institutionId: updatedFaculty.idParent } }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteFaculty = async (ids: InstitutionHierarchyDeleteDto) => {
+  try {
+    const response = await getAxiosInstance().delete(
+      `/api/faculties`,
+
+      { params: { institutionId: ids.idParent, facultyId: ids.id } }
     );
     return response;
   } catch (error) {

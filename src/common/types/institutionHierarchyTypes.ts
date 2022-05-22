@@ -23,3 +23,8 @@ export interface InstitutionHierarchyUpdateDto {
   name: string;
   idParent?: string;
 }
+
+export interface InstitutionHierarchyDeleteDto {
+  id: string;
+  idParent: string;
+}

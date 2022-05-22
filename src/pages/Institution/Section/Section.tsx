@@ -15,6 +15,7 @@ interface PropType {
   data: InstitutionHierarchyType[];
   handleCreate: (name: InstitutionHierarchyCreateDto) => void;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
+  handleDelete: (id: string) => Promise<boolean>;
   canShowChildren?: boolean;
   handleShowChildren?: (idParent: string) => void;
   showAddButton?: boolean;
@@ -26,6 +27,7 @@ export const Section = ({
   data,
   handleCreate,
   handleUpdate,
+  handleDelete,
   handleShowChildren,
   refreshUI,
   canShowChildren = false,
@@ -74,6 +76,7 @@ export const Section = ({
           canShowChildren={canShowChildren}
           handleShowChildren={handleShowChildren}
           handleUpdate={handleUpdate}
+          handleDelete={handleDelete}
           refreshUI={refreshUI}
         />
       ))}

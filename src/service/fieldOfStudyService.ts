@@ -1,5 +1,6 @@
 import {
   FieldOfStudyCreateDto,
+  InstitutionHierarchyDeleteDto,
   InstitutionHierarchyUpdateDto,
 } from "../common";
 import getAxiosInstance from "./axiosInstance";
@@ -38,6 +39,21 @@ export const updateFieldOfStudy = async (
         name: updatedFieldOfStudy.name,
       },
       { params: { departmentId: updatedFieldOfStudy.idParent } }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteFieldOfStudy = async (
+  ids: InstitutionHierarchyDeleteDto
+) => {
+  try {
+    const response = await getAxiosInstance().delete(
+      `/api/fieldsOfStudy`,
+
+      { params: { departmentId: ids.idParent, fieldOfStudyId: ids.id } }
     );
     return response;
   } catch (error) {

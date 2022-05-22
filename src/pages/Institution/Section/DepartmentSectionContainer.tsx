@@ -5,6 +5,7 @@ import {
 } from "../../../common";
 import {
   createDepartment,
+  deleteDepartment,
   updateDepartment,
 } from "../../../service/departmentService";
 import { getDepartmentsForFaculties } from "../../../service/facultyService";
@@ -53,6 +54,17 @@ const DepartmentSectionContainer = ({
     return false;
   };
 
+  const handleDeleteDepartment = async (
+    idDepartment: string
+  ): Promise<boolean> => {
+    const response = await deleteDepartment({
+      id: idDepartment,
+      idParent: idFaculty,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
+
   return (
     <SectionContainer>
       <Section
@@ -62,6 +74,7 @@ const DepartmentSectionContainer = ({
         handleCreate={handleAddDepartment}
         handleUpdate={handleUpdateDepartment}
         handleShowChildren={shouldLoadFieldsOfStudy}
+        handleDelete={handleDeleteDepartment}
         canShowChildren
         showAddButton={!!idFaculty}
         refreshUI={() => {

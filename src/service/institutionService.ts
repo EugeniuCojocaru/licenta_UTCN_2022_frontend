@@ -1,7 +1,7 @@
 import {
   InstitutionHierarchyCreateDto,
+  InstitutionHierarchyDeleteDto,
   InstitutionHierarchyType,
-  InstitutionHierarchyUpdateDto,
 } from "../common";
 import getAxiosInstance from "./axiosInstance";
 
@@ -44,6 +44,19 @@ export const updateInstitutions = async (
     const response = await getAxiosInstance().put(
       `/api/institutions`,
       newInstitution
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteInstitution = async (ids: InstitutionHierarchyDeleteDto) => {
+  try {
+    const response = await getAxiosInstance().delete(
+      `/api/institutions`,
+
+      { params: { institutionId: ids.id } }
     );
     return response;
   } catch (error) {

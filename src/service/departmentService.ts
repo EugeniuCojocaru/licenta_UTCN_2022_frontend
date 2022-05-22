@@ -1,4 +1,8 @@
-import { DepartmentCreateDto, InstitutionHierarchyUpdateDto } from "../common";
+import {
+  DepartmentCreateDto,
+  InstitutionHierarchyDeleteDto,
+  InstitutionHierarchyUpdateDto,
+} from "../common";
 import getAxiosInstance from "./axiosInstance";
 
 export const getDepartments = async () => {
@@ -13,7 +17,7 @@ export const getDepartments = async () => {
 export const getFieldsOfStudyForDepartment = async (idDepartment: string) => {
   try {
     const response = await getAxiosInstance().get(
-      `/api/department/${idDepartment}/fieldsOfStudy`
+      `/api/departments/${idDepartment}/fieldsOfStudy`
     );
     console.log({ response });
     return response;
@@ -25,7 +29,7 @@ export const getFieldsOfStudyForDepartment = async (idDepartment: string) => {
 export const createDepartment = async (newDepartment: DepartmentCreateDto) => {
   try {
     const response = await getAxiosInstance().post(
-      `/api/department`,
+      `/api/departments`,
       newDepartment
     );
     return response;
@@ -39,12 +43,25 @@ export const updateDepartment = async (
 ) => {
   try {
     const response = await getAxiosInstance().put(
-      `/api/department`,
+      `/api/departments`,
       {
         id: updatedDepartment.id,
         name: updatedDepartment.name,
       },
       { params: { facultyId: updatedDepartment.idParent } }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteDepartment = async (ids: InstitutionHierarchyDeleteDto) => {
+  try {
+    const response = await getAxiosInstance().delete(
+      `/api/departments`,
+
+      { params: { facultyId: ids.idParent, departmentId: ids.id } }
     );
     return response;
   } catch (error) {

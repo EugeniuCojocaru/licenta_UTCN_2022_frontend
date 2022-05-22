@@ -6,6 +6,7 @@ import {
 import { getFieldsOfStudyForDepartment } from "../../../service/departmentService";
 import {
   createFieldOfStudy,
+  deleteFieldOfStudy,
   updateFieldOfStudy,
 } from "../../../service/fieldOfStudyService";
 
@@ -49,6 +50,16 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
     return false;
   };
 
+  const handleDeleteFieldOfStudy = async (
+    idFieldOfStudy: string
+  ): Promise<boolean> => {
+    const response = await deleteFieldOfStudy({
+      id: idFieldOfStudy,
+      idParent: idDepartment,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
   return (
     <SectionContainer>
       <Section
@@ -57,6 +68,7 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
         data={data}
         handleCreate={handleAddFieldOfStudy}
         handleUpdate={handleUpdateFieldOfStudy}
+        handleDelete={handleDeleteFieldOfStudy}
         showAddButton={!!idDepartment}
         refreshUI={() => {
           setRefreshUI(!refreshUI);

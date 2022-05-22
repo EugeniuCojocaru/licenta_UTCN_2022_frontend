@@ -5,6 +5,7 @@ import {
 } from "../../../common";
 import {
   createInstitutions,
+  deleteInstitution,
   getInstitutions,
   updateInstitutions,
 } from "../../../service/institutionService";
@@ -42,6 +43,17 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
     return false;
   };
 
+  const handleDeleteInstitution = async (
+    idInstitution: string
+  ): Promise<boolean> => {
+    const response = await deleteInstitution({
+      idParent: idInstitution,
+      id: idInstitution,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
+
   const handleGetFacultiesForInstitution = async (idInstitution: string) => {
     shouldLoadFaculties(idInstitution);
   };
@@ -54,6 +66,7 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
         data={data}
         handleCreate={handleAddInstitution}
         handleUpdate={handleUpdateInstitution}
+        handleDelete={handleDeleteInstitution}
         handleShowChildren={handleGetFacultiesForInstitution}
         canShowChildren
         showAddButton
