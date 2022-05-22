@@ -9,7 +9,7 @@ import {
   updateFaculty,
 } from "../../../service/facultyService";
 import { getFacultiesForInstitution } from "../../../service/institutionService";
-import { SectionContainer } from "../InstitutionPage.styles";
+import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
 interface Props {
   idInstitution: string;

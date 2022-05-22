@@ -10,8 +10,8 @@ import {
 } from "../../../service/departmentService";
 import { getDepartmentsForFaculties } from "../../../service/facultyService";
 
-import { SectionContainer } from "../InstitutionPage.styles";
 import { Section } from "./Section";
+import { SectionContainer } from "./Section.styles";
 interface Props {
   idFaculty: string;
   shouldLoadFieldsOfStudy: (idDepartment: string) => void;

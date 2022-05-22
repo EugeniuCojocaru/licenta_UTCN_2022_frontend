@@ -10,7 +10,7 @@ import {
   updateFieldOfStudy,
 } from "../../../service/fieldOfStudyService";
 
-import { SectionContainer } from "../InstitutionPage.styles";
+import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
 interface Props {
   idDepartment: string;

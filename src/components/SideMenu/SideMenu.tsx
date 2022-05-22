@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 
 import {
   SideMenuContainer,
@@ -41,7 +42,7 @@ export const SideMenu = () => {
           label="Institutions"
           handleClick={() => handleNavigateTo(INSTITUTION_URL)}
         >
-          <DashboardIcon />
+          <CorporateFareIcon />
         </SideMenuButton>
       </ButtonsContainer>
     </SideMenuContainer>
