@@ -38,7 +38,7 @@ export const createInstitutions = async (
 };
 
 export const updateInstitutions = async (
-  newInstitution: InstitutionHierarchyUpdateDto
+  newInstitution: InstitutionHierarchyType
 ) => {
   try {
     const response = await getAxiosInstance().put(

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  InstitutionHierarchyType,
-  InstitutionHierarchyUpdateDto,
-} from "../../../common";
+import { InstitutionHierarchyType } from "../../../common";
 import {
   SectionItemContainer,
   SectionItemEditContainer,
@@ -14,7 +11,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CloseIcon from "@mui/icons-material/Close";
 interface Props {
   item: InstitutionHierarchyType;
-  handleUpdate: (name: InstitutionHierarchyUpdateDto) => Promise<boolean>;
+  handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
   canShowChildren: boolean;
   //handleShowChildren?: (idParent: string) => void;
   handleShowChildren: any;

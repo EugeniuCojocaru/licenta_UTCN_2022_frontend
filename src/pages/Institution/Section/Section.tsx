@@ -7,7 +7,6 @@ import { AddItemContainer } from "./Section.styles";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
-  InstitutionHierarchyUpdateDto,
 } from "../../../common";
 import SectionItem from "./SectionItem";
 interface PropType {
@@ -15,7 +14,7 @@ interface PropType {
   title: string;
   data: InstitutionHierarchyType[];
   handleCreate: (name: InstitutionHierarchyCreateDto) => void;
-  handleUpdate: (name: InstitutionHierarchyUpdateDto) => Promise<boolean>;
+  handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
   canShowChildren?: boolean;
   handleShowChildren?: (idParent: string) => void;
   showAddButton?: boolean;

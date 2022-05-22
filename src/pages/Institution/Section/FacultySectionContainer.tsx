@@ -3,7 +3,7 @@ import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
 } from "../../../common";
-import { createFaculty } from "../../../service/facultyService";
+import { createFaculty, updateFaculty } from "../../../service/facultyService";
 import { getFacultiesForInstitution } from "../../../service/institutionService";
 import { SectionContainer } from "../InstitutionPage.styles";
 import { Section } from "./Section";
@@ -30,6 +30,17 @@ const FacultySectionContainer = ({
     else setData([]);
   }, [refreshUI, idInstitution]);
 
+  const handleUpdateFaculty = async (
+    updatedFaculty: InstitutionHierarchyType
+  ): Promise<boolean> => {
+    const response = await updateFaculty({
+      ...updatedFaculty,
+      idParent: idInstitution,
+    });
+    if (response?.status === 200) return true;
+    return false;
+  };
+
   const handleAddFaculty = async (name: InstitutionHierarchyCreateDto) => {
     const response = await createFaculty({
       ...name,
@@ -45,7 +56,7 @@ const FacultySectionContainer = ({
         title="Faculties"
         data={data}
         handleCreate={handleAddFaculty}
-        handleUpdate={() => new Promise<boolean>((resolve, reject) => {})}
+        handleUpdate={handleUpdateFaculty}
         handleShowChildren={shouldLoadDepartments}
         canShowChildren
         showAddButton={!!idInstitution}

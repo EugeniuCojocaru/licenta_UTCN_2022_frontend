@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
-  InstitutionHierarchyUpdateDto,
 } from "../../../common";
 import {
   createInstitutions,
@@ -36,7 +35,7 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
   };
 
   const handleUpdateInstitution = async (
-    newInstitution: InstitutionHierarchyUpdateDto
+    newInstitution: InstitutionHierarchyType
   ): Promise<boolean> => {
     const response = await updateInstitutions(newInstitution);
     if (response?.status === 200) return true;
