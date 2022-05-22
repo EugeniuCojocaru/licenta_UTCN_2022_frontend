@@ -5,13 +5,15 @@ import {
   SectionItemEditContainer,
 } from "./Section.styles";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { IconButton, TextField } from "@mui/material";
+import { IconButton, TextField, Tooltip } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseIcon from "@mui/icons-material/Close";
 interface Props {
   item: InstitutionHierarchyType;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
+  handleDelete?: () => void;
   canShowChildren: boolean;
   //handleShowChildren?: (idParent: string) => void;
   handleShowChildren: any;
@@ -35,7 +37,6 @@ const SectionItem = ({
     handleUpdate(newItem)
       .then(() => {
         setEdit(false);
-
         refreshUI();
       })
       .catch(() => {
@@ -61,22 +62,36 @@ const SectionItem = ({
             fullWidth
             onChange={(e) => setNewName(e.target.value)}
           />
-          <IconButton>
-            <CheckIcon onClick={() => handleUpdateEvent()} />
-          </IconButton>
-          <IconButton>
-            <CloseIcon
-              onClick={() => {
-                setEdit(false);
-                setNewName(item.name);
-              }}
-            />
-          </IconButton>
+          <Tooltip title="Save" arrow>
+            <IconButton>
+              <CheckIcon onClick={() => handleUpdateEvent()} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete" arrow>
+            <IconButton>
+              <DeleteOutlineIcon
+                onClick={() => {
+                  setEdit(false);
+                }}
+              />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Cancel" arrow>
+            <IconButton>
+              <CloseIcon
+                onClick={() => {
+                  setEdit(false);
+                  setNewName(item.name);
+                }}
+              />
+            </IconButton>
+          </Tooltip>
         </SectionItemEditContainer>
       ) : (
         item.name
       )}
-      {canShowChildren && (
+
+      {canShowChildren && !edit && (
         <IconButton onClick={() => handleShowChildren(item.id)}>
           <ArrowRightIcon />
         </IconButton>
