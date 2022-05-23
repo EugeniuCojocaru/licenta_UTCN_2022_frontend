@@ -3,7 +3,7 @@ import { Layout } from "../../components/Layout";
 import { DataContainer, PageLayout } from "./InstitutionPage.styles";
 import DepartmentSectionContainer from "./Section/DepartmentSectionContainer";
 import FacultySectionContainer from "./Section/FacultySectionContainer";
-import FieldOfStudySectionContainer from "./Section/FieldOfStudySectionCOntainer";
+import FieldOfStudySectionContainer from "./Section/FieldOfStudySectionContainer";
 import InstitutionSectionContainer from "./Section/InstitutionSectionContainer";
 
 export const InstitutionPage = () => {
