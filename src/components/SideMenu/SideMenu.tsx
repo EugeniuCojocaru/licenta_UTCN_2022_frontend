@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
 import {
   SideMenuContainer,
@@ -13,7 +15,9 @@ import { SideMenuButton } from "./SideMenuButton";
 import {
   DASHBOARD_URL,
   INSTITUTION_URL,
+  SUBJECT_URL,
   SYLLABUS_URL,
+  TEACHER_URL,
 } from "../../common/routes";
 
 export const SideMenu = () => {
@@ -32,6 +36,19 @@ export const SideMenu = () => {
         >
           <DashboardIcon />
         </SideMenuButton>
+
+        <SideMenuButton
+          label="Institutions"
+          handleClick={() => handleNavigateTo(INSTITUTION_URL)}
+        >
+          <CorporateFareIcon />
+        </SideMenuButton>
+        <SideMenuButton
+          label="Subjects"
+          handleClick={() => handleNavigateTo(SUBJECT_URL)}
+        >
+          <MenuBookIcon />
+        </SideMenuButton>
         <SideMenuButton
           label="Syllabus"
           handleClick={() => handleNavigateTo(SYLLABUS_URL)}
@@ -39,10 +56,10 @@ export const SideMenu = () => {
           <DashboardIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Institutions"
-          handleClick={() => handleNavigateTo(INSTITUTION_URL)}
+          label="Teachers"
+          handleClick={() => handleNavigateTo(TEACHER_URL)}
         >
-          <CorporateFareIcon />
+          <PeopleAltIcon />
         </SideMenuButton>
       </ButtonsContainer>
     </SideMenuContainer>

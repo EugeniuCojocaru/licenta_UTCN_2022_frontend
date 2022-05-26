@@ -1,7 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AddSyllabusPage, DashboardPage, SyllabusPage } from "../../pages";
-import { InstitutionPage } from "../../pages/Institution";
+import {
+  AddSyllabusPage,
+  DashboardPage,
+  SyllabusPage,
+  InstitutionPage,
+  SubjectPage,
+  TeacherPage,
+} from "../../pages";
 
 export const RouterPicker = () => {
   return (
@@ -12,6 +18,8 @@ export const RouterPicker = () => {
         <Route path="/syllabus" element={<SyllabusPage />} />
         <Route path="/syllabus/add" element={<AddSyllabusPage />} />
         <Route path="/institution" element={<InstitutionPage />} />
+        <Route path="/subjects" element={<SubjectPage />} />
+        <Route path="/teachers" element={<TeacherPage />} />
       </Routes>
     </BrowserRouter>
   );
