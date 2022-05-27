@@ -7,8 +7,8 @@ import {
   createFaculty,
   deleteFaculty,
   updateFaculty,
-} from "../../../service/facultyService";
-import { getFacultiesForInstitution } from "../../../service/institutionService";
+} from "../../../data-access/service/facultyService";
+import { getFacultiesForInstitution } from "../../../data-access/service/institutionService";
 import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
 interface Props {

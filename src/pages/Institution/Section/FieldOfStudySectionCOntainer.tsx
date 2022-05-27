@@ -3,12 +3,12 @@ import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
 } from "../../../common";
-import { getFieldsOfStudyForDepartment } from "../../../service/departmentService";
+import { getFieldsOfStudyForDepartment } from "../../../data-access/service/departmentService";
 import {
   createFieldOfStudy,
   deleteFieldOfStudy,
   updateFieldOfStudy,
-} from "../../../service/fieldOfStudyService";
+} from "../../../data-access/service/fieldOfStudyService";
 
 import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";

@@ -8,7 +8,7 @@ import {
   deleteInstitution,
   getInstitutions,
   updateInstitutions,
-} from "../../../service/institutionService";
+} from "../../../data-access/service/institutionService";
 import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
 

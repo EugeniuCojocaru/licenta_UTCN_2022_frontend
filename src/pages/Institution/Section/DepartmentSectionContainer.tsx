@@ -7,8 +7,8 @@ import {
   createDepartment,
   deleteDepartment,
   updateDepartment,
-} from "../../../service/departmentService";
-import { getDepartmentsForFaculties } from "../../../service/facultyService";
+} from "../../../data-access/service/departmentService";
+import { getDepartmentsForFaculties } from "../../../data-access/service/facultyService";
 
 import { Section } from "./Section";
 import { SectionContainer } from "./Section.styles";
