@@ -1,64 +1,79 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
 import EditIcon from "@mui/icons-material/Edit";
-//import DeleteIcon from "@mui/icons-material/Delete";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import CheckIcon from "@mui/icons-material/Check";
 import IconButton from "@mui/material/IconButton";
 import { MenuItem, TextField } from "@mui/material";
 
 import EditOffIcon from "@mui/icons-material/EditOff";
+import {
+  mapRoleIdToString,
+  Role,
+  Roles,
+  User,
+} from "../../../common/types/userTypes";
+import {
+  updateUser,
+  deleteUser,
+} from "../../../data-access/service/userService";
 //import useNotification from "../../common/hooks/useNotification";
 
-const roleType = [
-  { value: "user", label: "User" },
-  { value: "admin", label: "Admin" },
-  { value: "doctor", label: "Doctor" },
-];
-const UserTableRow = ({ row, refreshUI }) => {
-  const [edit, setEdit] = useState(false);
-  const [client, setClient] = useState({
-    name: "",
-    email: "",
-    role: "",
-  });
-  const id = row.id;
-  const { name, email, role } = client;
-  //const { showNotification } = useNotification();
+interface Props {
+  row: User;
+  refreshUI: () => void;
+}
 
-  useEffect(() => {
-    setClient(row);
-  }, []);
+const UserTableRow = ({ row, refreshUI }: Props) => {
+  const [edit, setEdit] = useState(false);
+
+  const [user, setUser] = useState({
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    role: row.role,
+  });
+
+  const { id, name, email, role } = user;
+  //const { showNotification } = useNotification();
 
   const handleEditEvent = () => {
     setEdit(!edit);
   };
-  const handleInputChange = (column, newData) => {
-    setClient({ ...client, [column]: newData });
+  const handleInputChange = (field: string, value: string | Role) => {
+    setUser({ ...user, [field]: value });
   };
 
-  // const handleEditUser = async () => {
-  //   const newUserInfo = { ...row, name, email, role };
-  //   const response = await updateUser(newUserInfo);
-  //   if (response.status >= 200 && response.status < 300) {
-  //     showNotification({
-  //       severity: "success",
-  //       message: "User updated successfully!",
-  //     });
-  //   } else {
-  //     showNotification({
-  //       severity: "error",
-  //       message: "Something went wrong updating user data!",
-  //     });
-  //   }
-  //   setEdit(!edit);
-  // };
+  const handleEditUser = async () => {
+    const response = await updateUser(user);
+    console.log(response);
+    // if (response.status >= 200 && response.status < 300) {
+    //   showNotification({
+    //     severity: "success",
+    //     message: "User updated successfully!",
+    //   });
+    // } else {
+    //   showNotification({
+    //     severity: "error",
+    //     message: "Something went wrong updating user data!",
+    //   });
+    // }
+    setEdit(!edit);
+    refreshUI();
+  };
+
+  const handleDeleteUser = async () => {
+    const response = await deleteUser(id);
+    console.log(response);
+    refreshUI();
+  };
 
   return (
     <TableRow
-      key={row.id}
+      key={id}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell component="th" scope="row">
@@ -96,31 +111,36 @@ const UserTableRow = ({ row, refreshUI }) => {
             value={role}
             onChange={(e) => handleInputChange("role", e.target.value)}
           >
-            {roleType.map((option) => (
+            {Roles.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
         ) : (
-          role
+          mapRoleIdToString(role)
         )}
       </TableCell>
 
       <TableCell align="right" width="150px">
-        {/* {edit && (
-          <IconButton>
-            <CheckIcon onClick={() => handleEditUser()} />
-          </IconButton>
-        )} */}
         {edit ? (
-          <IconButton onClick={() => handleEditEvent()}>
-            <EditOffIcon />
-          </IconButton>
+          <>
+            <IconButton>
+              <CheckIcon onClick={() => handleEditUser()} />
+            </IconButton>
+            <IconButton onClick={() => handleEditEvent()}>
+              <EditOffIcon />
+            </IconButton>
+          </>
         ) : (
-          <IconButton onClick={() => handleEditEvent()}>
-            <EditIcon />
-          </IconButton>
+          <>
+            <IconButton onClick={() => handleEditEvent()}>
+              <EditIcon />
+            </IconButton>
+            <IconButton onClick={() => handleDeleteUser()}>
+              <PersonRemoveIcon />
+            </IconButton>
+          </>
         )}
       </TableCell>
     </TableRow>
