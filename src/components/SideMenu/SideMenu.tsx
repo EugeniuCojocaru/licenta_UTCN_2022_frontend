@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -20,44 +20,59 @@ import {
   TEACHER_URL,
 } from "../../common/routes";
 
+import logo from "../../common/resources/logo.png";
+
 export const SideMenu = () => {
   const navigate = useNavigate();
-
-  const handleNavigateTo = (route: string) => {
+  const [activeElement, setActiveElement] = useState<string>("");
+  const handleNavigateTo = (route: string, label: string) => {
+    setActiveElement(label);
+    console.log(label);
     navigate(route);
   };
+
+  console.log({ activeElement });
+
   return (
     <SideMenuContainer>
-      <LogoContainer></LogoContainer>
+      <LogoContainer>
+        <img src={logo} alt="Logo" height="75px" />
+      </LogoContainer>
+
       <ButtonsContainer>
         <SideMenuButton
           label="Dashboard"
-          handleClick={() => handleNavigateTo(DASHBOARD_URL)}
+          active={activeElement}
+          handleClick={() => handleNavigateTo(DASHBOARD_URL, "Dashboard")}
         >
           <DashboardIcon />
         </SideMenuButton>
 
         <SideMenuButton
           label="Institutions"
-          handleClick={() => handleNavigateTo(INSTITUTION_URL)}
+          active={activeElement}
+          handleClick={() => handleNavigateTo(INSTITUTION_URL, "Institutions")}
         >
           <CorporateFareIcon />
         </SideMenuButton>
         <SideMenuButton
           label="Subjects"
-          handleClick={() => handleNavigateTo(SUBJECT_URL)}
+          active={activeElement}
+          handleClick={() => handleNavigateTo(SUBJECT_URL, "Subjects")}
         >
           <MenuBookIcon />
         </SideMenuButton>
         <SideMenuButton
           label="Syllabus"
-          handleClick={() => handleNavigateTo(SYLLABUS_URL)}
+          active={activeElement}
+          handleClick={() => handleNavigateTo(SYLLABUS_URL, "Syllabus")}
         >
           <DashboardIcon />
         </SideMenuButton>
         <SideMenuButton
           label="Teachers"
-          handleClick={() => handleNavigateTo(TEACHER_URL)}
+          active={activeElement}
+          handleClick={() => handleNavigateTo(TEACHER_URL, "Teachers")}
         >
           <PeopleAltIcon />
         </SideMenuButton>

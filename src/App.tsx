@@ -1,9 +1,12 @@
-import React from 'react';
-import { RouterPicker } from './components/Router';
-
+import React from "react";
+import { RouterPicker } from "./components/Router";
+import { ThemeProvider } from "@mui/styles";
+import theme from "./common/style/theme";
 function App() {
   return (
-    <RouterPicker/>
+    <ThemeProvider theme={theme}>
+      <RouterPicker />
+    </ThemeProvider>
   );
 }
 
