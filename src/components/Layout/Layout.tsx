@@ -1,19 +1,25 @@
-import React from 'react'
-import { SideMenu } from '../SideMenu';
-import { FullPageContainer, PageContainer, SideMenuContainer } from './Layout.styles'
+import React from "react";
+import { SideMenu } from "../SideMenu";
+import {
+  FullPageContainer,
+  NotificationZone,
+  PageContainer,
+  SideMenuContainer,
+} from "./Layout.styles";
 
 interface PropType {
   children: any;
-} 
-export const Layout = ({children}: PropType) => {
+}
+export const Layout = ({ children }: PropType) => {
   return (
     <FullPageContainer>
       <SideMenuContainer>
-        <SideMenu/>
+        <SideMenu />
       </SideMenuContainer>
       <PageContainer>
-      {children}
-      </PageContainer>      
-    </FullPageContainer>    
-  )
-}
+        <NotificationZone />
+        {children}
+      </PageContainer>
+    </FullPageContainer>
+  );
+};

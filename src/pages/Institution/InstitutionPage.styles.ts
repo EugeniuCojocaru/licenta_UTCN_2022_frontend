@@ -9,6 +9,8 @@ export const PageLayout = styled.div`
 `;
 
 export const DataContainer = styled.div`
+  margin-top: auto;
+  margin-bottom: auto;
   display: flex;
   height: 100%;
   gap: 16px;

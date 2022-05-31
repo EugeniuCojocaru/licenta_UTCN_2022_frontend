@@ -7,6 +7,12 @@ const theme = createTheme({
         disableRipple: true,
       },
     },
+    MuiIconButton: {
+      defaultProps: {
+        disableFocusRipple: true,
+        disableRipple: true,
+      },
+    },
   },
 });
 

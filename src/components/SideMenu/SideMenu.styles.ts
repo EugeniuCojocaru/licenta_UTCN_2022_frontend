@@ -23,11 +23,11 @@ export const ButtonContainer = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   gap: 16px;
-  color: ${colors.appBackgroud};
+  color: ${colors.white};
   margin: 0 10%;
 
   svg {
-    color: ${({ active }) => (active ? colors.red : colors.appBackgroud)};
+    color: ${({ active }) => (active ? colors.red : colors.white)};
   }
   p {
     text-decoration: none;

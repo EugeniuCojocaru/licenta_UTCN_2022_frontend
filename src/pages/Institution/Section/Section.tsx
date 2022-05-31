@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import ClearIcon from "@mui/icons-material/Clear";
 import CheckIcon from "@mui/icons-material/Check";
-import { IconButton, TextField } from "@mui/material";
-import { AddItemContainer } from "./Section.styles";
+import { Divider, IconButton, TextField } from "@mui/material";
+import { AddItemContainer, ItemsContainer } from "./Section.styles";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
 } from "../../../common";
 import SectionItem from "./SectionItem";
+
+const classes = {
+  iconButton: {
+    padding: 0,
+  },
+};
 interface PropType {
   labelTextField: string;
   title: string;
@@ -43,7 +49,7 @@ export const Section = ({
 
   const loadAddButton = () => {
     return !addState ? (
-      <IconButton onClick={() => setAddState(true)}>
+      <IconButton onClick={() => setAddState(true)} style={classes.iconButton}>
         <AddIcon />
       </IconButton>
     ) : (
@@ -57,10 +63,16 @@ export const Section = ({
           onChange={(e) => setAddValue(e.target.value)}
         />
 
-        <IconButton onClick={() => handleCreateResource()}>
+        <IconButton
+          onClick={() => handleCreateResource()}
+          style={classes.iconButton}
+        >
           <CheckIcon />
         </IconButton>
-        <IconButton onClick={() => setAddState(false)}>
+        <IconButton
+          onClick={() => setAddState(false)}
+          style={classes.iconButton}
+        >
           <ClearIcon />
         </IconButton>
       </AddItemContainer>
@@ -70,16 +82,22 @@ export const Section = ({
     <>
       <h1> {title}</h1>
 
-      {data.map((value) => (
-        <SectionItem
-          item={value}
-          canShowChildren={canShowChildren}
-          handleShowChildren={handleShowChildren}
-          handleUpdate={handleUpdate}
-          handleDelete={handleDelete}
-          refreshUI={refreshUI}
-        />
-      ))}
+      <ItemsContainer>
+        {data.map((value) => (
+          <>
+            <SectionItem
+              key={value.id}
+              item={value}
+              canShowChildren={canShowChildren}
+              handleShowChildren={handleShowChildren}
+              handleUpdate={handleUpdate}
+              handleDelete={handleDelete}
+              refreshUI={refreshUI}
+            />
+            <Divider variant="fullWidth" />
+          </>
+        ))}
+      </ItemsContainer>
 
       {showAddButton && loadAddButton()}
     </>

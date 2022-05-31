@@ -23,7 +23,6 @@ export const InstitutionPage = () => {
   return (
     <Layout>
       <PageLayout>
-        <div>InstitutionPage</div>
         <DataContainer>
           <InstitutionSectionContainer shouldLoadFaculties={setIdInstitution} />
           <FacultySectionContainer
