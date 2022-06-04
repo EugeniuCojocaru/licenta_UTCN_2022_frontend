@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -27,11 +27,9 @@ export const SideMenu = () => {
   const [activeElement, setActiveElement] = useState<string>("");
   const handleNavigateTo = (route: string, label: string) => {
     setActiveElement(label);
-    console.log(label);
+
     navigate(route);
   };
-
-  console.log({ activeElement });
 
   return (
     <SideMenuContainer>

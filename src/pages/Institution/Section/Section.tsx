@@ -9,12 +9,7 @@ import {
   InstitutionHierarchyType,
 } from "../../../common";
 import SectionItem from "./SectionItem";
-
-const classes = {
-  iconButton: {
-    padding: 0,
-  },
-};
+import { classes } from "../../../common/style/styles";
 interface PropType {
   labelTextField: string;
   title: string;
@@ -49,7 +44,7 @@ export const Section = ({
 
   const loadAddButton = () => {
     return !addState ? (
-      <IconButton onClick={() => setAddState(true)} style={classes.iconButton}>
+      <IconButton onClick={() => setAddState(true)} style={classes.button.icon}>
         <AddIcon />
       </IconButton>
     ) : (
@@ -65,13 +60,13 @@ export const Section = ({
 
         <IconButton
           onClick={() => handleCreateResource()}
-          style={classes.iconButton}
+          style={classes.button.icon}
         >
           <CheckIcon />
         </IconButton>
         <IconButton
           onClick={() => setAddState(false)}
-          style={classes.iconButton}
+          style={classes.button.icon}
         >
           <ClearIcon />
         </IconButton>

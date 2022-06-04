@@ -1,13 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { ButtonContainer } from "./SideMenu.styles";
-
-const classes = {
-  sideMenuButton: {
-    padding: 0,
-    backgroundColor: "transparent",
-  },
-};
+import { classes } from "../../common/style/styles";
 
 interface PropTypes {
   active: string;
@@ -21,13 +15,12 @@ export const SideMenuButton = ({
   label,
   handleClick,
 }: PropTypes) => {
-  console.log({ active });
   return (
     <Button
       size="medium"
       variant="text"
       onClick={handleClick}
-      style={classes.sideMenuButton}
+      style={classes.button.sideMenu}
     >
       <ButtonContainer active={active === label}>
         {children}

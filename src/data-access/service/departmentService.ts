@@ -19,7 +19,7 @@ export const getFieldsOfStudyForDepartment = async (idDepartment: string) => {
     const response = await getAxiosInstance().get(
       `/api/departments/${idDepartment}/fieldsOfStudy`
     );
-    console.log({ response });
+
     return response;
   } catch (error) {
     console.error(error);

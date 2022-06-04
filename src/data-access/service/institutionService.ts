@@ -19,7 +19,7 @@ export const getFacultiesForInstitution = async (idInstitution: string) => {
     const response = await getAxiosInstance().get(
       `/api/institutions/${idInstitution}/faculties`
     );
-    console.log({ response });
+
     return response;
   } catch (error) {
     console.error(error);

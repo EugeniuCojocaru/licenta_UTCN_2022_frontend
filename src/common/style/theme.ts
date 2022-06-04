@@ -13,6 +13,13 @@ const theme = createTheme({
         disableRipple: true,
       },
     },
+    MuiTextField: {
+      defaultProps: {
+        required: true,
+        fullWidth: true,
+        InputLabelProps: { shrink: true },
+      },
+    },
   },
 });
 
