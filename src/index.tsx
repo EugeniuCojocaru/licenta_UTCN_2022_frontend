@@ -5,10 +5,14 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
 import { StyledEngineProvider } from "@mui/material/styles";
+import { Provider } from "react-redux";
+import { store } from "./data-access/store/store";
 ReactDOM.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </StyledEngineProvider>
   </React.StrictMode>,
   document.getElementById("root")

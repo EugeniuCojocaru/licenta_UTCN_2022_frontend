@@ -20,6 +20,11 @@ const theme = createTheme({
         InputLabelProps: { shrink: true },
       },
     },
+    MuiTooltip: {
+      defaultProps: {
+        arrow: true,
+      },
+    },
   },
 });
 
