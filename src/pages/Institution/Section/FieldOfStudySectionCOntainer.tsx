@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  InstitutionHierarchyCreateDto,
-  InstitutionHierarchyType,
-} from "../../../common";
+
 import { getFieldsOfStudyForDepartment } from "../../../data-access/service/departmentService";
 import {
   createFieldOfStudy,
@@ -12,6 +9,10 @@ import {
 
 import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
+import {
+  InstitutionHierarchyCreateDto,
+  InstitutionHierarchyType,
+} from "../../../data-access/types";
 interface Props {
   idDepartment: string;
 }

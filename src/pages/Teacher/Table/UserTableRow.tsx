@@ -15,7 +15,7 @@ import {
   Role,
   Roles,
   User,
-} from "../../../common/types/userTypes";
+} from "../../../data-access/types/userTypes";
 import {
   updateUser,
   deleteUser,

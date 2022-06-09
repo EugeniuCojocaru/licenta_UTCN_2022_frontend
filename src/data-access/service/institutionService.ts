@@ -2,7 +2,7 @@ import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyDeleteDto,
   InstitutionHierarchyType,
-} from "../../common";
+} from "../../data-access/types";
 import getAxiosInstance from "./axiosInstance";
 
 export const getInstitutions = async () => {

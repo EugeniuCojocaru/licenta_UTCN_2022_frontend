@@ -1,6 +1,6 @@
 import { usersSlice } from "./slice";
 import { AppDispatch } from "../store";
-import { User } from "../../../common/types/userTypes";
+import { User } from "../../types/userTypes";
 
 const { updateUsers } = usersSlice.actions;
 

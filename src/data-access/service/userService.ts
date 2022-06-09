@@ -1,4 +1,4 @@
-import { User, UserCreateDto } from "../../common/types/userTypes";
+import { User, UserCreateDto } from "../types/userTypes";
 import getAxiosInstance from "./axiosInstance";
 
 export const getUsers = async (active: boolean) => {

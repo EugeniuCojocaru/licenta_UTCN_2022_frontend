@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
-} from "../../../common";
+} from "../../../data-access/types";
 import {
   createInstitutions,
   deleteInstitution,

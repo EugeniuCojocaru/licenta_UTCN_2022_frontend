@@ -1,3 +1,4 @@
+import { SelectType } from "./componentsType";
 export interface InstitutionHierarchyType {
   id: string;
   name: string;
@@ -28,3 +29,7 @@ export interface InstitutionHierarchyDeleteDto {
   id: string;
   idParent: string;
 }
+
+export const mapInstitutionHierarchyToSelectType = (
+  data: InstitutionHierarchyType[]
+): SelectType[] => data.map(({ id, name }) => ({ label: name, value: id }));

@@ -6,7 +6,7 @@ export interface Section1 {
   fieldOfStudyId: string;
   cycleOfStudy: string;
   programOfStudy: string;
-  qulification: string;
+  qualification: string;
   formOfEducation: string;
 }
 
@@ -20,6 +20,6 @@ export const SECTION1_DEFAULT = {
   fieldOfStudyId: "",
   cycleOfStudy: "",
   programOfStudy: "",
-  qulification: "",
+  qualification: "",
   formOfEducation: "",
 };

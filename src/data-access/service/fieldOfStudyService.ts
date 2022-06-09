@@ -2,7 +2,7 @@ import {
   FieldOfStudyCreateDto,
   InstitutionHierarchyDeleteDto,
   InstitutionHierarchyUpdateDto,
-} from "../../common";
+} from "../../data-access/types";
 import getAxiosInstance from "./axiosInstance";
 
 export const getFieldsOfStudy = async () => {

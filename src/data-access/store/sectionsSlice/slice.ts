@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  Section1,
-  SECTION1_DEFAULT,
-} from "../../../common/types/sectionsTypes";
+import { Section1, SECTION1_DEFAULT } from "../../types/sectionsTypes";
 
 export interface SectionsSliceState {
   section1: Section1;
@@ -21,3 +18,5 @@ export const sectionsSlice = createSlice({
     },
   },
 });
+
+export const { updateSection1 } = sectionsSlice.actions;

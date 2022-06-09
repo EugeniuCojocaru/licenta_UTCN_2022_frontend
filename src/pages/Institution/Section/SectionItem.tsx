@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InstitutionHierarchyType } from "../../../common";
+import { InstitutionHierarchyType } from "../../../data-access/types";
 import {
   SectionItemContainer,
   SectionItemEditContainer,

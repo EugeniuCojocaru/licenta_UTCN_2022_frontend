@@ -7,7 +7,7 @@ import { AddItemContainer, ItemsContainer } from "./Section.styles";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
-} from "../../../common";
+} from "../../../data-access/types";
 import SectionItem from "./SectionItem";
 import { classes } from "../../../common/style/styles";
 interface PropType {

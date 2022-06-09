@@ -6,7 +6,7 @@ import {
   Role,
   Roles,
   UserCreateViaAdminDto,
-} from "../../common/types/userTypes";
+} from "../../data-access/types/userTypes";
 import { ButtonContainer, FormContainer } from "./TeachersPage.styles";
 import { classes, sxClasses } from "../../common/style/styles";
 

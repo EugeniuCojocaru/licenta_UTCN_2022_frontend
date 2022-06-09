@@ -1,24 +1,28 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { classes } from "../../common/style/styles";
+import { SYLLABUS_ADD_URL } from "../../common";
 import { Layout } from "../../components/Layout/Layout";
-import { AddSyllabusModal } from "./AddSyllabus/AddSyllabusModal";
 
 import { ButtonContainer, InButtonContainer } from "./SyllabusPage.style";
 
 export const SyllabusPage = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
+  const handleNavigate = () => {
+    navigate(SYLLABUS_ADD_URL);
+  };
   return (
     <Layout>
       <ButtonContainer>
         <Button
           variant="contained"
           style={classes.button.primary}
-          onClick={() => setIsOpen(true)}
+          onClick={handleNavigate}
         >
           <InButtonContainer>
             <AddIcon />
@@ -26,9 +30,6 @@ export const SyllabusPage = () => {
           </InButtonContainer>
         </Button>
       </ButtonContainer>
-      {isOpen && (
-        <AddSyllabusModal open={isOpen} handleClose={() => setIsOpen(false)} />
-      )}
     </Layout>
   );
 };

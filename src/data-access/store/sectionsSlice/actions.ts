@@ -1,6 +1,6 @@
 import { sectionsSlice } from "./slice";
 import { AppDispatch } from "../store";
-import { Section1 } from "../../../common/types/sectionsTypes";
+import { Section1 } from "../../types/sectionsTypes";
 
 const { updateSection1 } = sectionsSlice.actions;
 
