@@ -1,10 +1,10 @@
 import { User, UserCreateDto } from "../types/userTypes";
 import getAxiosInstance from "./axiosInstance";
 
-export const getUsers = async (active: boolean) => {
+export const getUsers = async (active: boolean, list: boolean = false) => {
   try {
     const response = await getAxiosInstance().get(`/api/teachers`, {
-      params: { active },
+      params: { active, list },
     });
     return response;
   } catch (error) {

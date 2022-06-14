@@ -25,6 +25,16 @@ const theme = createTheme({
         arrow: true,
       },
     },
+    MuiAutocomplete: {
+      defaultProps: {
+        fullWidth: true,
+      },
+    },
+    MuiInputLabel: {
+      defaultProps: {
+        shrink: true,
+      },
+    },
   },
 });
 

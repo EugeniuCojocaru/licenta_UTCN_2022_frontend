@@ -6,7 +6,7 @@ import {
   Section1,
   SECTION1_DEFAULT,
   SelectType,
-  mapInstitutionHierarchyToSelectType,
+  mapInstitutionsHierarchyToSelectType,
 } from "../../../data-access/types";
 
 import {
@@ -51,7 +51,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
     const fetchData = async () => {
       const response = await getInstitutions();
       response?.data &&
-        setInstitutions(mapInstitutionHierarchyToSelectType(response.data));
+        setInstitutions(mapInstitutionsHierarchyToSelectType(response.data));
     };
     fetchData();
   }, []);
@@ -59,32 +59,39 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
     const fetchData = async () => {
       const response = await getFacultiesForInstitution(institutionId);
       response?.data &&
-        setFaculties(mapInstitutionHierarchyToSelectType(response.data));
+        setFaculties(mapInstitutionsHierarchyToSelectType(response.data));
     };
-    fetchData();
+    institutionId !== "" && fetchData();
   }, [institutionId]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await getDepartmentsForFaculties(facultyId);
       response?.data &&
-        setDepartments(mapInstitutionHierarchyToSelectType(response.data));
+        setDepartments(mapInstitutionsHierarchyToSelectType(response.data));
     };
-    fetchData();
+    facultyId !== "" && fetchData();
   }, [facultyId]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await getFieldsOfStudyForDepartment(departmentId);
       response?.data &&
-        setFieldsOfStudy(mapInstitutionHierarchyToSelectType(response.data));
+        setFieldsOfStudy(mapInstitutionsHierarchyToSelectType(response.data));
     };
-    fetchData();
+    departmentId !== "" && fetchData();
   }, [departmentId]);
 
   const handleInputChange = (field: string, value: string) => {
     setState({ ...state, [field]: value });
   };
 
-  const handleSubmit = () => {
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   dispatch(updateSection1(state));
+  //   const response = await createSyllabus(state);
+  //   console.log(response);
+  //   handleForward();
+  // };
+  const handleSubmit = async () => {
     dispatch(updateSection1(state));
     handleForward();
   };

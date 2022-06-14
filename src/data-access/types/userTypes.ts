@@ -15,6 +15,7 @@ export interface User {
 export interface UserCreateDto extends Omit<User, "id" | "role"> {}
 
 export interface UserCreateViaAdminDto extends Omit<User, "id"> {}
+export interface UserList extends Omit<User, "email" | "role"> {}
 
 export const mapRoleIdToString = (roleId: Role): string => {
   switch (roleId) {
@@ -24,3 +25,6 @@ export const mapRoleIdToString = (roleId: Role): string => {
       return "User";
   }
 };
+
+export const mapUsersToSelectType = (users: User[] | UserList[]) =>
+  users.map((user) => ({ label: user.name, value: user.id }));

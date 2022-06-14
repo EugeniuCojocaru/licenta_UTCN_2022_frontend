@@ -10,12 +10,15 @@ interface Props {
   handleForward?: () => void;
   disableBack?: boolean;
   disableForward?: boolean;
+  /*for debug purpouse */
+  isSubmitNext?: boolean;
 }
 export const TabSectionFooter = ({
   handleBack,
   handleForward,
   disableBack = false,
   disableForward = false,
+  isSubmitNext = false,
 }: Props) => {
   return (
     <ButtonContainer>
@@ -30,7 +33,6 @@ export const TabSectionFooter = ({
       </Tooltip>
       <Tooltip title="Next">
         <IconButton
-          type="submit"
           style={classes.button.icon}
           onSubmit={handleForward}
           disabled={disableForward}

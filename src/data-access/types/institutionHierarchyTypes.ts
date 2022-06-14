@@ -30,6 +30,6 @@ export interface InstitutionHierarchyDeleteDto {
   idParent: string;
 }
 
-export const mapInstitutionHierarchyToSelectType = (
+export const mapInstitutionsHierarchyToSelectType = (
   data: InstitutionHierarchyType[]
 ): SelectType[] => data.map(({ id, name }) => ({ label: name, value: id }));
