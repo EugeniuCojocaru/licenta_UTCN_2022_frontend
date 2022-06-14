@@ -34,7 +34,7 @@ export const TabSectionFooter = ({
       <Tooltip title="Next">
         <IconButton
           style={classes.button.icon}
-          onSubmit={handleForward}
+          type="submit"
           disabled={disableForward}
         >
           <ArrowForwardIosIcon />

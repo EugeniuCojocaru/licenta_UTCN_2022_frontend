@@ -12,22 +12,45 @@ import { RowContainer, TabSectionContainer } from "./AddSyllabus.style";
 import { TabSectionFooter } from "./TabSectionFooter";
 import { SelectType } from "../../../data-access/types/componentsType";
 import { Autocomplete, MenuItem, TextField } from "@mui/material";
-import { mapUsersToSelectType } from "../../../data-access/types";
+import {
+  mapUsersToSelectType,
+  SECTION2_DEFAULT,
+  TabSection2Type,
+} from "../../../data-access/types";
 import { getUsers } from "../../../data-access/service";
 import { sxClasses } from "../../../common";
+import { updateSection2, useAppDispatch } from "../../../data-access/store";
 
 interface Props {
   handleBack: () => void;
   handleForward: () => void;
+  section2Data: TabSection2Type;
 }
-const TabSection2 = ({ handleBack, handleForward }: Props) => {
+
+export const TabSection2 = ({
+  handleBack,
+  handleForward,
+  section2Data,
+}: Props) => {
+  const dispatch = useAppDispatch();
+
   const [subjects, setSubjects] = useState<SelectType[]>([]);
   const [teachers, setTeachers] = useState<SelectType[]>([]);
 
-  const [subject, setSubject] = useState<SelectType | null>();
-  const [lecturer, setLecturer] = useState<SelectType | null>();
-  const [selectedTeachers, setSelectedTeachers] = useState<SelectType[]>([]);
-
+  const [state, setState] = useState<TabSection2Type>(
+    section2Data || SECTION2_DEFAULT
+  );
+  const {
+    id,
+    year,
+    semester,
+    assessment,
+    category1,
+    category2,
+    subject,
+    lecturer,
+    selectedTeachers,
+  } = state;
   useEffect(() => {
     const fetchData = async () => {
       let response = await getSubjects();
@@ -38,13 +61,29 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
     fetchData();
   }, []);
 
-  const handleChangeAutocomplete = (value: SelectType[]) => {
-    setSelectedTeachers([...value]);
+  const handleInputChange = (field: string, value: string) => {
+    setState({ ...state, [field]: value });
+  };
+
+  const handleSubmit = () => {
+    const newState = {
+      id,
+      subject,
+      lecturer,
+      selectedTeachers,
+      year,
+      semester,
+      assessment,
+      category1,
+      category2,
+    };
+    dispatch(updateSection2(newState));
+    handleForward();
   };
   return (
     <>
       <p>2. Data about the subject</p>
-      <TabSectionContainer>
+      <TabSectionContainer onSubmit={handleSubmit}>
         <Autocomplete
           disablePortal
           options={subjects}
@@ -55,7 +94,7 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             option.value === value.value
           }
           value={subject}
-          onChange={(e, item) => setSubject(item)}
+          onChange={(e, item) => setState({ ...state, subject: item })}
         />
         <Autocomplete
           disablePortal
@@ -68,7 +107,7 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             />
           )}
           value={lecturer}
-          onChange={(e, item) => setLecturer(item)}
+          onChange={(e, item) => setState({ ...state, lecturer: item })}
         />
 
         <Autocomplete
@@ -79,11 +118,14 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
           renderInput={(params) => (
             <TextField
               {...params}
+              required={false}
               variant="standard"
-              label="Teachers in charge of seminars/laboratory/project"
+              label="Teachers in charge of seminars/ laboratory/ project"
             />
           )}
-          onChange={(e, item) => handleChangeAutocomplete(item)}
+          onChange={(e, item) =>
+            setState({ ...state, selectedTeachers: [...item] })
+          }
           value={selectedTeachers}
         />
         <RowContainer>
@@ -92,9 +134,11 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             sx={sxClasses.select}
             label="Year of study"
             variant="standard"
+            value={year}
+            onChange={(e) => handleInputChange("year", e.target.value)}
           >
             {YearsOfStudy.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={"year_" + option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -104,9 +148,11 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             sx={sxClasses.select}
             label="Semester"
             variant="standard"
+            value={semester}
+            onChange={(e) => handleInputChange("semester", e.target.value)}
           >
             {Semesters.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={"semester_" + option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -114,11 +160,13 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
           <TextField
             select
             sx={sxClasses.select}
-            label="Type of assesment"
+            label="Type of assessment"
             variant="standard"
+            value={assessment}
+            onChange={(e) => handleInputChange("assessment", e.target.value)}
           >
             {TypesOfAssessment.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={"assessment_" + option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -130,9 +178,11 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             sx={sxClasses.select}
             label="Subject category"
             variant="standard"
+            value={category1}
+            onChange={(e) => handleInputChange("category1", e.target.value)}
           >
             {SubjectCategory1.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={"c1_" + option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
@@ -142,18 +192,18 @@ const TabSection2 = ({ handleBack, handleForward }: Props) => {
             sx={sxClasses.select}
             label="Subject category"
             variant="standard"
+            value={category2}
+            onChange={(e) => handleInputChange("category2", e.target.value)}
           >
             {SubjectCategory2.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={"c2_" + option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
         </RowContainer>
+        <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
-      <TabSectionFooter handleForward={handleForward} handleBack={handleBack} />
     </>
   );
 };
-
-export default TabSection2;
