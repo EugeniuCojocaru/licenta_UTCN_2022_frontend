@@ -78,3 +78,4 @@ export const mapSection2TypeToSection2CreateDto = (
     teachers: selectedTeachers.map((item) => item.value),
   };
 };
+/*Section3*/

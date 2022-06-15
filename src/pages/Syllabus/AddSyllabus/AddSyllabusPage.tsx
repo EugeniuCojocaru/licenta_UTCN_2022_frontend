@@ -6,6 +6,8 @@ import { Layout } from "../../../components/Layout";
 import TabSection1Container from "./TabSection1Container";
 import TabSection2Container from "./TabSection2Container";
 import TabSectionFinishContainer from "./TabSectionFinishContainer";
+import { TabSection3 } from "./TabSection3";
+import TabSection3Container from "./TabSection3/TabSection3Container";
 const steps = [
   "s1",
   "s2",
@@ -40,6 +42,12 @@ export const AddSyllabusPage = () => {
           )}
           {activeStep === 1 && (
             <TabSection2Container
+              handleBack={handleBack}
+              handleForward={handleNext}
+            />
+          )}
+          {activeStep === 2 && (
+            <TabSection3Container
               handleBack={handleBack}
               handleForward={handleNext}
             />
