@@ -18,6 +18,7 @@ const theme = createTheme({
         required: true,
         fullWidth: true,
         InputLabelProps: { shrink: true },
+        variant: "standard",
       },
     },
     MuiTooltip: {
