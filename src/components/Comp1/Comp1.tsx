@@ -4,7 +4,6 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { DataDisplayContainer, InputContainer } from "./Comp1.styles";
 import Chip from "./Chip";
-import { CalculateSharp } from "@mui/icons-material";
 interface Props {
   label: string;
   required?: boolean;

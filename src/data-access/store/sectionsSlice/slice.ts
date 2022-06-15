@@ -66,22 +66,22 @@ export const sectionsSlice = createSlice({
       state.section4 = action.payload;
     },
     updateSection5: (state, action) => {
-      state.section4 = action.payload;
+      state.section5 = action.payload;
     },
     updateSection6: (state, action) => {
-      state.section4 = action.payload;
+      state.section6 = action.payload;
     },
     updateSection7: (state, action) => {
-      state.section4 = action.payload;
+      state.section7 = action.payload;
     },
     updateSection8: (state, action) => {
-      state.section4 = action.payload;
+      state.section8 = action.payload;
     },
     updateSection9: (state, action) => {
-      state.section4 = action.payload;
+      state.section9 = action.payload;
     },
     updateSection10: (state, action) => {
-      state.section4 = action.payload;
+      state.section10 = action.payload;
     },
   },
 });
