@@ -36,12 +36,12 @@ export const TabSection6 = ({
       <p>6. Specific competence</p>
       <TabSectionContainer onSubmit={handleSubmit}>
         <Comp1
-          label={"Professional competences"}
+          label={"Professional competences *"}
           values={professional}
           handleValuesChange={handleProfessionalChange}
         />
         <Comp1
-          label={"Cross competences"}
+          label={"Cross competences *"}
           values={cross}
           handleValuesChange={handleCrossChange}
         />
