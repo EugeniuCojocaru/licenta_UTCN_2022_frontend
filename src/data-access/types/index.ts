@@ -1,4 +1,4 @@
 export * from "./institutionHierarchyTypes";
 export * from "./componentsType";
-export * from "./sectionsTypes";
+export * from "./tabSections";
 export * from "./userTypes";

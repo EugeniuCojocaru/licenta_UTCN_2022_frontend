@@ -1,31 +1,5 @@
-import { SelectType } from "./componentsType";
+import { SelectType } from "../componentsType";
 
-export const SECTION1_DEFAULT = {
-  id: "",
-  institutionId: "",
-  facultyId: "",
-  departmentId: "",
-  fieldOfStudyId: "",
-  cycleOfStudy: "",
-  programOfStudy: "",
-  qualification: "",
-  formOfEducation: "",
-};
-export interface Section1 {
-  id: string;
-  institutionId: string;
-  facultyId: string;
-  departmentId: string;
-  fieldOfStudyId: string;
-  cycleOfStudy: string;
-  programOfStudy: string;
-  qualification: string;
-  formOfEducation: string;
-}
-
-export interface Section1CreateDto extends Omit<Section1, "id"> {}
-
-/*Section 2*/
 export const SECTION2_DEFAULT: Section2Type = {
   id: "",
   subject: null,
@@ -78,4 +52,3 @@ export const mapSection2TypeToSection2CreateDto = (
     teachers: selectedTeachers.map((item) => item.value),
   };
 };
-/*Section3*/

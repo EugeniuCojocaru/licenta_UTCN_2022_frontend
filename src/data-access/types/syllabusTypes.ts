@@ -1,4 +1,5 @@
-import { Section1CreateDto, Section2CreateDto } from "./sectionsTypes";
+import { Section1CreateDto, Section2CreateDto } from "./tabSections";
+
 export interface SyllabusCreateDto {
   subjectId: string;
   section1: Section1CreateDto;

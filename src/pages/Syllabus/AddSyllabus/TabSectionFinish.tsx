@@ -1,13 +1,14 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { TabSectionFooter } from "./TabSectionFooter";
+
+import { SyllabusCreateDto } from "../../../data-access/types/syllabusTypes";
+import { createSyllabus } from "../../../data-access/service/syllabusService";
 import {
+  mapSection2TypeToSection2CreateDto,
   Section1,
   Section2Type,
-} from "../../../data-access/types/sectionsTypes";
-import { SyllabusCreateDto } from "../../../data-access/types/syllabusTypes";
-import { mapSection2TypeToSection2CreateDto } from "../../../data-access/types/sectionsTypes";
-import { createSyllabus } from "../../../data-access/service/syllabusService";
+} from "../../../data-access/types";
 interface Props {
   handleForward: () => void;
   handleBack: () => void;

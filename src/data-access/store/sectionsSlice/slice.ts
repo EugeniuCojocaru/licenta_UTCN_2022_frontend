@@ -3,13 +3,12 @@ import {
   Section3Type,
   SECTION3_DEFAULT,
 } from "../../../pages/Syllabus/AddSyllabus/TabSection3";
-
 import {
   Section1,
   SECTION1_DEFAULT,
-  SECTION2_DEFAULT,
   Section2Type,
-} from "../../types/sectionsTypes";
+  SECTION2_DEFAULT,
+} from "../../types";
 
 export interface SectionsSliceState {
   section1: Section1;
