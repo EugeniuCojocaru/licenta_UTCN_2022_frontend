@@ -4,12 +4,12 @@ import {
   Section1,
   SECTION1_DEFAULT,
   SECTION2_DEFAULT,
-  TabSection2Type,
+  Section2Type,
 } from "../../types/sectionsTypes";
 
 export interface SectionsSliceState {
   section1: Section1;
-  section2: TabSection2Type;
+  section2: Section2Type;
 }
 
 const initialState: SectionsSliceState = {

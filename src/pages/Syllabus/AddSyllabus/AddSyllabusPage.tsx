@@ -5,11 +5,23 @@ import { TabController, TabControllerContainer } from "./AddSyllabus.style";
 import { Layout } from "../../../components/Layout";
 import TabSection1Container from "./TabSection1Container";
 import TabSection2Container from "./TabSection2Container";
-import { TabSection3 } from "./TabSection3";
-const steps = ["s1", "s2", "s3", "s4", "s5", "s6", "s6", "s8", "s9", "s10"];
+import TabSectionFinishContainer from "./TabSectionFinishContainer";
+const steps = [
+  "s1",
+  "s2",
+  "s3",
+  "s4",
+  "s5",
+  "s6",
+  "s6",
+  "s8",
+  "s9",
+  "s10",
+  "s11",
+];
 
 export const AddSyllabusPage = () => {
-  const [activeStep, setActiveStep] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(2);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -32,8 +44,11 @@ export const AddSyllabusPage = () => {
               handleForward={handleNext}
             />
           )}
-          {activeStep === 2 && (
-            <TabSection3 handleBack={handleBack} handleForward={handleNext} />
+          {activeStep === 11 && (
+            <TabSectionFinishContainer
+              handleBack={handleBack}
+              handleForward={handleNext}
+            />
           )}
         </TabController>
       </TabControllerContainer>

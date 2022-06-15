@@ -1,4 +1,5 @@
 import { Section1CreateDto } from "../types";
+import { SyllabusCreateDto } from "../types/syllabusTypes";
 import getAxiosInstance from "./axiosInstance";
 
 export const getFaculties = async () => {
@@ -9,9 +10,9 @@ export const getFaculties = async () => {
     console.error(error);
   }
 };
-export const createSyllabus = async (section1: Section1CreateDto) => {
+export const createSyllabus = async (syllabus: SyllabusCreateDto) => {
   try {
-    const response = await getAxiosInstance().post(`/api/syllabuses`, section1);
+    const response = await getAxiosInstance().post(`/api/syllabuses`, syllabus);
     return response;
   } catch (error) {
     console.error(error);

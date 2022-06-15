@@ -15,7 +15,7 @@ import { Autocomplete, MenuItem, TextField } from "@mui/material";
 import {
   mapUsersToSelectType,
   SECTION2_DEFAULT,
-  TabSection2Type,
+  Section2Type,
 } from "../../../data-access/types";
 import { getUsers } from "../../../data-access/service";
 import { sxClasses } from "../../../common";
@@ -24,7 +24,7 @@ import { updateSection2, useAppDispatch } from "../../../data-access/store";
 interface Props {
   handleBack: () => void;
   handleForward: () => void;
-  section2Data: TabSection2Type;
+  section2Data: Section2Type;
 }
 
 export const TabSection2 = ({
@@ -37,7 +37,7 @@ export const TabSection2 = ({
   const [subjects, setSubjects] = useState<SelectType[]>([]);
   const [teachers, setTeachers] = useState<SelectType[]>([]);
 
-  const [state, setState] = useState<TabSection2Type>(
+  const [state, setState] = useState<Section2Type>(
     section2Data || SECTION2_DEFAULT
   );
   const {
