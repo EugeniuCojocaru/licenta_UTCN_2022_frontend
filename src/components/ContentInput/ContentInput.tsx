@@ -2,7 +2,7 @@ import { IconButton, TextField, Tooltip } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { DataDisplayContainer, InputContainer } from "./Comp1.styles";
+import { DataDisplayContainer, InputContainer } from "./ContentInput.styles";
 import Chip from "./Chip";
 interface Props {
   label: string;
@@ -10,7 +10,12 @@ interface Props {
   values: string[];
   handleValuesChange: (newValues: string[]) => void;
 }
-const Comp1 = ({ label, required, values, handleValuesChange }: Props) => {
+const ContentInput = ({
+  label,
+  required,
+  values,
+  handleValuesChange,
+}: Props) => {
   const [value, setValue] = useState<string>("");
 
   const [clearValue, setClearValue] = useState<boolean>(false);
@@ -61,4 +66,4 @@ const Comp1 = ({ label, required, values, handleValuesChange }: Props) => {
   );
 };
 
-export default Comp1;
+export default ContentInput;

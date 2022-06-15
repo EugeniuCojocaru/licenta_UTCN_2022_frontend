@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import Comp1 from "../../../../components/Comp1/Comp1";
+import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection7, useAppDispatch } from "../../../../data-access/store";
 import { Section7Type, SECTION7_DEFAULT } from "../../../../data-access/types";
 import { TabSectionContainer } from "../AddSyllabus.style";
@@ -43,7 +43,7 @@ export const TabSection7 = ({
             setState({ ...state, generalObjective: e.target.value })
           }
         />
-        <Comp1
+        <ContentInput
           label={"Specific objectives"}
           values={specificObjectives}
           handleValuesChange={handleSpecificObjectivesChange}

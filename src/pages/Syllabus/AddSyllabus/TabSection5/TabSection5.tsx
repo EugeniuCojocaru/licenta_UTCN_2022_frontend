@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Comp1 from "../../../../components/Comp1/Comp1";
+import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection5, useAppDispatch } from "../../../../data-access/store";
 import { Section5Type, SECTION5_DEFAULT } from "../../../../data-access/types";
 import { TabSectionContainer } from "../AddSyllabus.style";
@@ -34,12 +34,12 @@ export const TabSection5 = ({
     <>
       <p>5. Requirements *optional</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <Comp1
+        <ContentInput
           label={"Course"}
           values={course}
           handleValuesChange={handleCourseChange}
         />
-        <Comp1
+        <ContentInput
           label={"Applications"}
           values={application}
           handleValuesChange={handleApplicationChange}

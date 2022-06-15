@@ -1,6 +1,6 @@
 import { IconButton, Tooltip } from "@mui/material";
 import React from "react";
-import { ChipContainer, Paragraph } from "./Comp1.styles";
+import { ChipContainer, Paragraph } from "./ContentInput.styles";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 interface Props {
   value: string;

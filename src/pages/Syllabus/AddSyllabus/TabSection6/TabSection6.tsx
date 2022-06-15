@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Comp1 from "../../../../components/Comp1/Comp1";
+import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection6, useAppDispatch } from "../../../../data-access/store";
 import { Section6Type, SECTION6_DEFAULT } from "../../../../data-access/types";
 import { TabSectionContainer } from "../AddSyllabus.style";
@@ -35,12 +35,12 @@ export const TabSection6 = ({
     <>
       <p>6. Specific competence</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <Comp1
+        <ContentInput
           label={"Professional competences *"}
           values={professional}
           handleValuesChange={handleProfessionalChange}
         />
-        <Comp1
+        <ContentInput
           label={"Cross competences *"}
           values={cross}
           handleValuesChange={handleCrossChange}

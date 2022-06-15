@@ -8,7 +8,7 @@ import {
   SECTION4_DEFAULT,
   mapSubjectsToSelectType,
 } from "../../../../data-access/types";
-import Comp1 from "../../../../components/Comp1/Comp1";
+import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { TabSectionFooter } from "../TabSectionFooter";
 import { TabSectionContainer } from "../AddSyllabus.style";
 
@@ -68,7 +68,7 @@ export const TabSection4 = ({
           }
           value={selectedSubjects}
         />
-        <Comp1
+        <ContentInput
           label={"Competence"}
           values={competences}
           handleValuesChange={handleValuesChange}
