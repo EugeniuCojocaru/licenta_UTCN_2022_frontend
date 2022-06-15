@@ -5,7 +5,7 @@ import { TextField, MenuItem } from "@mui/material";
 import {
   SelectType,
   mapInstitutionsHierarchyToSelectType,
-  Section1,
+  Section1Type,
   SECTION1_DEFAULT,
 } from "../../../../data-access/types";
 
@@ -24,7 +24,7 @@ import { RowContainer, TabSectionContainer } from "../AddSyllabus.style";
 
 interface Props {
   handleForward: () => void;
-  section1Data: Section1;
+  section1Data: Section1Type;
 }
 export const TabSection1 = ({ section1Data, handleForward }: Props) => {
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
   const [faculties, setFaculties] = useState<SelectType[]>([]);
   const [departments, setDepartments] = useState<SelectType[]>([]);
   const [fieldsOfStudy, setFieldsOfStudy] = useState<SelectType[]>([]);
-  const [state, setState] = useState<Section1>(
+  const [state, setState] = useState<Section1Type>(
     section1Data || SECTION1_DEFAULT
   );
   const {

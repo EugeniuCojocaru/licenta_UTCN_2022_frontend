@@ -9,7 +9,7 @@ export const SECTION1_DEFAULT = {
   qualification: "",
   formOfEducation: "",
 };
-export interface Section1 {
+export interface Section1Type {
   id: string;
   institutionId: string;
   facultyId: string;
@@ -21,4 +21,4 @@ export interface Section1 {
   formOfEducation: string;
 }
 
-export interface Section1CreateDto extends Omit<Section1, "id"> {}
+export interface Section1CreateDto extends Omit<Section1Type, "id"> {}

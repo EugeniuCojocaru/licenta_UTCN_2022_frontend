@@ -6,13 +6,13 @@ import { SyllabusCreateDto } from "../../../data-access/types/syllabusTypes";
 import { createSyllabus } from "../../../data-access/service/syllabusService";
 import {
   mapSection2TypeToSection2CreateDto,
-  Section1,
+  Section1Type,
   Section2Type,
 } from "../../../data-access/types";
 interface Props {
   handleForward: () => void;
   handleBack: () => void;
-  section1Data: Section1;
+  section1Data: Section1Type;
   section2Data: Section2Type;
 }
 export const TabSectionFinish = ({

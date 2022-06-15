@@ -1,9 +1,9 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { updateSection3, useAppDispatch } from "../../../../data-access/store";
+import { Section3Type, SECTION3_DEFAULT } from "../../../../data-access/types";
 import { RowContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
-import { Section3Type, SECTION3_DEFAULT } from "./TabSection3.types";
 
 interface Props {
   handleForward: () => void;
