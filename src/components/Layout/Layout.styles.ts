@@ -18,7 +18,7 @@ export const SideMenuContainer = styled.div`
     0%;
 `;
 export const NotificationZone = styled.div`
-  height: 10%;
+  min-height: 10%;
 `;
 export const PageContainer = styled.div`
   display: flex;

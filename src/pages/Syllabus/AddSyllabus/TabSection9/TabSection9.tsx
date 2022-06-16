@@ -1,6 +1,7 @@
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../../data-access/store";
-import { Section9Type } from "../../../../data-access/types";
+import { updateSection9, useAppDispatch } from "../../../../data-access/store";
+import { Section9Type, SECTION9_DEFAULT } from "../../../../data-access/types";
 import { TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
@@ -15,18 +16,28 @@ export const TabSection9 = ({
   section9Data,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const [state, setState] = useState({});
-  const handleInputChange = (field: string, value: string) => {
-    setState({ ...state, [field]: value });
-  };
+  const [state, setState] = useState<Section9Type>(
+    section9Data || SECTION9_DEFAULT
+  );
+  const { description } = state;
   const handleSubmit = () => {
-    //dispatch(updateSection2(newState));
+    dispatch(updateSection9(state));
     handleForward();
   };
   return (
     <>
-      <p>2. Data about the subject</p>
+      <p>
+        9. Bridging course contents with the expectations of the representatives
+        of the community, professional associations and employers in the field
+      </p>
+
       <TabSectionContainer onSubmit={handleSubmit}>
+        <TextField
+          label={"Description"}
+          multiline
+          value={description}
+          onChange={(e) => setState({ ...state, description: e.target.value })}
+        />
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>

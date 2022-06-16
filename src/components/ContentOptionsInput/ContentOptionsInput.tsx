@@ -48,7 +48,7 @@ const ContentOptionsInput = ({
         <InputRowContainer>
           <TextField
             required={false}
-            label="Course title"
+            label="Title"
             value={name}
             onChange={(e) => handleInputChange("name", e.target.value)}
           />

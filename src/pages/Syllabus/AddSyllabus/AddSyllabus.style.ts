@@ -4,7 +4,7 @@ import { colors } from "../../../common/style/styles";
 export const StepperContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 60px;
+  min-height: 60px;
   background-color: ${colors.white};
   box-shadow: 2px 0 4px 0 ${colors.shadow};
   border-radius: 12px;
