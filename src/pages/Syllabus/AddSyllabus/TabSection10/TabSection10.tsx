@@ -1,7 +1,12 @@
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../../data-access/store";
-import { Section10Type } from "../../../../data-access/types";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import ContentInput from "../../../../components/ContentInput/ContentInput";
+import { updateSection10, useAppDispatch } from "../../../../data-access/store";
+import {
+  Section10Type,
+  SECTION10_DEFAULT,
+} from "../../../../data-access/types";
+import { RowContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
 interface Props {
@@ -15,18 +20,186 @@ export const TabSection10 = ({
   section10Data,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const [state, setState] = useState({});
-  const handleInputChange = (field: string, value: string) => {
-    setState({ ...state, [field]: value });
+  const [state, setState] = useState<Section10Type>(
+    section10Data || SECTION10_DEFAULT
+  );
+  const {
+    courseCriteria,
+    courseMethods,
+    courcePercentage,
+    seminarCriteria,
+    seminarMethods,
+    seminarPercentage,
+    laboratoryCriteria,
+    laboratoryMethods,
+    laboratoryPercentage,
+    projectCriteria,
+    projectMethods,
+    projectPercentage,
+    minimumPerformance,
+    conditionsFinalExam,
+    conditionPropotion,
+  } = state;
+
+  const handleConditionsFinalExamChange = (value: string[]) => {
+    setState({ ...state, conditionsFinalExam: [...value] });
   };
   const handleSubmit = () => {
-    //dispatch(updateSection2(newState));
+    dispatch(updateSection10(state));
     handleForward();
   };
   return (
     <>
       <p>2. Data about the subject</p>
       <TabSectionContainer onSubmit={handleSubmit}>
+        <RowContainer>
+          <TextField
+            label={"Course assessment criteria"}
+            multiline
+            value={courseCriteria}
+            onChange={(e) =>
+              setState({ ...state, courseCriteria: e.target.value })
+            }
+          />
+          <TextField
+            label={"Course assessment methods"}
+            multiline
+            value={courseMethods}
+            onChange={(e) =>
+              setState({ ...state, courseMethods: e.target.value })
+            }
+          />
+          <TextField
+            label="Course weight in the final grade"
+            value={courcePercentage}
+            type="number"
+            onChange={(e) =>
+              setState({ ...state, courcePercentage: Number(e.target.value) })
+            }
+            InputProps={{ inputProps: { min: 0, max: 100 } }}
+          />
+        </RowContainer>
+        <RowContainer>
+          <TextField
+            required={false}
+            label={"Seminar assessment criteria"}
+            multiline
+            value={seminarCriteria}
+            onChange={(e) =>
+              setState({ ...state, seminarCriteria: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label={"Seminar assessment methods"}
+            multiline
+            value={seminarMethods}
+            onChange={(e) =>
+              setState({ ...state, seminarMethods: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label="Seminar weight in the final grade"
+            value={seminarPercentage}
+            type="number"
+            onChange={(e) =>
+              setState({ ...state, seminarPercentage: Number(e.target.value) })
+            }
+            InputProps={{ inputProps: { min: 0, max: 100 } }}
+          />
+        </RowContainer>
+
+        <RowContainer>
+          <TextField
+            required={false}
+            label={"Laboratory assessment criteria"}
+            multiline
+            value={laboratoryCriteria}
+            onChange={(e) =>
+              setState({ ...state, laboratoryCriteria: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label={"Laboratory assessment methods"}
+            multiline
+            value={laboratoryMethods}
+            onChange={(e) =>
+              setState({ ...state, laboratoryMethods: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label="Laboratory weight in the final grade"
+            value={laboratoryPercentage}
+            type="number"
+            onChange={(e) =>
+              setState({
+                ...state,
+                laboratoryPercentage: Number(e.target.value),
+              })
+            }
+            InputProps={{ inputProps: { min: 0, max: 100 } }}
+          />
+        </RowContainer>
+
+        <RowContainer>
+          <TextField
+            required={false}
+            label={"Project assessment criteria"}
+            multiline
+            value={projectCriteria}
+            onChange={(e) =>
+              setState({ ...state, projectCriteria: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label={"Project assessment methods"}
+            multiline
+            value={projectMethods}
+            onChange={(e) =>
+              setState({ ...state, projectMethods: e.target.value })
+            }
+          />
+          <TextField
+            required={false}
+            label="Project weight in the final grade"
+            value={projectPercentage}
+            type="number"
+            onChange={(e) =>
+              setState({
+                ...state,
+                projectPercentage: Number(e.target.value),
+              })
+            }
+            InputProps={{ inputProps: { min: 0, max: 100 } }}
+          />
+        </RowContainer>
+        <TextField
+          required={false}
+          label={"Minimum standard of performance"}
+          multiline
+          value={minimumPerformance}
+          onChange={(e) =>
+            setState({ ...state, minimumPerformance: e.target.value })
+          }
+        />
+        <ContentInput
+          label="Conditions for participating in the final exam"
+          values={conditionsFinalExam}
+          handleValuesChange={handleConditionsFinalExamChange}
+        />
+        <TextField
+          label={"Conditions for promotion"}
+          multiline
+          value={conditionPropotion}
+          onChange={(e) =>
+            setState({ ...state, conditionPropotion: e.target.value })
+          }
+        />
+
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>
