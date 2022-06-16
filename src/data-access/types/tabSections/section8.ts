@@ -1,3 +1,19 @@
-export const SECTION8_DEFAULT: Section8Type = {};
+import { ContentOptionsInputType } from "../componentsType";
 
-export interface Section8Type {}
+export const SECTION8_DEFAULT: Section8Type = {
+  teachingMethodsCourse: [],
+  lecturesCourse: [],
+  bibliographyCourse: [],
+  teachingMethodsLab: [],
+  lecturesLab: [],
+  bibliographyLab: [],
+};
+
+export interface Section8Type {
+  teachingMethodsCourse: string[];
+  lecturesCourse: ContentOptionsInputType[];
+  bibliographyCourse: string[];
+  teachingMethodsLab: string[];
+  lecturesLab: ContentOptionsInputType[];
+  bibliographyLab: string[];
+}

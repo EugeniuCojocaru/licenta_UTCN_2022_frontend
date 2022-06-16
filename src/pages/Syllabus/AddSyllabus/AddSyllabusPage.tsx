@@ -29,7 +29,7 @@ const steps = [
 ];
 
 export const AddSyllabusPage = () => {
-  const [activeStep, setActiveStep] = useState<number>(2);
+  const [activeStep, setActiveStep] = useState<number>(7);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
