@@ -147,9 +147,4 @@ const UserTableRow = ({ row, refreshUI }: Props) => {
   );
 };
 
-UserTableRow.propTypes = {
-  row: PropTypes.object.isRequired,
-  refreshUI: PropTypes.func.isRequired,
-};
-
 export default UserTableRow;

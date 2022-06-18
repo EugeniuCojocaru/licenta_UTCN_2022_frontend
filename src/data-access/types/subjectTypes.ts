@@ -1,3 +1,5 @@
+import { Subject } from "@mui/icons-material";
+
 export const YearsOfStudy = [
   { label: "I", value: 1 },
   { label: "II", value: 2 },
@@ -32,6 +34,19 @@ export interface Subject {
   name: string;
   code: string;
 }
-
+export interface SubjectCreateDto extends Omit<Subject, "id"> {}
+export const SUBJECT_DEFAULT = {
+  id: "",
+  name: "",
+  code: "",
+};
+export const mapSubjectToSubjectCreateDto = (
+  subject: Subject
+): SubjectCreateDto => {
+  return {
+    name: subject.name,
+    code: subject.code,
+  };
+};
 export const mapSubjectsToSelectType = (subjects: Subject[]) =>
   subjects.map(({ name, id }) => ({ label: name, value: id }));
