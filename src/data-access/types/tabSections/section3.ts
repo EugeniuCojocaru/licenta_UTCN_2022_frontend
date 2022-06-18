@@ -1,4 +1,5 @@
 export interface Section3Type {
+  id: string;
   courseHoursPerWeek: number;
   seminarHoursPerWeek: number;
   laboratoryHoursPerWeek: number;
@@ -15,8 +16,9 @@ export interface Section3Type {
   individualStudyF: number;
   credits: number;
 }
-
+export interface Section3CreateDto extends Omit<Section3Type, "id"> {}
 export const SECTION3_DEFAULT = {
+  id: "",
   courseHoursPerWeek: 0,
   seminarHoursPerWeek: 0,
   laboratoryHoursPerWeek: 0,
@@ -32,4 +34,44 @@ export const SECTION3_DEFAULT = {
   individualStudyE: 0,
   individualStudyF: 0,
   credits: 0,
+};
+
+export const mapSection3TypeToSection3CreateDto = (
+  section3: Section3Type
+): Section3CreateDto => {
+  const {
+    courseHoursPerWeek,
+    seminarHoursPerWeek,
+    laboratoryHoursPerWeek,
+    projectHoursPerWeek,
+    courseHoursPerSemester,
+    seminarHoursPerSemester,
+    laboratoryHoursPerSemester,
+    projectHoursPerSemester,
+    individualStudyA,
+    individualStudyB,
+    individualStudyC,
+    individualStudyD,
+    individualStudyF,
+    individualStudyE,
+    credits,
+  } = section3;
+
+  return {
+    courseHoursPerWeek,
+    seminarHoursPerWeek,
+    laboratoryHoursPerWeek,
+    projectHoursPerWeek,
+    courseHoursPerSemester,
+    seminarHoursPerSemester,
+    laboratoryHoursPerSemester,
+    projectHoursPerSemester,
+    individualStudyA,
+    individualStudyB,
+    individualStudyC,
+    individualStudyD,
+    individualStudyF,
+    individualStudyE,
+    credits,
+  };
 };

@@ -315,6 +315,15 @@ export const TabSection3 = ({
           />
         </RowContainer>
         <p>Total hours per semester: {totalAll}</p>
+        <TextField
+          required
+          label="Credits"
+          variant="standard"
+          value={credits}
+          type="number"
+          onChange={(e) => handleInputChange("credits", e.target.value)}
+          InputProps={{ inputProps: { min: 0, max: 30 } }}
+        />
         <TabSectionFooter
           handleBack={handleBack}
           handleForward={handleForward}

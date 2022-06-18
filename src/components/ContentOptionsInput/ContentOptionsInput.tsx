@@ -28,7 +28,7 @@ const ContentOptionsInput = ({
   const [state, setState] = useState<ContentOptionsInputType>(
     CONTENT_OPTIONS_INPUT_DEFAULT
   );
-  const { name, duration, notes } = state;
+  const { name, duration, note: notes } = state;
   const [clearValue, setClearValue] = useState<boolean>(false);
   useEffect(() => {
     setState(CONTENT_OPTIONS_INPUT_DEFAULT);

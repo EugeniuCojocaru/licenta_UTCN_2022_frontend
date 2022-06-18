@@ -38,7 +38,7 @@ export const TabSection10 = ({
     projectPercentage,
     minimumPerformance,
     conditionsFinalExam,
-    conditionPropotion,
+    conditionsPromotion: conditionPropotion,
   } = state;
 
   const handleConditionsFinalExamChange = (value: string[]) => {
@@ -196,7 +196,7 @@ export const TabSection10 = ({
           multiline
           value={conditionPropotion}
           onChange={(e) =>
-            setState({ ...state, conditionPropotion: e.target.value })
+            setState({ ...state, conditionsPromotion: e.target.value })
           }
         />
 

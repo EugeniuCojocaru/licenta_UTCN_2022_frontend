@@ -26,9 +26,9 @@ const Chip = ({ value, handleRemoveChip }: Props) => {
           <Paragraph>{`Title: ${value.name}`}</Paragraph>
           <Paragraph>{`Time allocated: ${value.duration}`}</Paragraph>
         </InputRowContainer>
-        {value.notes !== "" && (
+        {value.note !== "" && (
           <InputRowContainer>
-            <Paragraph>{`Notes: ${value.notes}`}</Paragraph>
+            <Paragraph>{`Notes: ${value.note}`}</Paragraph>
           </InputRowContainer>
         )}
       </DataDisplayContainer>

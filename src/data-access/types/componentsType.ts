@@ -9,10 +9,10 @@ export const mapArrayOfSelectTypeToArrayOfValues = (data: SelectType[]) =>
 export interface ContentOptionsInputType {
   name: string;
   duration: number;
-  notes: string;
+  note: string;
 }
 export const CONTENT_OPTIONS_INPUT_DEFAULT: ContentOptionsInputType = {
   name: "",
   duration: 0,
-  notes: "",
+  note: "",
 };
