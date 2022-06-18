@@ -10,6 +10,8 @@ import {
 import { classes, sxClasses } from "../../common/style/styles";
 import { ButtonContainer, FormContainer } from "./SubjectPage.styles";
 import { SubjectCreateDto } from "../../data-access/types/subjectTypes";
+import { createSubject } from "../../data-access/service/subjectService";
+import { validateResponseStatus } from "../../common";
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -37,19 +39,30 @@ const Backdrop = styled("div")`
 interface Props {
   open: boolean;
   handleClose: () => void;
-  handleAddSubject?: () => void;
+  handleRefreshUI: () => void;
 }
 export const AddSubjectModal = ({
   handleClose,
   open,
-  handleAddSubject,
+  handleRefreshUI,
 }: Props) => {
   const [state, setState] = useState<SubjectCreateDto>({
     name: "",
     code: "",
   });
-
   const { name, code } = state;
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const response = await createSubject(state);
+    if (validateResponseStatus(response?.status)) {
+      setState({
+        name: "",
+        code: "",
+      });
+      handleRefreshUI();
+      handleClose();
+    } else console.log(response);
+  };
   return (
     <StyledModal
       aria-labelledby="unstyled-modal-title"
@@ -60,7 +73,7 @@ export const AddSubjectModal = ({
     >
       <Box sx={{ ...sxClasses.modal, width: "500px" }}>
         <h1>Add subject</h1>
-        <FormContainer>
+        <FormContainer onSubmit={(e) => handleSubmit(e)}>
           <TextField
             label="Name"
             value={name}

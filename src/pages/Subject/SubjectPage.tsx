@@ -9,6 +9,10 @@ import { AddSubjectModal } from "./AddSubjectModal";
 
 export const SubjectPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [refreshUI, setRefreshUI] = useState<boolean>(false);
+  const handleRefreshUI = () => {
+    setRefreshUI(!refreshUI);
+  };
   return (
     <Layout>
       <h1>Subjects</h1>
@@ -25,9 +29,13 @@ export const SubjectPage = () => {
         </Button>
       </ButtonContainer>
 
-      <SubjectTable />
+      <SubjectTable refreshUI={refreshUI} handleRefreshUI={handleRefreshUI} />
       {isOpen && (
-        <AddSubjectModal open={isOpen} handleClose={() => setIsOpen(false)} />
+        <AddSubjectModal
+          open={isOpen}
+          handleClose={() => setIsOpen(false)}
+          handleRefreshUI={handleRefreshUI}
+        />
       )}
     </Layout>
   );

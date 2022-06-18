@@ -11,10 +11,12 @@ import React, { useEffect, useState } from "react";
 import { Subject } from "../../../data-access/types";
 import { getSubjects } from "../../../data-access/service/subjectService";
 import { SubjectTableRow } from "./SubjectTableRow";
-
-export const SubjectTable = () => {
+interface Props {
+  refreshUI: boolean;
+  handleRefreshUI: () => void;
+}
+export const SubjectTable = ({ refreshUI, handleRefreshUI }: Props) => {
   const [data, setData] = useState<Subject[]>([]);
-  const [refreshUI, setRefreshUI] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +47,7 @@ export const SubjectTable = () => {
             <SubjectTableRow
               row={row}
               key={row.id}
-              refreshUI={() => setRefreshUI(!refreshUI)}
+              refreshUI={handleRefreshUI}
             />
           ))}
         </TableBody>
