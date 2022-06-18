@@ -13,6 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
+import { updateSubject } from "../../../data-access/service/subjectService";
 interface Props {
   row: Subject;
   refreshUI: () => void;
@@ -29,6 +30,23 @@ export const SubjectTableRow = ({ row, refreshUI }: Props) => {
   };
   const handleEditEvent = () => {
     setEdit(!edit);
+  };
+  const handleEditSubject = async () => {
+    const response = await updateSubject(state);
+    console.log(response);
+    // if (response.status >= 200 && response.status < 300) {
+    //   showNotification({
+    //     severity: "success",
+    //     message: "User updated successfully!",
+    //   });
+    // } else {
+    //   showNotification({
+    //     severity: "error",
+    //     message: "Something went wrong updating user data!",
+    //   });
+    // }
+    setEdit(!edit);
+    refreshUI();
   };
   return (
     <TableRow
@@ -63,7 +81,7 @@ export const SubjectTableRow = ({ row, refreshUI }: Props) => {
           <>
             <Tooltip title="Save">
               <IconButton>
-                <CheckIcon onClick={() => console.log("")} />
+                <CheckIcon onClick={() => handleEditSubject()} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Exit">
