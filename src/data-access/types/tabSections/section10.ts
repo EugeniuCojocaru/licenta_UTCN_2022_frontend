@@ -13,7 +13,7 @@ export const SECTION10_DEFAULT: Section10Type = {
   projectPercentage: 0,
   minimumPerformance: "",
   conditionsFinalExam: [],
-  conditionsPromotion: "",
+  conditionPromotion: "",
   id: "",
 };
 
@@ -32,7 +32,7 @@ export interface Section10Type {
   projectPercentage: number;
   minimumPerformance: string;
   conditionsFinalExam: string[];
-  conditionsPromotion: string;
+  conditionPromotion: string;
   id: string;
 }
 export interface Section10CreateDto extends Omit<Section10Type, "id"> {}
@@ -54,7 +54,7 @@ export const mapSection10TypeToSection10CreateDto = (
     projectPercentage,
     minimumPerformance,
     conditionsFinalExam,
-    conditionsPromotion,
+    conditionPromotion,
   } = section3;
 
   return {
@@ -72,6 +72,6 @@ export const mapSection10TypeToSection10CreateDto = (
     projectPercentage,
     minimumPerformance,
     conditionsFinalExam,
-    conditionsPromotion,
+    conditionPromotion,
   };
 };

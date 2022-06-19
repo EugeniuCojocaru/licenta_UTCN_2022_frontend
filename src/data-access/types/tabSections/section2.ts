@@ -25,8 +25,9 @@ export interface Section2Type {
 export interface Section2CreateDto
   extends Omit<
     Section2Type,
-    "id" | "subject" | "lecturer" | "selectedTeachers"
+    "id" | "subject" | "lecturer" | "selectedTeachers" | "year"
   > {
+  yearOfStudy: string;
   teacherId: string;
   teachers: string[];
 }
@@ -44,7 +45,7 @@ export const mapSection2TypeToSection2CreateDto = (
   } = section2;
   return {
     teacherId: lecturer?.value || "",
-    year,
+    yearOfStudy: year,
     semester,
     assessment,
     category1,

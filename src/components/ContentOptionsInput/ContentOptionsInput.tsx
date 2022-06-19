@@ -28,7 +28,7 @@ const ContentOptionsInput = ({
   const [state, setState] = useState<ContentOptionsInputType>(
     CONTENT_OPTIONS_INPUT_DEFAULT
   );
-  const { name, duration, note: notes } = state;
+  const { name, duration, note } = state;
   const [clearValue, setClearValue] = useState<boolean>(false);
   useEffect(() => {
     setState(CONTENT_OPTIONS_INPUT_DEFAULT);
@@ -66,8 +66,8 @@ const ContentOptionsInput = ({
             multiline
             required={false}
             maxRows={4}
-            value={notes}
-            onChange={(e) => handleInputChange("notes", e.target.value)}
+            value={note}
+            onChange={(e) => handleInputChange("note", e.target.value)}
             style={{ width: "160%" }}
           />
           <Tooltip title="Add">
