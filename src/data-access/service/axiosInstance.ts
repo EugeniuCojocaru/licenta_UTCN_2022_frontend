@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../../common";
 
 const defaultHeaders = {
   "Content-Type": "application/json",
@@ -12,14 +13,14 @@ const defaultConfig = {
 };
 
 const getAxiosInstance = () => {
-  /*const token = getToken();
+  const token = getToken();
 
   if (token) {
     return axios.create({
       ...defaultConfig,
       headers: { ...defaultHeaders, Authorization: `Bearer ${token}` },
     });
-  }*/
+  }
   return axios.create(defaultConfig);
 };
 export default getAxiosInstance;
