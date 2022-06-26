@@ -83,6 +83,7 @@ export const sectionsSlice = createSlice({
     updateSection10: (state, action) => {
       state.section10 = action.payload;
     },
+    resetSections: () => initialState,
   },
 });
 
@@ -97,4 +98,5 @@ export const {
   updateSection8,
   updateSection9,
   updateSection10,
+  resetSections,
 } = sectionsSlice.actions;

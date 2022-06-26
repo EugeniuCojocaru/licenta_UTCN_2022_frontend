@@ -15,5 +15,6 @@ export const usersSlice = createSlice({
     updateUsers: (state, action) => {
       state.users = action.payload;
     },
+    resetUsers: () => initialState,
   },
 });

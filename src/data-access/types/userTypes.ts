@@ -17,6 +17,12 @@ export interface UserCreateDto extends Omit<User, "id" | "role"> {}
 export interface UserCreateViaAdminDto extends Omit<User, "id"> {}
 export interface UserList extends Omit<User, "email" | "role"> {}
 
+export const USER_DEFAULT: User = {
+  id: "",
+  name: "",
+  email: "",
+  role: Role.User,
+};
 export const mapRoleIdToString = (roleId: Role): string => {
   switch (roleId) {
     case 10:

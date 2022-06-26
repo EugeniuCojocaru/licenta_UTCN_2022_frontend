@@ -3,3 +3,4 @@ export * from "./facultyService";
 export * from "./fieldOfStudyService";
 export * from "./institutionService";
 export * from "./userService";
+export * from "./loginService";

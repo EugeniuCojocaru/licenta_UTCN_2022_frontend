@@ -5,6 +5,7 @@ export const colors = {
   red: "#B3000B",
   buttonPrimary: "#2c2c2f",
   text: "rgb(123, 128, 154)",
+  gradient: "linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))",
 };
 
 export const fonts = {};
