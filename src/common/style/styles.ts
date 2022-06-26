@@ -4,6 +4,7 @@ export const colors = {
   white: "#FFFFFF",
   red: "#B3000B",
   buttonPrimary: "#2c2c2f",
+  text: "rgb(123, 128, 154)",
 };
 
 export const fonts = {};

@@ -3,8 +3,8 @@ import { CustomStepper } from "./Stepper";
 import { TabController, TabControllerContainer } from "./AddSyllabus.style";
 
 import { Layout } from "../../../components/Layout";
-import TabSection1Container from "./TabSection1Container";
-import TabSection2Container from "./TabSection2Container";
+import TabSection1Container from "./TabSection1/TabSection1Container";
+import TabSection2Container from "./TabSection2/TabSection2Container";
 import TabSectionFinishContainer from "./TabSectionFinishContainer";
 import TabSection3Container from "./TabSection3/TabSection3Container";
 import TabSection4Container from "./TabSection4/TabSection4Container";

@@ -20,7 +20,11 @@ import { TabSectionFooter } from "../TabSectionFooter";
 import { updateSection1, useAppDispatch } from "../../../../data-access/store";
 
 import { sxClasses } from "../../../../common/style/styles";
-import { RowContainer, TabSectionContainer } from "../AddSyllabus.style";
+import {
+  InputsContainer,
+  RowContainer,
+  TabSectionContainer,
+} from "../AddSyllabus.style";
 
 interface Props {
   handleForward: () => void;
@@ -99,101 +103,109 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
     <>
       <p>1. Data about the program of study</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <TextField
-          select
-          sx={sxClasses.select}
-          label="Institutions"
-          value={institutionId}
-          variant="standard"
-          onChange={(e) => handleInputChange("institutionId", e.target.value)}
-        >
-          {institutions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          select
-          sx={sxClasses.select}
-          label="Faculties"
-          value={facultyId}
-          variant="standard"
-          disabled={!faculties.length}
-          onChange={(e) => handleInputChange("facultyId", e.target.value)}
-        >
-          {faculties.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          select
-          sx={sxClasses.select}
-          label="Departments"
-          value={departmentId}
-          variant="standard"
-          disabled={!departments.length}
-          onChange={(e) => handleInputChange("departmentId", e.target.value)}
-        >
-          {departments.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          select
-          sx={sxClasses.select}
-          label="Fields of study"
-          value={fieldOfStudyId}
-          variant="standard"
-          disabled={!fieldsOfStudy.length}
-          onChange={(e) => handleInputChange("fieldOfStudyId", e.target.value)}
-        >
-          {fieldsOfStudy.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <RowContainer>
+        <InputsContainer>
           <TextField
-            required
-            label="Cycle of study"
+            select
+            sx={sxClasses.select}
+            label="Institutions"
+            value={institutionId}
             variant="standard"
-            value={cycleOfStudy}
-            onChange={(e) => handleInputChange("cycleOfStudy", e.target.value)}
-          />
+            onChange={(e) => handleInputChange("institutionId", e.target.value)}
+          >
+            {institutions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <TextField
-            required
-            label="Program of study"
+            select
+            sx={sxClasses.select}
+            label="Faculties"
+            value={facultyId}
             variant="standard"
-            value={programOfStudy}
+            disabled={!faculties.length}
+            onChange={(e) => handleInputChange("facultyId", e.target.value)}
+          >
+            {faculties.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            select
+            sx={sxClasses.select}
+            label="Departments"
+            value={departmentId}
+            variant="standard"
+            disabled={!departments.length}
+            onChange={(e) => handleInputChange("departmentId", e.target.value)}
+          >
+            {departments.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            select
+            sx={sxClasses.select}
+            label="Fields of study"
+            value={fieldOfStudyId}
+            variant="standard"
+            disabled={!fieldsOfStudy.length}
             onChange={(e) =>
-              handleInputChange("programOfStudy", e.target.value)
+              handleInputChange("fieldOfStudyId", e.target.value)
             }
-          />
-        </RowContainer>
-        <RowContainer>
-          <TextField
-            required
-            label="Qualification"
-            variant="standard"
-            value={qualification}
-            onChange={(e) => handleInputChange("qualification", e.target.value)}
-          />
-          <TextField
-            required
-            label="Form of education"
-            variant="standard"
-            value={formOfEducation}
-            onChange={(e) =>
-              handleInputChange("formOfEducation", e.target.value)
-            }
-          />
-        </RowContainer>
+          >
+            {fieldsOfStudy.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <RowContainer>
+            <TextField
+              required
+              label="Cycle of study"
+              variant="standard"
+              value={cycleOfStudy}
+              onChange={(e) =>
+                handleInputChange("cycleOfStudy", e.target.value)
+              }
+            />
+            <TextField
+              required
+              label="Program of study"
+              variant="standard"
+              value={programOfStudy}
+              onChange={(e) =>
+                handleInputChange("programOfStudy", e.target.value)
+              }
+            />
+          </RowContainer>
+          <RowContainer>
+            <TextField
+              required
+              label="Qualification"
+              variant="standard"
+              value={qualification}
+              onChange={(e) =>
+                handleInputChange("qualification", e.target.value)
+              }
+            />
+            <TextField
+              required
+              label="Form of education"
+              variant="standard"
+              value={formOfEducation}
+              onChange={(e) =>
+                handleInputChange("formOfEducation", e.target.value)
+              }
+            />
+          </RowContainer>
+        </InputsContainer>
         <TabSectionFooter disableBack />
       </TabSectionContainer>
     </>

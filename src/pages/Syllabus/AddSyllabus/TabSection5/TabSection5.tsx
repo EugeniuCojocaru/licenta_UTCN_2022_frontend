@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection5, useAppDispatch } from "../../../../data-access/store";
 import { Section5Type, SECTION5_DEFAULT } from "../../../../data-access/types";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
 interface Props {
@@ -34,16 +34,18 @@ export const TabSection5 = ({
     <>
       <p>5. Requirements *optional</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <ContentInput
-          label={"Course"}
-          values={course}
-          handleValuesChange={handleCourseChange}
-        />
-        <ContentInput
-          label={"Applications"}
-          values={application}
-          handleValuesChange={handleApplicationChange}
-        />
+        <InputsContainer>
+          <ContentInput
+            label={"Course"}
+            values={course}
+            handleValuesChange={handleCourseChange}
+          />
+          <ContentInput
+            label={"Applications"}
+            values={application}
+            handleValuesChange={handleApplicationChange}
+          />
+        </InputsContainer>
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>

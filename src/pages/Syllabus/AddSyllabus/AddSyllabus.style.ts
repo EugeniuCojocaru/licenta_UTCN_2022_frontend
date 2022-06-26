@@ -28,16 +28,28 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+
+  svg {
+    &:hover {
+      color: ${colors.red};
+    }
+  }
 `;
 
 export const TabSectionContainer = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 500px;
   width: 100%;
   gap: 12px;
 `;
 export const RowContainer = styled.div`
   display: flex;
+  gap: 12px;
+`;
+export const InputsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 12px;
 `;

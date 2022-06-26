@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import { updateSection9, useAppDispatch } from "../../../../data-access/store";
 import { Section9Type, SECTION9_DEFAULT } from "../../../../data-access/types";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
 interface Props {
@@ -32,12 +32,16 @@ export const TabSection9 = ({
       </p>
 
       <TabSectionContainer onSubmit={handleSubmit}>
-        <TextField
-          label={"Description"}
-          multiline
-          value={description}
-          onChange={(e) => setState({ ...state, description: e.target.value })}
-        />
+        <InputsContainer>
+          <TextField
+            label={"Description"}
+            multiline
+            value={description}
+            onChange={(e) =>
+              setState({ ...state, description: e.target.value })
+            }
+          />
+        </InputsContainer>
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>

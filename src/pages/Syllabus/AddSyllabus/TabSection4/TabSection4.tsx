@@ -10,7 +10,7 @@ import {
 } from "../../../../data-access/types";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { TabSectionFooter } from "../TabSectionFooter";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 
 interface Props {
   handleBack: () => void;
@@ -50,29 +50,31 @@ export const TabSection4 = ({
     <>
       <p>4. Pre-requirements *optional</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <Autocomplete
-          multiple
-          options={subjects}
-          disableCloseOnSelect
-          getOptionLabel={(option) => option.label}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              required={false}
-              variant="standard"
-              label="Curriculum"
-            />
-          )}
-          onChange={(e, item) =>
-            setState({ ...state, selectedSubjects: [...item] })
-          }
-          value={selectedSubjects}
-        />
-        <ContentInput
-          label={"Competence"}
-          values={competences}
-          handleValuesChange={handleValuesChange}
-        />
+        <InputsContainer>
+          <Autocomplete
+            multiple
+            options={subjects}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option.label}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                required={false}
+                variant="standard"
+                label="Curriculum"
+              />
+            )}
+            onChange={(e, item) =>
+              setState({ ...state, selectedSubjects: [...item] })
+            }
+            value={selectedSubjects}
+          />
+          <ContentInput
+            label={"Competence"}
+            values={competences}
+            handleValuesChange={handleValuesChange}
+          />
+        </InputsContainer>
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>

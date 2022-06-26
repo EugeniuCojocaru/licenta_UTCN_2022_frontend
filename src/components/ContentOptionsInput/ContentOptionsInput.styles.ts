@@ -4,6 +4,12 @@ import { colors } from "../../common";
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  svg {
+    &:hover {
+      color: ${colors.red};
+    }
+  }
 `;
 export const InputRowContainer = styled.div`
   display: flex;
@@ -22,15 +28,17 @@ export const ChipContainer = styled.div`
   gap: 12px;
   min-height: 30px;
   padding: 2px;
-  flex: 1;
 `;
 
 export const Paragraph = styled.p`
-  color: ${colors.red};
+  color: ${colors.text};
   word-break: break-all;
   white-space: normal;
-  border: 1px solid #000;
   flex: 1;
   margin: 0;
-  padding: 4px;
+  padding: 8px;
+
+  border-radius: 4px;
+  background-color: ${colors.white};
+  box-shadow: 2px 0 4px 0 ${colors.shadow};
 `;

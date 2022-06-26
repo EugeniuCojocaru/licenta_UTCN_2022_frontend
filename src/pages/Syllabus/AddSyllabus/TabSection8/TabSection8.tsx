@@ -7,7 +7,7 @@ import {
   Section8Type,
   SECTION8_DEFAULT,
 } from "../../../../data-access/types";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
 interface Props {
@@ -59,38 +59,40 @@ export const TabSection8 = ({
     <>
       <p>8. Contents</p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <p>Lectures </p>
-        <ContentInput
-          label="Teaching methods"
-          values={teachingMethodsCourse}
-          handleValuesChange={handleTeachingMethodsCourseChange}
-        />
-        <ContentOptionsInput
-          values={lecturesCourse}
-          handleValuesChange={handleInputChange}
-          fieldName="lecturesCourse"
-        />
-        <ContentInput
-          label="Bibliography"
-          values={bibliographyCourse}
-          handleValuesChange={handleBibliographyCourseChange}
-        />
-        <p>Applications – Seminars/Laboratory/Project </p>
-        <ContentInput
-          label="Teaching methods"
-          values={teachingMethodsLab}
-          handleValuesChange={handleTeachingMethodsLabChange}
-        />
-        <ContentOptionsInput
-          values={lecturesLab}
-          handleValuesChange={handleInputChange}
-          fieldName="lecturesLab"
-        />
-        <ContentInput
-          label="Bibliography"
-          values={bibliographyLab}
-          handleValuesChange={handleBibliographyLabChange}
-        />
+        <InputsContainer>
+          <p>Lectures </p>
+          <ContentInput
+            label="Teaching methods"
+            values={teachingMethodsCourse}
+            handleValuesChange={handleTeachingMethodsCourseChange}
+          />
+          <ContentOptionsInput
+            values={lecturesCourse}
+            handleValuesChange={handleInputChange}
+            fieldName="lecturesCourse"
+          />
+          <ContentInput
+            label="Bibliography"
+            values={bibliographyCourse}
+            handleValuesChange={handleBibliographyCourseChange}
+          />
+          <p>Applications – Seminars/Laboratory/Project </p>
+          <ContentInput
+            label="Teaching methods"
+            values={teachingMethodsLab}
+            handleValuesChange={handleTeachingMethodsLabChange}
+          />
+          <ContentOptionsInput
+            values={lecturesLab}
+            handleValuesChange={handleInputChange}
+            fieldName="lecturesLab"
+          />
+          <ContentInput
+            label="Bibliography"
+            values={bibliographyLab}
+            handleValuesChange={handleBibliographyLabChange}
+          />
+        </InputsContainer>
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>

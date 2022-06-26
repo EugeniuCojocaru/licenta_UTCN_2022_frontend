@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection7, useAppDispatch } from "../../../../data-access/store";
 import { Section7Type, SECTION7_DEFAULT } from "../../../../data-access/types";
-import { TabSectionContainer } from "../AddSyllabus.style";
+import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
 interface Props {
@@ -34,20 +34,22 @@ export const TabSection7 = ({
         7. Discipline objective (as results from the key competences gained)
       </p>
       <TabSectionContainer onSubmit={handleSubmit}>
-        <TextField
-          label={"General objective"}
-          multiline
-          maxRows={4}
-          value={generalObjective}
-          onChange={(e) =>
-            setState({ ...state, generalObjective: e.target.value })
-          }
-        />
-        <ContentInput
-          label={"Specific objectives"}
-          values={specificObjectives}
-          handleValuesChange={handleSpecificObjectivesChange}
-        />
+        <InputsContainer>
+          <TextField
+            label={"General objective"}
+            multiline
+            maxRows={4}
+            value={generalObjective}
+            onChange={(e) =>
+              setState({ ...state, generalObjective: e.target.value })
+            }
+          />
+          <ContentInput
+            label={"Specific objectives"}
+            values={specificObjectives}
+            handleValuesChange={handleSpecificObjectivesChange}
+          />
+        </InputsContainer>
         <TabSectionFooter handleBack={handleBack} />
       </TabSectionContainer>
     </>
