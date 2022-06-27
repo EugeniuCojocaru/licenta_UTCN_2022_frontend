@@ -24,6 +24,7 @@ import {
 } from "../../types";
 
 export interface SectionsSliceState {
+  idSyllabus: string;
   section1: Section1Type;
   section2: Section2Type;
   section3: Section3Type;
@@ -37,6 +38,7 @@ export interface SectionsSliceState {
 }
 
 const initialState: SectionsSliceState = {
+  idSyllabus: "",
   section1: SECTION1_DEFAULT,
   section2: SECTION2_DEFAULT,
   section3: SECTION3_DEFAULT,
@@ -53,6 +55,9 @@ export const sectionsSlice = createSlice({
   name: "sections",
   initialState,
   reducers: {
+    updateIdSyllabus: (state, action) => {
+      state.idSyllabus = action.payload;
+    },
     updateSection1: (state, action) => {
       state.section1 = action.payload;
     },
@@ -88,6 +93,7 @@ export const sectionsSlice = createSlice({
 });
 
 export const {
+  updateIdSyllabus,
   updateSection1,
   updateSection2,
   updateSection3,

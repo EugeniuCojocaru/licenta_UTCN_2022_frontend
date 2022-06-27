@@ -1,4 +1,5 @@
 import { SelectType } from "../componentsType";
+import { mapSubjectsToSelectType } from "../subjectTypes";
 
 export const SECTION4_DEFAULT: Section4Type = {
   id: "",
@@ -22,5 +23,18 @@ export const mapSection4TypeToSection4CreateDto = (
   return {
     subjects: selectedSubjects.map((value) => value.value),
     competences,
+  };
+};
+export const mapSection4DtoToSection4Type = (
+  section4Dto: any
+): Section4Type => {
+  console.log(
+    section4Dto.subjects,
+    mapSubjectsToSelectType(section4Dto.subjects)
+  );
+  return {
+    id: section4Dto.id,
+    competences: section4Dto.compentences,
+    selectedSubjects: [...mapSubjectsToSelectType(section4Dto.subjects)],
   };
 };

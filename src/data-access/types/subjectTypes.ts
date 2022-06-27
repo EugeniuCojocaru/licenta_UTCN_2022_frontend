@@ -33,12 +33,14 @@ export interface Subject {
   id: string;
   name: string;
   code: string;
+  hasSyllabus: boolean;
 }
-export interface SubjectCreateDto extends Omit<Subject, "id"> {}
+export interface SubjectCreateDto extends Omit<Subject, "id" | "hasSyllabus"> {}
 export const SUBJECT_DEFAULT = {
   id: "",
   name: "",
   code: "",
+  hasSyllabus: true,
 };
 export const mapSubjectToSubjectCreateDto = (
   subject: Subject

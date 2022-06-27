@@ -25,6 +25,9 @@ import {
   Section8Type,
   Section9Type,
 } from "../../../data-access/types";
+import { validateResponseStatus } from "../../../common";
+import { useAppDispatch } from "../../../data-access/store/hooks";
+import { resetSections } from "../../../data-access/store";
 interface Props {
   handleForward: () => void;
   handleBack: () => void;
@@ -53,6 +56,7 @@ export const TabSectionFinish = ({
   section9Data,
   section10Data,
 }: Props) => {
+  const dispatch = useAppDispatch();
   const handleSubmit = async () => {
     const syllabus: SyllabusCreateDto = {
       subjectId: section2Data.subject?.value || "",
@@ -70,6 +74,9 @@ export const TabSectionFinish = ({
     console.log({ syllabus });
     const response = await createSyllabus(syllabus);
     console.log({ response });
+    if (validateResponseStatus(response?.status)) {
+      dispatch(resetSections());
+    }
   };
 
   return (

@@ -1,4 +1,7 @@
+import { AnyMap } from "immer/dist/internal";
 import { SelectType } from "../componentsType";
+import { mapSubjectsToSelectType } from "../subjectTypes";
+import { mapUsersToSelectType } from "../userTypes";
 
 export const SECTION2_DEFAULT: Section2Type = {
   id: "",
@@ -31,6 +34,7 @@ export interface Section2CreateDto
   teacherId: string;
   teachers: string[];
 }
+
 export const mapSection2TypeToSection2CreateDto = (
   section2: Section2Type
 ): Section2CreateDto => {
@@ -51,5 +55,22 @@ export const mapSection2TypeToSection2CreateDto = (
     category1,
     category2,
     teachers: selectedTeachers.map((item) => item.value),
+  };
+};
+
+export const mapSection2DtoToSection2Type = (
+  section2Dto: any,
+  subject: any
+): Section2Type => {
+  return {
+    id: section2Dto.id,
+    subject: { ...mapSubjectsToSelectType([subject])[0] },
+    lecturer: { ...mapUsersToSelectType([section2Dto.teacher])[0] },
+    selectedTeachers: mapUsersToSelectType(section2Dto.teachers),
+    year: section2Dto.yearOfStudy,
+    semester: section2Dto.semester,
+    assessment: section2Dto.assessment,
+    category1: section2Dto.category1,
+    category2: section2Dto.category2,
   };
 };
