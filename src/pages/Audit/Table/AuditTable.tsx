@@ -27,7 +27,14 @@ export const AuditTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead
+          style={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "#FFF",
+            borderBottom: "4px solid rgba(224, 224, 224, 1)",
+          }}
+        >
           <TableRow>
             <TableCell>
               <strong>User</strong>
