@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuditPage } from "../../pages/Audit/AuditPage";
 
 import {
   DashboardPage,
@@ -34,6 +35,7 @@ const AuthenticatedRoutes = () => (
       <Route path="/institution" element={<InstitutionPage />} />
       <Route path="/subjects" element={<SubjectPage />} />
       <Route path="/teachers" element={<TeacherPage />} />
+      <Route path="/audit" element={<AuditPage />} />
     </Routes>
   </BrowserRouter>
 );

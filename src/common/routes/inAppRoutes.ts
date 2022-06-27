@@ -4,3 +4,4 @@ export const SYLLABUS_ADD_URL = "/syllabus/add";
 export const INSTITUTION_URL = "/institution";
 export const SUBJECT_URL = "/subjects";
 export const TEACHER_URL = "/teachers";
+export const AUDIT_URL = "/audit";

@@ -22,8 +22,8 @@ function App() {
       dispatch(updateUserData(response?.data));
     };
     const clearRedux = () => {
-      dispatch(resetAuth);
-      dispatch(resetSections);
+      dispatch(resetAuth());
+      dispatch(resetSections());
     };
     const token = getToken();
     if (isTokenValid(token)) {

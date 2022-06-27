@@ -4,3 +4,4 @@ export * from "./fieldOfStudyService";
 export * from "./institutionService";
 export * from "./userService";
 export * from "./loginService";
+export * from "./auditService";

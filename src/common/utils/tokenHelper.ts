@@ -7,6 +7,9 @@ export const getToken = (): string | undefined => {
 export const setToken = (token: string) => {
   Cookies.set("Token", token);
 };
+export const removeToken = () => {
+  Cookies.remove("Token");
+};
 export const isTokenValid = (token: string | undefined): boolean => {
   if (!token) return false;
   else {

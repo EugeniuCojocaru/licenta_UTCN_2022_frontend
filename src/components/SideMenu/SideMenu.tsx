@@ -13,6 +13,7 @@ import {
 } from "./SideMenu.styles";
 import { SideMenuButton } from "./SideMenuButton";
 import {
+  AUDIT_URL,
   DASHBOARD_URL,
   INSTITUTION_URL,
   SUBJECT_URL,
@@ -21,14 +22,25 @@ import {
 } from "../../common/routes";
 
 import logo from "../../common/resources/logo.png";
+import { removeToken } from "../../common/utils/tokenHelper";
+import {
+  resetAuth,
+  resetSections,
+  useAppDispatch,
+} from "../../data-access/store";
 
 export const SideMenu = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [activeElement, setActiveElement] = useState<string>("");
   const handleNavigateTo = (route: string, label: string) => {
     setActiveElement(label);
-
     navigate(route);
+  };
+  const handleLogout = () => {
+    dispatch(resetAuth());
+    dispatch(resetSections());
+    removeToken();
   };
 
   return (
@@ -71,6 +83,20 @@ export const SideMenu = () => {
           label="Teachers"
           active={activeElement}
           handleClick={() => handleNavigateTo(TEACHER_URL, "Teachers")}
+        >
+          <PeopleAltIcon />
+        </SideMenuButton>
+        <SideMenuButton
+          label="Audit log"
+          active={activeElement}
+          handleClick={() => handleNavigateTo(AUDIT_URL, "Audit")}
+        >
+          <PeopleAltIcon />
+        </SideMenuButton>
+        <SideMenuButton
+          label="Log out"
+          active={activeElement}
+          handleClick={() => handleLogout()}
         >
           <PeopleAltIcon />
         </SideMenuButton>
