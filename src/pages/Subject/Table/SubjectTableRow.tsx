@@ -18,14 +18,21 @@ import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import HistoryIcon from "@mui/icons-material/History";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   updateSubject,
   getSyllabusBySubjectId,
 } from "../../../data-access/service/subjectService";
 import { useNavigate } from "react-router-dom";
 import { SYLLABUS_ADD_URL, validateResponseStatus } from "../../../common";
-import { mapSection2DtoToSection2Type } from "../../../data-access/types/tabSections/section2";
-import { deleteSyllabus } from "../../../data-access/service/syllabusService";
+import {
+  mapSection2DtoToSection2Type,
+  SECTION2_DEFAULT,
+} from "../../../data-access/types/tabSections/section2";
+import {
+  deleteSyllabus,
+  downloadSyllabus,
+} from "../../../data-access/service/syllabusService";
 import {
   updateIdSyllabus,
   updateSection1,
@@ -123,6 +130,29 @@ export const SubjectTableRow = ({
       refreshUI();
     }
   };
+
+  const handleDownloadSyllabusPdf = async () => {
+    const response = await downloadSyllabus(id, false);
+    if (response) {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `fisa_disciplina.pdf`);
+      document.body.appendChild(link);
+      link.click();
+    }
+    console.log(response);
+  };
+
+  const handleAddSyllabus = () => {
+    dispatch(
+      updateSection2({
+        ...SECTION2_DEFAULT,
+        subject: { label: name, value: id },
+      })
+    );
+    navigate(SYLLABUS_ADD_URL);
+  };
   return (
     <TableRow
       key={id}
@@ -174,25 +204,31 @@ export const SubjectTableRow = ({
             </Tooltip>
             {!hasSyllabus && (
               <Tooltip title="Create syllabus">
-                <IconButton onClick={() => navigate(SYLLABUS_ADD_URL)}>
+                <IconButton onClick={() => handleAddSyllabus()}>
                   <AttachFileIcon />
                 </IconButton>
               </Tooltip>
             )}
 
             {hasSyllabus && (
-              <Tooltip title="Edit syllabus">
-                <IconButton onClick={() => handleGetSyllabus()}>
-                  <FileOpenIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-            {hasSyllabus && (
-              <Tooltip title="Remove syllabus">
-                <IconButton onClick={() => handleDeleteSyllabus()}>
-                  <PlaylistRemoveIcon />
-                </IconButton>
-              </Tooltip>
+              <>
+                <Tooltip title="Edit syllabus">
+                  <IconButton onClick={() => handleGetSyllabus()}>
+                    <FileOpenIcon />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Remove syllabus">
+                  <IconButton onClick={() => handleDeleteSyllabus()}>
+                    <PlaylistRemoveIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Download syllabus">
+                  <IconButton onClick={() => handleDownloadSyllabusPdf()}>
+                    <FileDownloadIcon />
+                  </IconButton>
+                </Tooltip>
+              </>
             )}
             <Tooltip title="Syllabus versions">
               <IconButton onClick={() => handleShowHistory(id)}>

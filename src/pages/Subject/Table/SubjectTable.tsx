@@ -50,7 +50,7 @@ export const SubjectTable = ({
             <TableCell align="left">
               <strong>Name</strong>
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="right" sx={{ minWidth: 200 }}>
               <strong>Actions</strong>
             </TableCell>
           </TableRow>

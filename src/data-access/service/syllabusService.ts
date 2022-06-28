@@ -44,3 +44,28 @@ export const deleteSyllabus = async (subjectId: string) => {
     console.error(error);
   }
 };
+
+export const downloadSyllabus = async (id: string, isSyllabus: boolean) => {
+  try {
+    const response = await getAxiosInstance().get(`/api/syllabuses/${id}/pdf`, {
+      responseType: "blob",
+      params: { isSyllabus },
+      headers: {
+        accept: "application/pdf",
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+// export const exportItems = (filter: ItemFilterState) => {
+//   const response = axios.get(Endpoints.Items, {
+//     responseType: 'blob',
+//     params: filter,
+//     headers: {
+//       accept: 'application/octet-stream',
+//     },
+//   });
+//   return response;
+// };
