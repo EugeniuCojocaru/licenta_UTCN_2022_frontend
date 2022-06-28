@@ -5,3 +5,4 @@ export * from "./userTypes";
 export * from "./subjectTypes";
 export * from "./loginTypes";
 export * from "./auditTypes";
+export * from "./syllabusTypes";

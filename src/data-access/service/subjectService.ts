@@ -29,6 +29,16 @@ export const getSyllabusBySubjectId = async (id: string) => {
     console.error(error);
   }
 };
+export const getSyllabusVersionsBySubjectId = async (id: string) => {
+  try {
+    const response = await getAxiosInstance().get(
+      `/api/subjects/${id}/history`
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const createSubject = async (newSubject: SubjectCreateDto) => {
   try {

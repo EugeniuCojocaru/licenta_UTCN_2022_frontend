@@ -24,3 +24,9 @@ export interface SyllabusCreateDto {
   section9: Section9CreateDto;
   section10: Section10CreateDto;
 }
+
+export interface SyllabusVersionDto {
+  createdAt: string;
+  updatedAt: string;
+  syllabusId: string;
+}

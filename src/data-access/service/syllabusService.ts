@@ -32,3 +32,15 @@ export const updateSyllabus = async (
     console.error(error);
   }
 };
+export const deleteSyllabus = async (subjectId: string) => {
+  try {
+    const response = await getAxiosInstance().delete(
+      `/api/syllabuses`,
+
+      { params: { subjectId } }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

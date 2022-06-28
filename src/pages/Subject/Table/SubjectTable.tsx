@@ -14,8 +14,13 @@ import { SubjectTableRow } from "./SubjectTableRow";
 interface Props {
   refreshUI: boolean;
   handleRefreshUI: () => void;
+  handleShowHistory: (id: string) => void;
 }
-export const SubjectTable = ({ refreshUI, handleRefreshUI }: Props) => {
+export const SubjectTable = ({
+  refreshUI,
+  handleRefreshUI,
+  handleShowHistory,
+}: Props) => {
   const [data, setData] = useState<Subject[]>([]);
 
   useEffect(() => {
@@ -48,6 +53,7 @@ export const SubjectTable = ({ refreshUI, handleRefreshUI }: Props) => {
               row={row}
               key={row.id}
               refreshUI={handleRefreshUI}
+              handleShowHistory={handleShowHistory}
             />
           ))}
         </TableBody>

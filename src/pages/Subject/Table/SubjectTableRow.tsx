@@ -14,8 +14,9 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import EditOffIcon from "@mui/icons-material/EditOff";
 import EditIcon from "@mui/icons-material/Edit";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
+import HistoryIcon from "@mui/icons-material/History";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import {
   updateSubject,
@@ -24,6 +25,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { SYLLABUS_ADD_URL, validateResponseStatus } from "../../../common";
 import { mapSection2DtoToSection2Type } from "../../../data-access/types/tabSections/section2";
+import { deleteSyllabus } from "../../../data-access/service/syllabusService";
 import {
   updateIdSyllabus,
   updateSection1,
@@ -41,9 +43,14 @@ import {
 interface Props {
   row: Subject;
   refreshUI: () => void;
+  handleShowHistory: (id: string) => void;
 }
 
-export const SubjectTableRow = ({ row, refreshUI }: Props) => {
+export const SubjectTableRow = ({
+  row,
+  refreshUI,
+  handleShowHistory,
+}: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -106,6 +113,14 @@ export const SubjectTableRow = ({ row, refreshUI }: Props) => {
       dispatch(updateSection10(section10));
 
       navigate(SYLLABUS_ADD_URL);
+    }
+  };
+
+  const handleDeleteSyllabus = async () => {
+    const response = await deleteSyllabus(id);
+    console.log(response);
+    if (validateResponseStatus(response?.status)) {
+      refreshUI();
     }
   };
   return (
@@ -172,6 +187,18 @@ export const SubjectTableRow = ({ row, refreshUI }: Props) => {
                 </IconButton>
               </Tooltip>
             )}
+            {hasSyllabus && (
+              <Tooltip title="Remove syllabus">
+                <IconButton onClick={() => handleDeleteSyllabus()}>
+                  <PlaylistRemoveIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+            <Tooltip title="Syllabus versions">
+              <IconButton onClick={() => handleShowHistory(id)}>
+                <HistoryIcon />
+              </IconButton>
+            </Tooltip>
           </>
         )}
       </TableCell>
