@@ -18,3 +18,17 @@ export const createSyllabus = async (syllabus: SyllabusCreateDto) => {
     console.error(error);
   }
 };
+
+export const updateSyllabus = async (
+  syllabus: SyllabusCreateDto,
+  oldSyllabusId: string
+) => {
+  try {
+    const response = await getAxiosInstance().put(`/api/syllabuses`, syllabus, {
+      params: { oldSyllabusId },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

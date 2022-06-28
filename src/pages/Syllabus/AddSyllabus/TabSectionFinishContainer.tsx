@@ -4,6 +4,7 @@ import { RootState } from "../../../data-access/store";
 import { TabSectionFinish } from "./TabSectionFinish";
 
 const mapStateToProps = (state: RootState, ownProps: any) => {
+  const idSyllabus = state.sections.idSyllabus;
   const section1Data = state.sections.section1;
   const section2Data = state.sections.section2;
   const section3Data = state.sections.section3;
@@ -16,6 +17,7 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
   const section10Data = state.sections.section10;
   return {
     ...ownProps,
+    idSyllabus,
     section1Data,
     section2Data,
     section3Data,

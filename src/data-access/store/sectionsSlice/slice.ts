@@ -35,6 +35,17 @@ export interface SectionsSliceState {
   section8: Section8Type;
   section9: Section9Type;
   section10: Section10Type;
+
+  // section1ForUpdate: Section1Type;
+  // section2ForUpdate: Section2Type;
+  // section3ForUpdate: Section3Type;
+  // section4ForUpdate: Section4Type;
+  // section5ForUpdate: Section5Type;
+  // section6ForUpdate: Section6Type;
+  // section7ForUpdate: Section7Type;
+  // section8ForUpdate: Section8Type;
+  // section9ForUpdate: Section9Type;
+  // section10ForUpdate: Section10Type;
 }
 
 const initialState: SectionsSliceState = {
@@ -49,6 +60,17 @@ const initialState: SectionsSliceState = {
   section8: SECTION8_DEFAULT,
   section9: SECTION9_DEFAULT,
   section10: SECTION10_DEFAULT,
+
+  // section1ForUpdate: SECTION1_DEFAULT,
+  // section2ForUpdate: SECTION2_DEFAULT,
+  // section3ForUpdate: SECTION3_DEFAULT,
+  // section4ForUpdate: SECTION4_DEFAULT,
+  // section5ForUpdate: SECTION5_DEFAULT,
+  // section6ForUpdate: SECTION6_DEFAULT,
+  // section7ForUpdate: SECTION7_DEFAULT,
+  // section8ForUpdate: SECTION8_DEFAULT,
+  // section9ForUpdate: SECTION9_DEFAULT,
+  // section10ForUpdate: SECTION10_DEFAULT,
 };
 
 export const sectionsSlice = createSlice({
@@ -88,6 +110,36 @@ export const sectionsSlice = createSlice({
     updateSection10: (state, action) => {
       state.section10 = action.payload;
     },
+    // updateSection1ForUpdate: (state, action) => {
+    //   state.section1ForUpdate = action.payload;
+    // },
+    // updateSection2ForUpdate: (state, action) => {
+    //   state.section2ForUpdate = action.payload;
+    // },
+    // updateSection3ForUpdate: (state, action) => {
+    //   state.section3ForUpdate = action.payload;
+    // },
+    // updateSection4ForUpdate: (state, action) => {
+    //   state.section4ForUpdate = action.payload;
+    // },
+    // updateSection5ForUpdate: (state, action) => {
+    //   state.section5ForUpdate = action.payload;
+    // },
+    // updateSection6ForUpdate: (state, action) => {
+    //   state.section6ForUpdate = action.payload;
+    // },
+    // updateSection7ForUpdate: (state, action) => {
+    //   state.section7ForUpdate = action.payload;
+    // },
+    // updateSection8ForUpdate: (state, action) => {
+    //   state.section8 = action.payload;
+    // },
+    // updateSection9: (state, action) => {
+    //   state.section9 = action.payload;
+    // },
+    // updateSection10: (state, action) => {
+    //   state.section10 = action.payload;
+    // },
     resetSections: () => initialState,
   },
 });

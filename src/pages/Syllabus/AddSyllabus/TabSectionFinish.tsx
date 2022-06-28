@@ -3,7 +3,10 @@ import React from "react";
 import { TabSectionFooter } from "./TabSectionFooter";
 
 import { SyllabusCreateDto } from "../../../data-access/types/syllabusTypes";
-import { createSyllabus } from "../../../data-access/service/syllabusService";
+import {
+  createSyllabus,
+  updateSyllabus,
+} from "../../../data-access/service/syllabusService";
 import { mapSection3TypeToSection3CreateDto } from "../../../data-access/types/tabSections/section3";
 import {
   mapSection10TypeToSection10CreateDto,
@@ -31,6 +34,7 @@ import { resetSections } from "../../../data-access/store";
 interface Props {
   handleForward: () => void;
   handleBack: () => void;
+  idSyllabus: string;
   section1Data: Section1Type;
   section2Data: Section2Type;
   section3Data: Section3Type;
@@ -45,6 +49,7 @@ interface Props {
 export const TabSectionFinish = ({
   handleBack,
   handleForward,
+  idSyllabus,
   section1Data,
   section2Data,
   section3Data,
@@ -72,10 +77,15 @@ export const TabSectionFinish = ({
       section10: mapSection10TypeToSection10CreateDto(section10Data),
     };
     console.log({ syllabus });
-    const response = await createSyllabus(syllabus);
-    console.log({ response });
-    if (validateResponseStatus(response?.status)) {
-      dispatch(resetSections());
+    if (idSyllabus) {
+      const response = await updateSyllabus(syllabus, idSyllabus);
+      console.log({ response });
+    } else {
+      const response = await createSyllabus(syllabus);
+      console.log({ response });
+      if (validateResponseStatus(response?.status)) {
+        dispatch(resetSections());
+      }
     }
   };
 
