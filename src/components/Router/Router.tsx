@@ -4,7 +4,6 @@ import { AuditPage } from "../../pages/Audit/AuditPage";
 
 import {
   DashboardPage,
-  SyllabusPage,
   InstitutionPage,
   SubjectPage,
   TeacherPage,
@@ -30,7 +29,6 @@ const AuthenticatedRoutes = () => (
     <Routes>
       <Route path="/" element={<DashboardPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/syllabus" element={<SyllabusPage />} />
       <Route path="/syllabus/add" element={<AddSyllabusPage />} />
       <Route path="/institution" element={<InstitutionPage />} />
       <Route path="/subjects" element={<SubjectPage />} />

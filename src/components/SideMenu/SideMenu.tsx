@@ -5,6 +5,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import {
   SideMenuContainer,
@@ -73,13 +75,6 @@ export const SideMenu = () => {
           <MenuBookIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Syllabus"
-          active={activeElement}
-          handleClick={() => handleNavigateTo(SYLLABUS_URL, "Syllabus")}
-        >
-          <DashboardIcon />
-        </SideMenuButton>
-        <SideMenuButton
           label="Teachers"
           active={activeElement}
           handleClick={() => handleNavigateTo(TEACHER_URL, "Teachers")}
@@ -91,14 +86,14 @@ export const SideMenu = () => {
           active={activeElement}
           handleClick={() => handleNavigateTo(AUDIT_URL, "Audit")}
         >
-          <PeopleAltIcon />
+          <AssignmentIcon />
         </SideMenuButton>
         <SideMenuButton
           label="Log out"
           active={activeElement}
           handleClick={() => handleLogout()}
         >
-          <PeopleAltIcon />
+          <LogoutIcon />
         </SideMenuButton>
       </ButtonsContainer>
     </SideMenuContainer>
