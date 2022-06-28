@@ -29,6 +29,9 @@ export const HistoryTable = ({ data }: Props) => {
             <TableCell align="left">
               <strong>Updated At</strong>
             </TableCell>
+            <TableCell align="right">
+              <strong>Actions</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
