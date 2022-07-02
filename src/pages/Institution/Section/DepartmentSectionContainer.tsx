@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
+  Severity,
 } from "../../../data-access/types";
 import {
   createDepartment,
@@ -12,6 +13,8 @@ import { getDepartmentsForFaculties } from "../../../data-access/service/faculty
 
 import { Section } from "./Section";
 import { SectionContainer } from "./Section.styles";
+import { useNotification } from "../../../common/hooks/useNotification";
+import { validateResponseStatus } from "../../../common";
 interface Props {
   idFaculty: string;
   shouldLoadFieldsOfStudy: (idDepartment: string) => void;
@@ -20,6 +23,7 @@ const DepartmentSectionContainer = ({
   idFaculty,
   shouldLoadFieldsOfStudy,
 }: Props) => {
+  const { showNotification } = useNotification();
   const [data, setData] = useState<InstitutionHierarchyType[]>([]);
   const [refreshUI, setRefreshUI] = useState<boolean>(false);
 
@@ -40,7 +44,12 @@ const DepartmentSectionContainer = ({
       ...name,
       facultyId: idFaculty,
     });
-    if (response) setRefreshUI(!refreshUI);
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Department created successfully");
+      setRefreshUI(!refreshUI);
+    } else {
+      showNotification(Severity.Error, response?.data);
+    }
   };
 
   const handleUpdateDepartment = async (
@@ -50,7 +59,11 @@ const DepartmentSectionContainer = ({
       ...updatedDepartment,
       idParent: idFaculty,
     });
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Department updated successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
 
@@ -61,7 +74,11 @@ const DepartmentSectionContainer = ({
       id: idDepartment,
       idParent: idFaculty,
     });
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Department deleted successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
 

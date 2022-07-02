@@ -7,9 +7,11 @@ import { AddItemContainer, ItemsContainer } from "./Section.styles";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
+  Severity,
 } from "../../../data-access/types";
 import SectionItem from "./SectionItem";
 import { classes } from "../../../common/style/styles";
+import { useNotification } from "../../../common/hooks/useNotification";
 interface PropType {
   labelTextField: string;
   title: string;
@@ -34,12 +36,18 @@ export const Section = ({
   canShowChildren = false,
   showAddButton = false,
 }: PropType) => {
+  const { showNotification } = useNotification();
   const [addState, setAddState] = useState<boolean>(false);
   const [addValue, setAddValue] = useState<string>("");
 
   const handleCreateResource = () => {
-    setAddState(false);
-    handleCreate({ name: addValue });
+    if (addValue !== "") {
+      setAddState(false);
+      handleCreate({ name: addValue });
+      setAddValue("");
+    } else {
+      showNotification(Severity.Error, "You must provide a value");
+    }
   };
 
   const loadAddButton = () => {

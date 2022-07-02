@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
+  Severity,
 } from "../../../data-access/types";
 import {
   createInstitutions,
@@ -11,18 +12,20 @@ import {
 } from "../../../data-access/service/institutionService";
 import { SectionContainer } from "./Section.styles";
 import { Section } from "./Section";
+import { validateResponseStatus } from "../../../common";
+import { useNotification } from "../../../common/hooks/useNotification";
 
 interface Props {
   shouldLoadFaculties: (idInstitution: string) => void;
 }
 const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
+  const { showNotification } = useNotification();
   const [data, setData] = useState<InstitutionHierarchyType[]>([]);
   const [refreshUI, setRefreshUI] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getInstitutions();
-      console.log({ response });
       if (response) {
         setData(response.data);
       }
@@ -32,14 +35,23 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
 
   const handleAddInstitution = async (name: InstitutionHierarchyCreateDto) => {
     const response = await createInstitutions(name);
-    if (response) setRefreshUI(!refreshUI);
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Institution created successfully");
+      setRefreshUI(!refreshUI);
+    } else {
+      showNotification(Severity.Error, response?.data);
+    }
   };
 
   const handleUpdateInstitution = async (
     newInstitution: InstitutionHierarchyType
   ): Promise<boolean> => {
     const response = await updateInstitutions(newInstitution);
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Institution updated successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
 
@@ -50,7 +62,11 @@ const InstitutionSectionContainer = ({ shouldLoadFaculties }: Props) => {
       idParent: idInstitution,
       id: idInstitution,
     });
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Institution deleted successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
 

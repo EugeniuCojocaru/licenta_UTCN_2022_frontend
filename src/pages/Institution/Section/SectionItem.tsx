@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InstitutionHierarchyType } from "../../../data-access/types";
+import { InstitutionHierarchyType, Severity } from "../../../data-access/types";
 import {
   SectionItemContainer,
   SectionItemEditContainer,
@@ -10,6 +10,8 @@ import CheckIcon from "@mui/icons-material/Check";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNotification } from "../../../common/hooks/useNotification";
+import { messages } from "../../../common";
 interface Props {
   item: InstitutionHierarchyType;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
@@ -27,23 +29,35 @@ const SectionItem = ({
   canShowChildren,
   refreshUI,
 }: Props) => {
+  const { showNotification } = useNotification();
   const [edit, setEdit] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(item.name);
 
   const handleUpdateEvent = async () => {
-    const newItem = {
-      id: item.id,
-      name: newName,
-    };
-    handleUpdate(newItem)
-      .then(() => {
-        setEdit(false);
-        setNewName(item.name);
-        refreshUI();
-      })
-      .catch(() => {
-        setNewName(item.name);
-      });
+    if (newName !== "" && newName !== item.name) {
+      const newItem = {
+        id: item.id,
+        name: newName,
+      };
+      handleUpdate(newItem)
+        .then(() => {
+          setEdit(false);
+          setNewName(item.name);
+          refreshUI();
+        })
+        .catch(() => {
+          setNewName(item.name);
+        });
+    } else {
+      let message = "";
+      newName === ""
+        ? (message = messages.emptyField)
+        : newName === item.name
+        ? (message = messages.sameValue)
+        : (message = messages.dk);
+
+      showNotification(Severity.Error, message);
+    }
   };
 
   const handleDeleteEvent = async () => {

@@ -12,11 +12,15 @@ import { Section } from "./Section";
 import {
   InstitutionHierarchyCreateDto,
   InstitutionHierarchyType,
+  Severity,
 } from "../../../data-access/types";
+import { validateResponseStatus } from "../../../common";
+import { useNotification } from "../../../common/hooks/useNotification";
 interface Props {
   idDepartment: string;
 }
 const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
+  const { showNotification } = useNotification();
   const [data, setData] = useState<InstitutionHierarchyType[]>([]);
   const [refreshUI, setRefreshUI] = useState<boolean>(false);
 
@@ -37,7 +41,12 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
       ...name,
       departmentId: idDepartment,
     });
-    if (response) setRefreshUI(!refreshUI);
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Field of study created successfully");
+      setRefreshUI(!refreshUI);
+    } else {
+      showNotification(Severity.Error, response?.data);
+    }
   };
 
   const handleUpdateFieldOfStudy = async (
@@ -47,7 +56,11 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
       ...updatedFieldOfStudy,
       idParent: idDepartment,
     });
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Field of study updated successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
 
@@ -58,7 +71,11 @@ const FieldOfStudySectionContainer = ({ idDepartment }: Props) => {
       id: idFieldOfStudy,
       idParent: idDepartment,
     });
-    if (response?.status === 200) return true;
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Field of study deleted successfully");
+      return true;
+    }
+    showNotification(Severity.Error, response?.data);
     return false;
   };
   return (
