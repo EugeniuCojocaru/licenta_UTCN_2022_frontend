@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   IconButton,
   TableCell,
   TableRow,
@@ -8,6 +9,7 @@ import {
 import React, { useState } from "react";
 import {
   mapSection4DtoToSection4Type,
+  Severity,
   Subject,
   SUBJECT_DEFAULT,
 } from "../../../data-access/types";
@@ -24,7 +26,11 @@ import {
   getSyllabusBySubjectId,
 } from "../../../data-access/service/subjectService";
 import { useNavigate } from "react-router-dom";
-import { SYLLABUS_ADD_URL, validateResponseStatus } from "../../../common";
+import {
+  messages,
+  SYLLABUS_ADD_URL,
+  validateResponseStatus,
+} from "../../../common";
 import {
   mapSection2DtoToSection2Type,
   SECTION2_DEFAULT,
@@ -47,6 +53,8 @@ import {
   updateSection9,
   useAppDispatch,
 } from "../../../data-access/store";
+import { useNotification } from "../../../common/hooks/useNotification";
+import { colors } from "../../../common/style/styles";
 interface Props {
   row: Subject;
   refreshUI: () => void;
@@ -58,6 +66,7 @@ export const SubjectTableRow = ({
   refreshUI,
   handleShowHistory,
 }: Props) => {
+  const { showNotification } = useNotification();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -66,6 +75,7 @@ export const SubjectTableRow = ({
   const [state, setState] = useState<Subject>(row || SUBJECT_DEFAULT);
   const { id, name, code, hasSyllabus } = state;
 
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
   const handleInputChange = (field: string, value: string) => {
     setState({ ...state, [field]: value });
   };
@@ -73,25 +83,21 @@ export const SubjectTableRow = ({
     setEdit(!edit);
   };
   const handleEditSubject = async () => {
-    const response = await updateSubject(state);
-    console.log(response);
-    // if (response.status >= 200 && response.status < 300) {
-    //   showNotification({
-    //     severity: "success",
-    //     message: "User updated successfully!",
-    //   });
-    // } else {
-    //   showNotification({
-    //     severity: "error",
-    //     message: "Something went wrong updating user data!",
-    //   });
-    // }
-    setEdit(!edit);
-    refreshUI();
+    if (name !== "" && code !== "") {
+      const response = await updateSubject(state);
+      if (validateResponseStatus(response?.status)) {
+        showNotification(Severity.Success, "Subject updated successfully");
+        setEdit(!edit);
+        refreshUI();
+      } else {
+        showNotification(Severity.Error, response?.data);
+      }
+    } else {
+      showNotification(Severity.Error, messages.emptyField);
+    }
   };
   const handleGetSyllabus = async () => {
     const response = await getSyllabusBySubjectId(id);
-    console.log(response);
     if (validateResponseStatus(response?.status)) {
       const {
         section1,
@@ -120,28 +126,41 @@ export const SubjectTableRow = ({
       dispatch(updateSection10(section10));
 
       navigate(SYLLABUS_ADD_URL);
+    } else {
+      showNotification(Severity.Error, messages.dk);
     }
   };
 
   const handleDeleteSyllabus = async () => {
     const response = await deleteSyllabus(id);
-    console.log(response);
     if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "Syllabus removed successfully");
       refreshUI();
+    } else {
+      showNotification(Severity.Error, response?.data);
     }
   };
 
   const handleDownloadSyllabusPdf = async () => {
+    setIsDownloading(true);
     const response = await downloadSyllabus(id, false);
     if (response) {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `fisa_disciplina.pdf`);
-      document.body.appendChild(link);
-      link.click();
+      setIsDownloading(false);
+      if (validateResponseStatus(response?.status)) {
+        showNotification(Severity.Success, "PDF generated successfully");
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `fisa_disciplina.pdf`);
+        document.body.appendChild(link);
+        link.click();
+      } else {
+        showNotification(Severity.Error, response?.data);
+      }
+    } else {
+      setIsDownloading(false);
+      showNotification(Severity.Error, messages.dk);
     }
-    console.log(response);
   };
 
   const handleAddSyllabus = () => {
@@ -223,11 +242,17 @@ export const SubjectTableRow = ({
                     <PlaylistRemoveIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Download syllabus">
-                  <IconButton onClick={() => handleDownloadSyllabusPdf()}>
-                    <FileDownloadIcon />
-                  </IconButton>
-                </Tooltip>
+                {isDownloading ? (
+                  <CircularProgress
+                    sx={{ color: colors.appBackground, height: "inherit" }}
+                  />
+                ) : (
+                  <Tooltip title="Download syllabus">
+                    <IconButton onClick={() => handleDownloadSyllabusPdf()}>
+                      <FileDownloadIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
               </>
             )}
             <Tooltip title="Syllabus versions">

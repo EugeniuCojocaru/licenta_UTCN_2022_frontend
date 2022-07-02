@@ -59,7 +59,7 @@ export const SubjectTable = ({
           {data.map((row) => (
             <SubjectTableRow
               row={row}
-              key={row.id}
+              key={row.id + row.hasSyllabus}
               refreshUI={handleRefreshUI}
               handleShowHistory={handleShowHistory}
             />
