@@ -8,6 +8,8 @@ import { ButtonContainer, FormContainer } from "./SubjectPage.styles";
 import { SubjectCreateDto } from "../../data-access/types/subjectTypes";
 import { createSubject } from "../../data-access/service/subjectService";
 import { validateResponseStatus } from "../../common";
+import { useNotification } from "../../common/hooks/useNotification";
+import { Severity } from "../../data-access/types";
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -42,6 +44,7 @@ export const AddSubjectModal = ({
   open,
   handleRefreshUI,
 }: Props) => {
+  const { showNotification } = useNotification();
   const [state, setState] = useState<SubjectCreateDto>({
     name: "",
     code: "",
@@ -50,14 +53,20 @@ export const AddSubjectModal = ({
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const response = await createSubject(state);
+    console.log({ response });
     if (validateResponseStatus(response?.status)) {
+      console.log({ response });
+      showNotification(Severity.Success, "Subject created successfully");
       setState({
         name: "",
         code: "",
       });
       handleRefreshUI();
       handleClose();
-    } else console.log(response);
+    } else {
+      console.log(response?.status);
+      showNotification(Severity.Error, response?.data);
+    }
   };
   return (
     <StyledModal
@@ -87,13 +96,6 @@ export const AddSubjectModal = ({
               style={classes.button.primary}
             >
               Create
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={handleClose}
-              style={classes.button.secondary}
-            >
-              Create with syllabus
             </Button>
             <Button
               variant="outlined"

@@ -43,9 +43,10 @@ export const getSyllabusVersionsBySubjectId = async (id: string) => {
 export const createSubject = async (newSubject: SubjectCreateDto) => {
   try {
     const response = await getAxiosInstance().post(`/api/subjects`, newSubject);
+    console.log(response);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -53,7 +54,7 @@ export const updateSubject = async (subject: Subject) => {
   try {
     const response = await getAxiosInstance().put(`/api/subjects`, subject);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

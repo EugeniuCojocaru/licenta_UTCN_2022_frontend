@@ -33,8 +33,8 @@ export const createFaculty = async (newFaculty: FacultyCreateDto) => {
       newFaculty
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -51,8 +51,8 @@ export const updateFaculty = async (
       { params: { institutionId: updatedFaculty.idParent } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -64,7 +64,7 @@ export const deleteFaculty = async (ids: InstitutionHierarchyDeleteDto) => {
       { params: { institutionId: ids.idParent, facultyId: ids.id } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

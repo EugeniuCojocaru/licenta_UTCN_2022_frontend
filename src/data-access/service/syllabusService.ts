@@ -14,8 +14,8 @@ export const createSyllabus = async (syllabus: SyllabusCreateDto) => {
   try {
     const response = await getAxiosInstance().post(`/api/syllabuses`, syllabus);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -28,8 +28,8 @@ export const updateSyllabus = async (
       params: { oldSyllabusId },
     });
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 export const deleteSyllabus = async (subjectId: string) => {
@@ -40,8 +40,8 @@ export const deleteSyllabus = async (subjectId: string) => {
       { params: { subjectId } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -55,7 +55,7 @@ export const downloadSyllabus = async (id: string, isSyllabus: boolean) => {
       },
     });
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

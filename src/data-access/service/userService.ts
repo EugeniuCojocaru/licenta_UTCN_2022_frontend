@@ -25,8 +25,8 @@ export const createUser = async (newUser: UserCreateDto) => {
   try {
     const response = await getAxiosInstance().post(`/api/teachers`, newUser);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -34,8 +34,8 @@ export const updateUser = async (user: User) => {
   try {
     const response = await getAxiosInstance().put(`/api/teachers`, user);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -45,7 +45,7 @@ export const deleteUser = async (id: string) => {
       params: { id },
     });
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

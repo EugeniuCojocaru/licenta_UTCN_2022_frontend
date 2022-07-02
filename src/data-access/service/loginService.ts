@@ -8,7 +8,7 @@ export const login = async (credentials: LoginType) => {
       credentials
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

@@ -32,8 +32,8 @@ export const createInstitutions = async (
   try {
     const response = await getAxiosInstance().post(`/api/institutions`, name);
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -46,8 +46,8 @@ export const updateInstitutions = async (
       newInstitution
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -59,7 +59,7 @@ export const deleteInstitution = async (ids: InstitutionHierarchyDeleteDto) => {
       { params: { institutionId: ids.id } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };

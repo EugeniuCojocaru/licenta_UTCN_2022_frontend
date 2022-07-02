@@ -23,8 +23,8 @@ export const createFieldOfStudy = async (
       newFieldOfStudy
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -41,8 +41,8 @@ export const updateFieldOfStudy = async (
       { params: { departmentId: updatedFieldOfStudy.idParent } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
 
@@ -56,7 +56,7 @@ export const deleteFieldOfStudy = async (
       { params: { departmentId: ids.idParent, fieldOfStudyId: ids.id } }
     );
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    return error.response;
   }
 };
