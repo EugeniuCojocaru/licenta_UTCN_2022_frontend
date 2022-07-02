@@ -14,20 +14,16 @@ import {
 
 import UserTableRow from "./UserTableRow";
 import { getUsers } from "../../../data-access/service/userService";
-import { useNotification } from "../../../common/hooks/useNotification";
-import { Severity } from "../../../data-access/types";
 
 const UserTable = () => {
   const [data, setData] = useState<User[]>([]);
   const [refreshUI, setRefreshUI] = useState<boolean>(false);
   const [onlyActiveTeachers, setOnlyActiveTeacher] = useState<boolean>(true);
 
-  const { showNotification } = useNotification();
   useEffect(() => {
     const fetchData = async () => {
       const response = await getUsers(onlyActiveTeachers);
       setData(response?.data);
-      showNotification(Severity.Error, "ioooooooooooooooi");
     };
     fetchData();
   }, [refreshUI]);

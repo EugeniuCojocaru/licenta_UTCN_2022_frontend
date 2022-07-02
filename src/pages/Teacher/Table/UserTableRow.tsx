@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
@@ -20,7 +19,9 @@ import {
   updateUser,
   deleteUser,
 } from "../../../data-access/service/userService";
-//import useNotification from "../../common/hooks/useNotification";
+import { useNotification } from "../../../common/hooks/useNotification";
+import { validateResponseStatus } from "../../../common";
+import { Severity } from "../../../data-access/types";
 
 interface Props {
   row: User;
@@ -28,6 +29,7 @@ interface Props {
 }
 
 const UserTableRow = ({ row, refreshUI }: Props) => {
+  const { showNotification } = useNotification();
   const [edit, setEdit] = useState(false);
 
   const [user, setUser] = useState({
@@ -38,7 +40,6 @@ const UserTableRow = ({ row, refreshUI }: Props) => {
   });
 
   const { id, name, email, role } = user;
-  //const { showNotification } = useNotification();
 
   const handleEditEvent = () => {
     setEdit(!edit);
@@ -49,26 +50,23 @@ const UserTableRow = ({ row, refreshUI }: Props) => {
 
   const handleEditUser = async () => {
     const response = await updateUser(user);
-    console.log(response);
-    // if (response.status >= 200 && response.status < 300) {
-    //   showNotification({
-    //     severity: "success",
-    //     message: "User updated successfully!",
-    //   });
-    // } else {
-    //   showNotification({
-    //     severity: "error",
-    //     message: "Something went wrong updating user data!",
-    //   });
-    // }
-    setEdit(!edit);
-    refreshUI();
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "User updated successfully");
+      setEdit(!edit);
+      refreshUI();
+    } else {
+      showNotification(Severity.Error, response?.data);
+    }
   };
 
   const handleDeleteUser = async () => {
     const response = await deleteUser(id);
-    console.log(response);
-    refreshUI();
+    if (validateResponseStatus(response?.status)) {
+      showNotification(Severity.Success, "User deactivated successfully");
+      refreshUI();
+    } else {
+      showNotification(Severity.Error, response?.data);
+    }
   };
 
   return (

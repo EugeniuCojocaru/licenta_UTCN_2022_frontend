@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { styled, Box } from "@mui/system";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
 import { TextField, MenuItem, Button } from "@mui/material";
-import {
-  Role,
-  Roles,
-  UserCreateViaAdminDto,
-} from "../../data-access/types/userTypes";
+import { Role, Roles, UserCreateDto } from "../../data-access/types/userTypes";
 import { ButtonContainer, FormContainer } from "./TeachersPage.styles";
 import { classes, sxClasses } from "../../common/style/styles";
+import { createUser } from "../../data-access/service";
+import { messages, validateResponseStatus } from "../../common";
+import { useNotification } from "../../common/hooks/useNotification";
+import { Severity } from "../../data-access/types";
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
@@ -36,20 +36,31 @@ const Backdrop = styled("div")`
 interface Props {
   open: boolean;
   handleClose: () => void;
-  handleAddUser?: () => void;
 }
-export const AddTeacherModal = ({
-  handleClose,
-  open,
-  handleAddUser,
-}: Props) => {
-  const [newUser, setNewUser] = useState<UserCreateViaAdminDto>({
+export const AddTeacherModal = ({ handleClose, open }: Props) => {
+  const { showNotification } = useNotification();
+  const [newUser, setNewUser] = useState<UserCreateDto>({
     name: "",
     email: "",
     role: 10,
   });
 
   const { name, email, role } = newUser;
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (name !== "" && email !== "") {
+      const response = await createUser(newUser);
+      if (validateResponseStatus(response?.status)) {
+        showNotification(Severity.Success, "User created successfully");
+        handleClose();
+      } else {
+        showNotification(Severity.Error, response?.data);
+      }
+    } else {
+      showNotification(Severity.Error, messages.emptyField);
+    }
+  };
   return (
     <StyledModal
       aria-labelledby="unstyled-modal-title"
@@ -60,7 +71,7 @@ export const AddTeacherModal = ({
     >
       <Box sx={{ ...sxClasses.modal, width: "500px" }}>
         <h1>Add user</h1>
-        <FormContainer>
+        <FormContainer onSubmit={(e) => handleSubmit(e)}>
           <TextField
             label="Name"
             value={name}

@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { styled, Box } from "@mui/system";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
-import { TextField, MenuItem, Button } from "@mui/material";
-import {
-  Role,
-  Roles,
-  UserCreateViaAdminDto,
-} from "../../data-access/types/userTypes";
+import { TextField, Button } from "@mui/material";
+
 import { classes, sxClasses } from "../../common/style/styles";
 import { ButtonContainer, FormContainer } from "./SubjectPage.styles";
 import { SubjectCreateDto } from "../../data-access/types/subjectTypes";
