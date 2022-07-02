@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { messages } from "../../../../common";
+import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection5, useAppDispatch } from "../../../../data-access/store";
-import { Section5Type, SECTION5_DEFAULT } from "../../../../data-access/types";
+import {
+  Section5Type,
+  SECTION5_DEFAULT,
+  Severity,
+} from "../../../../data-access/types";
 import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
@@ -16,6 +22,7 @@ export const TabSection5 = ({
   section5Data,
 }: Props) => {
   const dispatch = useAppDispatch();
+  const { showNotification } = useNotification();
   const [state, setState] = useState<Section5Type>(
     section5Data || SECTION5_DEFAULT
   );
@@ -28,6 +35,7 @@ export const TabSection5 = ({
   };
   const handleSubmit = () => {
     dispatch(updateSection5(state));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
   return (

@@ -1,8 +1,14 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
+import { messages } from "../../../../common";
+import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection7, useAppDispatch } from "../../../../data-access/store";
-import { Section7Type, SECTION7_DEFAULT } from "../../../../data-access/types";
+import {
+  Section7Type,
+  SECTION7_DEFAULT,
+  Severity,
+} from "../../../../data-access/types";
 import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
 
@@ -17,6 +23,7 @@ export const TabSection7 = ({
   section7Data,
 }: Props) => {
   const dispatch = useAppDispatch();
+  const { showNotification } = useNotification();
   const [state, setState] = useState<Section7Type>(
     section7Data || SECTION7_DEFAULT
   );
@@ -26,6 +33,7 @@ export const TabSection7 = ({
   };
   const handleSubmit = () => {
     dispatch(updateSection7(state));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
   return (

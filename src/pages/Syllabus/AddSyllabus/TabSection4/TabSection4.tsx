@@ -7,10 +7,13 @@ import {
   SelectType,
   SECTION4_DEFAULT,
   mapSubjectsToSelectType,
+  Severity,
 } from "../../../../data-access/types";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { TabSectionFooter } from "../TabSectionFooter";
 import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
+import { messages } from "../../../../common";
+import { useNotification } from "../../../../common/hooks/useNotification";
 
 interface Props {
   handleBack: () => void;
@@ -23,7 +26,7 @@ export const TabSection4 = ({
   section4Data,
 }: Props) => {
   const dispatch = useAppDispatch();
-
+  const { showNotification } = useNotification();
   const [subjects, setSubjects] = useState<SelectType[]>([]);
 
   const [state, setState] = useState<Section4Type>(
@@ -44,6 +47,7 @@ export const TabSection4 = ({
   };
   const handleSubmit = () => {
     dispatch(updateSection4(state));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
   return (

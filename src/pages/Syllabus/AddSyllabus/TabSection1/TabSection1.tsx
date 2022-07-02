@@ -7,6 +7,7 @@ import {
   mapInstitutionsHierarchyToSelectType,
   Section1Type,
   SECTION1_DEFAULT,
+  Severity,
 } from "../../../../data-access/types";
 
 import {
@@ -25,6 +26,8 @@ import {
   RowContainer,
   TabSectionContainer,
 } from "../AddSyllabus.style";
+import { useNotification } from "../../../../common/hooks/useNotification";
+import { messages } from "../../../../common";
 
 interface Props {
   handleForward: () => void;
@@ -32,6 +35,7 @@ interface Props {
 }
 export const TabSection1 = ({ section1Data, handleForward }: Props) => {
   const dispatch = useAppDispatch();
+  const { showNotification } = useNotification();
 
   const [institutions, setInstitutions] = useState<SelectType[]>([]);
   const [faculties, setFaculties] = useState<SelectType[]>([]);
@@ -88,15 +92,9 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
     setState({ ...state, [field]: value });
   };
 
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   dispatch(updateSection1(state));
-  //   const response = await createSyllabus(state);
-  //   console.log(response);
-  //   handleForward();
-  // };
   const handleSubmit = async () => {
     dispatch(updateSection1(state));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
   return (

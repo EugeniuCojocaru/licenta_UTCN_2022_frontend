@@ -27,10 +27,13 @@ import {
   Section7Type,
   Section8Type,
   Section9Type,
+  Severity,
 } from "../../../data-access/types";
-import { validateResponseStatus } from "../../../common";
+import { SUBJECT_URL, validateResponseStatus } from "../../../common";
 import { useAppDispatch } from "../../../data-access/store/hooks";
 import { resetSections } from "../../../data-access/store";
+import { useNotification } from "../../../common/hooks/useNotification";
+import { useNavigate } from "react-router-dom";
 interface Props {
   handleForward: () => void;
   handleBack: () => void;
@@ -62,6 +65,8 @@ export const TabSectionFinish = ({
   section10Data,
 }: Props) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { showNotification } = useNotification();
   const handleSubmit = async () => {
     const syllabus: SyllabusCreateDto = {
       subjectId: section2Data.subject?.value || "",
@@ -76,22 +81,30 @@ export const TabSectionFinish = ({
       section9: mapSection9TypeToSection9CreateDto(section9Data),
       section10: mapSection10TypeToSection10CreateDto(section10Data),
     };
-    console.log({ syllabus });
     if (idSyllabus) {
       const response = await updateSyllabus(syllabus, idSyllabus);
-      console.log({ response });
-    } else {
-      const response = await createSyllabus(syllabus);
-      console.log({ response });
       if (validateResponseStatus(response?.status)) {
         dispatch(resetSections());
+        showNotification(Severity.Success, "Syllabus updated successfully");
+        navigate(SUBJECT_URL);
+      } else {
+        showNotification(Severity.Error, response?.data);
+      }
+    } else {
+      const response = await createSyllabus(syllabus);
+      if (validateResponseStatus(response?.status)) {
+        dispatch(resetSections());
+        showNotification(Severity.Success, "Syllabus created successfully");
+        navigate(SUBJECT_URL);
+      } else {
+        showNotification(Severity.Error, response?.data);
       }
     }
   };
 
   return (
     <>
-      <p>3. 3333</p>
+      <p>Finish page</p>
       <Button onClick={handleSubmit}>submit</Button>
       <TabSectionFooter handleBack={handleBack} handleForward={handleForward} />
     </>

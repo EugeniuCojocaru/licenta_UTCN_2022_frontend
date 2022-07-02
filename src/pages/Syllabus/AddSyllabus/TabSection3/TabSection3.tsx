@@ -1,7 +1,13 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { messages } from "../../../../common";
+import { useNotification } from "../../../../common/hooks/useNotification";
 import { updateSection3, useAppDispatch } from "../../../../data-access/store";
-import { Section3Type, SECTION3_DEFAULT } from "../../../../data-access/types";
+import {
+  Section3Type,
+  SECTION3_DEFAULT,
+  Severity,
+} from "../../../../data-access/types";
 import {
   InputsContainer,
   RowContainer,
@@ -21,7 +27,7 @@ export const TabSection3 = ({
   section3Data,
 }: Props) => {
   const dispatch = useAppDispatch();
-
+  const { showNotification } = useNotification();
   const [state, setState] = useState<Section3Type>(
     section3Data || SECTION3_DEFAULT
   );
@@ -82,25 +88,25 @@ export const TabSection3 = ({
   useEffect(() => {
     handleInputChange(
       "courseHoursPerSemester",
-      String(courseHoursPerWeek * 14)
+      String(courseHoursPerWeek * WEEKS_PER_SEMESTER)
     );
   }, [courseHoursPerWeek]);
   useEffect(() => {
     handleInputChange(
       "seminarHoursPerSemester",
-      String(seminarHoursPerWeek * 14)
+      String(seminarHoursPerWeek * WEEKS_PER_SEMESTER)
     );
   }, [seminarHoursPerWeek]);
   useEffect(() => {
     handleInputChange(
       "laboratoryHoursPerSemester",
-      String(laboratoryHoursPerWeek * 14)
+      String(laboratoryHoursPerWeek * WEEKS_PER_SEMESTER)
     );
   }, [laboratoryHoursPerWeek]);
   useEffect(() => {
     handleInputChange(
       "projectHoursPerSemester",
-      String(projectHoursPerWeek * 14)
+      String(projectHoursPerWeek * WEEKS_PER_SEMESTER)
     );
   }, [projectHoursPerWeek]);
 
@@ -146,6 +152,7 @@ export const TabSection3 = ({
 
   const handleSubmit = async () => {
     dispatch(updateSection3(state));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
 

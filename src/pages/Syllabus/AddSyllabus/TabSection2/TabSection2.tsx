@@ -14,7 +14,10 @@ import {
   TabSectionContainer,
 } from "../AddSyllabus.style";
 import { TabSectionFooter } from "../TabSectionFooter";
-import { SelectType } from "../../../../data-access/types/componentsType";
+import {
+  SelectType,
+  Severity,
+} from "../../../../data-access/types/componentsType";
 import { Autocomplete, MenuItem, TextField } from "@mui/material";
 import {
   mapUsersToSelectType,
@@ -22,8 +25,9 @@ import {
   SECTION2_DEFAULT,
 } from "../../../../data-access/types";
 import { getUsers } from "../../../../data-access/service";
-import { sxClasses } from "../../../../common";
+import { messages, sxClasses } from "../../../../common";
 import { updateSection2, useAppDispatch } from "../../../../data-access/store";
+import { useNotification } from "../../../../common/hooks/useNotification";
 
 interface Props {
   handleBack: () => void;
@@ -37,7 +41,7 @@ export const TabSection2 = ({
   section2Data,
 }: Props) => {
   const dispatch = useAppDispatch();
-
+  const { showNotification } = useNotification();
   const [subjects, setSubjects] = useState<SelectType[]>([]);
   const [teachers, setTeachers] = useState<SelectType[]>([]);
 
@@ -82,6 +86,7 @@ export const TabSection2 = ({
       category2,
     };
     dispatch(updateSection2(newState));
+    showNotification(Severity.Info, messages.ok);
     handleForward();
   };
   return (
