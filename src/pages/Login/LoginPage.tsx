@@ -35,7 +35,9 @@ export const LoginPage = () => {
   return (
     <PageContainer>
       <LoginContainer onSubmit={handleSubmit}>
-        <MiddleText>Login</MiddleText>
+        <MiddleText>
+          <h1>Login</h1>
+        </MiddleText>
         <InputsContainer>
           <TextField
             required

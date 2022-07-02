@@ -13,6 +13,7 @@ import {
   useAppDispatch,
   userIsLoggedIn,
 } from "./data-access/store";
+import ToasterSelector from "./components/Toaster/ToasterSelector";
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <RouterContainer />
+      <ToasterSelector />
     </ThemeProvider>
   );
 }

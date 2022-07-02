@@ -1,5 +1,6 @@
 export enum Role {
   Admin = 10,
+  Editor = 1,
   User = 0,
 }
 export const Roles = [

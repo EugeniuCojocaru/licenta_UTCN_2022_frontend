@@ -28,3 +28,14 @@ export const mapContentOptionsInputDtoToContentOptionsInputType = (
     duration: input.duration,
     note: input.note,
   }));
+
+export enum Severity {
+  Error = "error",
+  Info = "info",
+  Success = "success",
+  Hidden = "hidden",
+}
+export interface NotificationType {
+  severity: Severity;
+  message: string;
+}

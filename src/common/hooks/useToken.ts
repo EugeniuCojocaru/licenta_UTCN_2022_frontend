@@ -3,7 +3,7 @@ import { TokenType, TOKEN_DEFAULT } from "../../data-access/types/loginTypes";
 import jwt_decode from "jwt-decode";
 
 export const useToken = (token: string) => {
-  var tokenData: TokenType = token ? jwt_decode(token) : TOKEN_DEFAULT;
+  const tokenData: TokenType = token ? jwt_decode(token) : TOKEN_DEFAULT;
   const isValid = (): boolean => {
     if (Date.now() >= Number(tokenData.exp) * 1000) return false;
     return true;
