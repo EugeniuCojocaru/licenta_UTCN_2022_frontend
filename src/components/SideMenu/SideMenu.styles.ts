@@ -4,6 +4,8 @@ import { colors } from "../../common/style/styles";
 export const SideMenuContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 export const LogoContainer = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ export const LogoContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 30%;
+  margin-top: -100%;
 `;
 
 export const ButtonContainer = styled.div<{ active: boolean }>`
@@ -40,4 +42,8 @@ export const ButtonContainer = styled.div<{ active: boolean }>`
       color: ${colors.red};
     }
   }
+`;
+export const BottomButton = styled.div`
+  position: sticky;
+  bottom: 0;
 `;

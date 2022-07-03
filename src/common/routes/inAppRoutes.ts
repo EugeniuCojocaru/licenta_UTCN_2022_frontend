@@ -5,3 +5,5 @@ export const INSTITUTION_URL = "/institution";
 export const SUBJECT_URL = "/subjects";
 export const TEACHER_URL = "/teachers";
 export const AUDIT_URL = "/audit";
+export const ACTIVATE_ACCOUNT_URL = "/account/activate";
+export const LOGIN_URL = "/login";

@@ -12,6 +12,7 @@ import {
   SideMenuContainer,
   ButtonsContainer,
   LogoContainer,
+  BottomButton,
 } from "./SideMenu.styles";
 import { SideMenuButton } from "./SideMenuButton";
 import {
@@ -88,14 +89,15 @@ export const SideMenu = () => {
         >
           <AssignmentIcon />
         </SideMenuButton>
-        <SideMenuButton
-          label="LOG OUT"
-          active={activeElement}
-          handleClick={() => handleLogout()}
-        >
-          <LogoutIcon />
-        </SideMenuButton>
       </ButtonsContainer>
+
+      <SideMenuButton
+        label="LOG OUT"
+        active={activeElement}
+        handleClick={() => handleLogout()}
+      >
+        <LogoutIcon />
+      </SideMenuButton>
     </SideMenuContainer>
   );
 };

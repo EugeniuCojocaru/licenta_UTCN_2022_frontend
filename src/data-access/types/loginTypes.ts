@@ -25,3 +25,8 @@ export const TOKEN_DEFAULT = {
   role: Role.User,
   sub: "",
 };
+
+export interface UserActivateType {
+  id: string;
+  password: string;
+}

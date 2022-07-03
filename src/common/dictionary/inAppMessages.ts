@@ -5,4 +5,5 @@ export const messages = {
   dk: "Something went wrong",
   ok: "Data saved successfully",
   sum: "Sum of all % must be 100 ",
+  activate: "Passwords must be the same",
 };

@@ -10,6 +10,7 @@ import {
   AddSyllabusPage,
   LoginPage,
 } from "../../pages";
+import AccountActivationPage from "../../pages/Login/AccountActivation/AccountActivationPage";
 interface Props {
   isSessionActive: boolean;
   isFetchingData: boolean;
@@ -18,7 +19,7 @@ const UnauthenticatedRoutes = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<LoginPage />} />
+      <Route path="/account/activate/:id" element={<AccountActivationPage />} />
       <Route path="/*" element={<LoginPage />} />
     </Routes>
   </BrowserRouter>
@@ -27,7 +28,7 @@ const UnauthenticatedRoutes = () => (
 const AuthenticatedRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<DashboardPage />} />
+      <Route path="/*" element={<DashboardPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/syllabus/add" element={<AddSyllabusPage />} />
       <Route path="/institution" element={<InstitutionPage />} />
