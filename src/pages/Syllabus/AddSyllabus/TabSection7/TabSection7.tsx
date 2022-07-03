@@ -31,10 +31,21 @@ export const TabSection7 = ({
   const handleSpecificObjectivesChange = (newValue: string[]) => {
     setState({ ...state, specificObjectives: newValue });
   };
-  const handleSubmit = () => {
-    dispatch(updateSection7(state));
-    showNotification(Severity.Info, messages.ok);
-    handleForward();
+
+  const validate = (): boolean => {
+    if (specificObjectives.length === 0) return false;
+
+    return true;
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      dispatch(updateSection7(state));
+      showNotification(Severity.Info, messages.ok);
+      handleForward();
+    } else {
+      showNotification(Severity.Error, messages.allFields);
+    }
   };
   return (
     <>
@@ -53,7 +64,7 @@ export const TabSection7 = ({
             }
           />
           <ContentInput
-            label={"Specific objectives"}
+            label={"Specific objectives *"}
             values={specificObjectives}
             handleValuesChange={handleSpecificObjectivesChange}
           />

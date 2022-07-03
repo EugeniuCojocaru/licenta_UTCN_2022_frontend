@@ -40,8 +40,10 @@ const ContentInput = ({
         <Tooltip title="Add">
           <IconButton
             onClick={() => {
-              handleValuesChange([...values, value]);
-              setClearValue(!clearValue);
+              if (value !== "") {
+                handleValuesChange([...values, value]);
+                setClearValue(!clearValue);
+              }
             }}
           >
             <AddIcon />

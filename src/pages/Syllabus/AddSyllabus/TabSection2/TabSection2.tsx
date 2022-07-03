@@ -73,21 +73,31 @@ export const TabSection2 = ({
     setState({ ...state, [field]: value });
   };
 
-  const handleSubmit = () => {
-    const newState = {
-      id,
-      subject,
-      lecturer,
-      selectedTeachers,
-      year,
-      semester,
-      assessment,
-      category1,
-      category2,
-    };
-    dispatch(updateSection2(newState));
-    showNotification(Severity.Info, messages.ok);
-    handleForward();
+  const validate = (): boolean => {
+    if (selectedTeachers.length === 0) return false;
+    return true;
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      const newState = {
+        id,
+        subject,
+        lecturer,
+        selectedTeachers,
+        year,
+        semester,
+        assessment,
+        category1,
+        category2,
+      };
+
+      dispatch(updateSection2(newState));
+      showNotification(Severity.Info, messages.ok);
+      handleForward();
+    } else {
+      showNotification(Severity.Error, messages.allFields);
+    }
   };
   return (
     <>

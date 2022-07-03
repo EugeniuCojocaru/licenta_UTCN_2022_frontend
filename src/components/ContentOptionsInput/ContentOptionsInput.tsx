@@ -12,6 +12,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Chip from "./Chip";
+import { title } from "process";
 interface Props {
   values: ContentOptionsInputType[];
   fieldName: string;
@@ -48,13 +49,13 @@ const ContentOptionsInput = ({
         <InputRowContainer>
           <TextField
             required={false}
-            label="Title"
+            label="Title *"
             value={name}
             onChange={(e) => handleInputChange("name", e.target.value)}
           />
           <TextField
             required={false}
-            label="Duration (in hours)"
+            label="Duration (in hours) *"
             value={duration}
             type="number"
             onChange={(e) => handleInputChange("duration", e.target.value)}
@@ -73,8 +74,10 @@ const ContentOptionsInput = ({
           <Tooltip title="Add">
             <IconButton
               onClick={() => {
-                handleValuesChange(fieldName, [...values, state]);
-                setClearValue(!clearValue);
+                if (name !== "" && Number(duration) > 0) {
+                  handleValuesChange(fieldName, [...values, state]);
+                  setClearValue(!clearValue);
+                }
               }}
             >
               <AddIcon />

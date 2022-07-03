@@ -33,10 +33,20 @@ export const TabSection6 = ({
   const handleCrossChange = (newValue: string[]) => {
     setState({ ...state, cross: newValue });
   };
-  const handleSubmit = () => {
-    dispatch(updateSection6(state));
-    showNotification(Severity.Info, messages.ok);
-    handleForward();
+  const validate = (): boolean => {
+    if (professional.length === 0) return false;
+    if (cross.length === 0) return false;
+    return true;
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      dispatch(updateSection6(state));
+      showNotification(Severity.Info, messages.ok);
+      handleForward();
+    } else {
+      showNotification(Severity.Error, messages.allFields);
+    }
   };
   return (
     <>

@@ -52,10 +52,27 @@ export const TabSection10 = ({
   const handleConditionsFinalExamChange = (value: string[]) => {
     setState({ ...state, conditionsFinalExam: [...value] });
   };
-  const handleSubmit = () => {
-    dispatch(updateSection10(state));
-    showNotification(Severity.Info, messages.ok);
-    handleForward();
+  const validate = (): boolean => {
+    if (
+      Number(courcePercentage) +
+        Number(seminarPercentage) +
+        Number(laboratoryPercentage) +
+        Number(projectPercentage) !==
+      100
+    )
+      return false;
+
+    return true;
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      dispatch(updateSection10(state));
+      showNotification(Severity.Info, messages.ok);
+      handleForward();
+    } else {
+      showNotification(Severity.Error, messages.sum);
+    }
   };
   return (
     <>
@@ -80,7 +97,7 @@ export const TabSection10 = ({
               }
             />
             <TextField
-              label="Course weight in the final grade"
+              label="Course weight in the final grade ( % )"
               value={courcePercentage}
               type="number"
               onChange={(e) =>
@@ -110,7 +127,7 @@ export const TabSection10 = ({
             />
             <TextField
               required={false}
-              label="Seminar weight in the final grade"
+              label="Seminar weight in the final grade ( % )"
               value={seminarPercentage}
               type="number"
               onChange={(e) =>
@@ -144,7 +161,7 @@ export const TabSection10 = ({
             />
             <TextField
               required={false}
-              label="Laboratory weight in the final grade"
+              label="Laboratory weight in the final grade ( % )"
               value={laboratoryPercentage}
               type="number"
               onChange={(e) =>
@@ -178,7 +195,7 @@ export const TabSection10 = ({
             />
             <TextField
               required={false}
-              label="Project weight in the final grade"
+              label="Project weight in the final grade ( % )"
               value={projectPercentage}
               type="number"
               onChange={(e) =>

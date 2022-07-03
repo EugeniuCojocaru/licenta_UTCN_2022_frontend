@@ -55,10 +55,25 @@ export const TabSection8 = ({
   const handleBibliographyLabChange = (newValue: string[]) => {
     handleInputChange("bibliographyLab", newValue);
   };
-  const handleSubmit = () => {
-    dispatch(updateSection8(state));
-    showNotification(Severity.Info, messages.ok);
-    handleForward();
+  const validate = (): boolean => {
+    if (teachingMethodsCourse.length === 0) return false;
+    if (teachingMethodsLab.length === 0) return false;
+    if (bibliographyCourse.length === 0) return false;
+    if (bibliographyLab.length === 0) return false;
+    if (teachingMethodsCourse.length === 0) return false;
+    if (teachingMethodsLab.length === 0) return false;
+
+    return true;
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validate()) {
+      dispatch(updateSection8(state));
+      showNotification(Severity.Info, messages.ok);
+      handleForward();
+    } else {
+      showNotification(Severity.Error, messages.allFields);
+    }
   };
   return (
     <>
@@ -67,7 +82,7 @@ export const TabSection8 = ({
         <InputsContainer>
           <p>Lectures </p>
           <ContentInput
-            label="Teaching methods"
+            label="Teaching methods *"
             values={teachingMethodsCourse}
             handleValuesChange={handleTeachingMethodsCourseChange}
           />
@@ -77,13 +92,13 @@ export const TabSection8 = ({
             fieldName="lecturesCourse"
           />
           <ContentInput
-            label="Bibliography"
+            label="Bibliography *"
             values={bibliographyCourse}
             handleValuesChange={handleBibliographyCourseChange}
           />
           <p>Applications – Seminars/Laboratory/Project </p>
           <ContentInput
-            label="Teaching methods"
+            label="Teaching methods *"
             values={teachingMethodsLab}
             handleValuesChange={handleTeachingMethodsLabChange}
           />
@@ -93,7 +108,7 @@ export const TabSection8 = ({
             fieldName="lecturesLab"
           />
           <ContentInput
-            label="Bibliography"
+            label="Bibliography *"
             values={bibliographyLab}
             handleValuesChange={handleBibliographyLabChange}
           />

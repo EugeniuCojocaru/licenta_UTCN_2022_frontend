@@ -169,6 +169,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
               label="Cycle of study"
               variant="standard"
               value={cycleOfStudy}
+              placeholder="Bachelor of Science"
               onChange={(e) =>
                 handleInputChange("cycleOfStudy", e.target.value)
               }
@@ -178,6 +179,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
               label="Program of study"
               variant="standard"
               value={programOfStudy}
+              placeholder="Computer science"
               onChange={(e) =>
                 handleInputChange("programOfStudy", e.target.value)
               }
@@ -189,6 +191,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
               label="Qualification"
               variant="standard"
               value={qualification}
+              placeholder="Engineer"
               onChange={(e) =>
                 handleInputChange("qualification", e.target.value)
               }
@@ -198,6 +201,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
               label="Form of education"
               variant="standard"
               value={formOfEducation}
+              placeholder="Full time"
               onChange={(e) =>
                 handleInputChange("formOfEducation", e.target.value)
               }

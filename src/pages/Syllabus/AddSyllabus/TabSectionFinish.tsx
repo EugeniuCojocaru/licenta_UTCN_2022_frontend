@@ -29,7 +29,7 @@ import {
   Section9Type,
   Severity,
 } from "../../../data-access/types";
-import { SUBJECT_URL, validateResponseStatus } from "../../../common";
+import { classes, SUBJECT_URL, validateResponseStatus } from "../../../common";
 import { useAppDispatch } from "../../../data-access/store/hooks";
 import { resetSections } from "../../../data-access/store";
 import { useNotification } from "../../../common/hooks/useNotification";
@@ -104,9 +104,15 @@ export const TabSectionFinish = ({
 
   return (
     <>
-      <p>Finish page</p>
-      <Button onClick={handleSubmit}>submit</Button>
-      <TabSectionFooter handleBack={handleBack} handleForward={handleForward} />
+      <p>To complete the operation please click the button below</p>
+      <Button
+        variant="outlined"
+        style={classes.button.secondary}
+        onClick={handleSubmit}
+      >
+        {idSyllabus ? "Update syllabus" : "Create syllabus"}
+      </Button>
+      <TabSectionFooter handleBack={handleBack} disableForward />
     </>
   );
 };
