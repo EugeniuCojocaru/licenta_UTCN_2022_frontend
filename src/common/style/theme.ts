@@ -36,6 +36,15 @@ const theme = createTheme({
         shrink: true,
       },
     },
+    MuiInput: {
+      styleOverrides: {
+        underline: {
+          "&:after": {
+            color: "#FFF",
+          },
+        },
+      },
+    },
   },
 });
 

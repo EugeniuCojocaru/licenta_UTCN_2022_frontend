@@ -41,17 +41,18 @@ export const SubjectTable = ({
             backgroundColor: "#FFF",
             borderBottom: "4px solid rgba(224, 224, 224, 1)",
             zIndex: 1,
+            fontFamily: "Poppins",
           }}
         >
           <TableRow>
             <TableCell>
-              <strong>Code</strong>
+              <strong>CODE</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Name</strong>
+              <strong>NAME</strong>
             </TableCell>
             <TableCell align="right" sx={{ minWidth: 200 }}>
-              <strong>Actions</strong>
+              <strong>ACTIONS</strong>
             </TableCell>
           </TableRow>
         </TableHead>

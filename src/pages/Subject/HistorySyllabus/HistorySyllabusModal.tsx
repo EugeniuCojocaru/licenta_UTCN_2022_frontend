@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { styled, Box } from "@mui/system";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
 import { TextField, Button } from "@mui/material";
-import { sxClasses } from "../../../common";
+import { BigPoppins, sxClasses } from "../../../common";
 import { SyllabusVersionDto } from "../../../data-access/types";
 import { getSyllabusVersionsBySubjectId } from "../../../data-access/service/subjectService";
 import { HistoryTable } from "./HistoryTable";
@@ -59,7 +59,7 @@ export const HistorySyllabusModal = ({
       BackdropComponent={Backdrop}
     >
       <Box sx={{ ...sxClasses.modal, width: "700px" }}>
-        <h1>History syllabus</h1>
+        <BigPoppins>History syllabus</BigPoppins>
         <HistoryTable data={data} />
       </Box>
     </StyledModal>

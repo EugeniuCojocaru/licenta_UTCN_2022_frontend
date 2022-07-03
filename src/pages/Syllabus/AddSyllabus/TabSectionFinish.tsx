@@ -29,7 +29,12 @@ import {
   Section9Type,
   Severity,
 } from "../../../data-access/types";
-import { classes, SUBJECT_URL, validateResponseStatus } from "../../../common";
+import {
+  classes,
+  Roboto,
+  SUBJECT_URL,
+  validateResponseStatus,
+} from "../../../common";
 import { useAppDispatch } from "../../../data-access/store/hooks";
 import { resetSections } from "../../../data-access/store";
 import { useNotification } from "../../../common/hooks/useNotification";
@@ -104,14 +109,28 @@ export const TabSectionFinish = ({
 
   return (
     <>
-      <p>To complete the operation please click the button below</p>
-      <Button
-        variant="outlined"
-        style={classes.button.secondary}
-        onClick={handleSubmit}
-      >
-        {idSyllabus ? "Update syllabus" : "Create syllabus"}
-      </Button>
+      <Roboto>
+        To complete the operation and save your changes, please click the button
+        below
+      </Roboto>
+      <div style={{ alignSelf: "center" }}>
+        <Button
+          variant="outlined"
+          style={classes.button.secondary}
+          onClick={handleSubmit}
+          sx={{ width: "200px", alignSelf: "center", margin: "12px" }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          style={classes.button.primary}
+          onClick={handleSubmit}
+          sx={{ width: "200px", alignSelf: "center", margin: "12px" }}
+        >
+          {idSyllabus ? "Update syllabus" : "Create syllabus"}
+        </Button>
+      </div>
       <TabSectionFooter handleBack={handleBack} disableForward />
     </>
   );

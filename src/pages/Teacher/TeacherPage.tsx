@@ -9,12 +9,13 @@ import { AddTeacherModal } from "./AddTeacherModal";
 
 import { ButtonContainer, InButtonContainer } from "./TeachersPage.styles";
 import { classes } from "../../common/style/styles";
+import { BigPoppins, Poppins } from "../../common";
 
 export const TeacherPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Layout>
-      <h1>Users</h1>
+      <BigPoppins>USERS</BigPoppins>
       <ButtonContainer>
         <Button
           variant="contained"
@@ -23,7 +24,7 @@ export const TeacherPage = () => {
         >
           <InButtonContainer>
             <AddIcon />
-            <p>Add new</p>
+            <Poppins>Add new</Poppins>
           </InButtonContainer>
         </Button>
       </ButtonContainer>

@@ -22,6 +22,7 @@ import {
 import { useNotification } from "../../../common/hooks/useNotification";
 import { validateResponseStatus } from "../../../common";
 import { Severity } from "../../../data-access/types";
+import { sxClasses } from "../../../common/style/styles";
 
 interface Props {
   row: User;
@@ -103,7 +104,6 @@ const UserTableRow = ({ row, refreshUI }: Props) => {
         {edit ? (
           <TextField
             select
-            label="Role"
             required
             fullWidth
             value={role}

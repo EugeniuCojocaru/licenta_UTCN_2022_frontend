@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import { updateSection3, useAppDispatch } from "../../../../data-access/store";
 import {
@@ -158,7 +158,7 @@ export const TabSection3 = ({
 
   return (
     <>
-      <p>3 Estimated total time</p>
+      <Roboto>3. Estimated total time</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <p>Number of hours per week: {totalWeek}</p>

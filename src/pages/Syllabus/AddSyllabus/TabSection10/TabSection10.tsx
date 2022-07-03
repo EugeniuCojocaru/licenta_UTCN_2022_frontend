@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection10, useAppDispatch } from "../../../../data-access/store";
@@ -76,7 +76,7 @@ export const TabSection10 = ({
   };
   return (
     <>
-      <p>2. Data about the subject</p>
+      <Roboto>10. Evaluation</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <RowContainer>

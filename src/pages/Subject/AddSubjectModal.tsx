@@ -7,7 +7,7 @@ import { classes, sxClasses } from "../../common/style/styles";
 import { ButtonContainer, FormContainer } from "./SubjectPage.styles";
 import { SubjectCreateDto } from "../../data-access/types/subjectTypes";
 import { createSubject } from "../../data-access/service/subjectService";
-import { validateResponseStatus } from "../../common";
+import { BigPoppins, validateResponseStatus } from "../../common";
 import { useNotification } from "../../common/hooks/useNotification";
 import { Severity } from "../../data-access/types";
 
@@ -77,7 +77,7 @@ export const AddSubjectModal = ({
       BackdropComponent={Backdrop}
     >
       <Box sx={{ ...sxClasses.modal, width: "500px" }}>
-        <h1>Add subject</h1>
+        <BigPoppins>Add subject</BigPoppins>
         <FormContainer onSubmit={(e) => handleSubmit(e)}>
           <TextField
             label="Name"

@@ -9,3 +9,9 @@ body {
 #root {
   height: 100vh;
 }
+p {
+  font-family: "Roboto", sans-serif;
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid#d4d4d4 !important;
+}

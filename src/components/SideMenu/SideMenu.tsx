@@ -53,7 +53,7 @@ export const SideMenu = () => {
 
       <ButtonsContainer>
         <SideMenuButton
-          label="Dashboard"
+          label="DASHBOARD"
           active={activeElement}
           handleClick={() => handleNavigateTo(DASHBOARD_URL, "Dashboard")}
         >
@@ -61,35 +61,35 @@ export const SideMenu = () => {
         </SideMenuButton>
 
         <SideMenuButton
-          label="Institutions"
+          label="INSTITUTIONS"
           active={activeElement}
           handleClick={() => handleNavigateTo(INSTITUTION_URL, "Institutions")}
         >
           <CorporateFareIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Subjects"
+          label="SUBJECTS"
           active={activeElement}
           handleClick={() => handleNavigateTo(SUBJECT_URL, "Subjects")}
         >
           <MenuBookIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Teachers"
+          label="TEACHERS"
           active={activeElement}
           handleClick={() => handleNavigateTo(TEACHER_URL, "Teachers")}
         >
           <PeopleAltIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Audit log"
+          label="AUDIT LOG"
           active={activeElement}
           handleClick={() => handleNavigateTo(AUDIT_URL, "Audit")}
         >
           <AssignmentIcon />
         </SideMenuButton>
         <SideMenuButton
-          label="Log out"
+          label="LOG OUT"
           active={activeElement}
           handleClick={() => handleLogout()}
         >

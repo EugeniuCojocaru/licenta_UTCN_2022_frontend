@@ -27,7 +27,7 @@ import {
   TabSectionContainer,
 } from "../AddSyllabus.style";
 import { useNotification } from "../../../../common/hooks/useNotification";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 
 interface Props {
   handleForward: () => void;
@@ -99,7 +99,7 @@ export const TabSection1 = ({ section1Data, handleForward }: Props) => {
   };
   return (
     <>
-      <p>1. Data about the program of study</p>
+      <Roboto>1. Data about the program of study</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <TextField

@@ -5,7 +5,6 @@ import { AuditTable } from "./Table/AuditTable";
 export const AuditPage = () => {
   return (
     <Layout>
-      <div>Audit Log</div>
       <AuditTable />
     </Layout>
   );

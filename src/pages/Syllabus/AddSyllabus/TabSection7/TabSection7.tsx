@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection7, useAppDispatch } from "../../../../data-access/store";
@@ -49,9 +49,9 @@ export const TabSection7 = ({
   };
   return (
     <>
-      <p>
+      <Roboto>
         7. Discipline objective (as results from the key competences gained)
-      </p>
+      </Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <TextField

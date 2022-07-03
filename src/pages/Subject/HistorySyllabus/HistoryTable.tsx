@@ -21,16 +21,16 @@ export const HistoryTable = ({ data }: Props) => {
         <TableHead>
           <TableRow>
             <TableCell>
-              <strong>Syllabus Id</strong>
+              <strong>SYLLABUS ID</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Created At</strong>
+              <strong>CREATED AT</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Updated At</strong>
+              <strong>UPDATED AT</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>Actions</strong>
+              <strong>ACTIONS</strong>
             </TableCell>
           </TableRow>
         </TableHead>

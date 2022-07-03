@@ -17,6 +17,7 @@ export const SectionContainer = styled.div`
   h1 {
     align-self: center;
     margin-bottom: 32px;
+    font-family: "Poppins", sans-serif;
   }
   svg {
     &:hover {

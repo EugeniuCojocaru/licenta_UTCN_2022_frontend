@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection6, useAppDispatch } from "../../../../data-access/store";
@@ -50,7 +50,7 @@ export const TabSection6 = ({
   };
   return (
     <>
-      <p>6. Specific competence</p>
+      <Roboto>6. Specific competence</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <ContentInput

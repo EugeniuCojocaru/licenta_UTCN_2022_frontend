@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { classes } from "../../common";
+import { BigPoppins, classes, Poppins } from "../../common";
 import { Layout } from "../../components/Layout";
 import { ButtonContainer, InButtonContainer } from "./SubjectPage.styles";
 import AddIcon from "@mui/icons-material/Add";
@@ -23,7 +23,7 @@ export const SubjectPage = () => {
   };
   return (
     <Layout>
-      <h1>Subjects</h1>
+      <BigPoppins>SUBJECTS</BigPoppins>
       <ButtonContainer>
         <Button
           variant="contained"
@@ -32,7 +32,7 @@ export const SubjectPage = () => {
         >
           <InButtonContainer>
             <AddIcon />
-            <p>Add new</p>
+            <Poppins>Add new</Poppins>
           </InButtonContainer>
         </Button>
       </ButtonContainer>

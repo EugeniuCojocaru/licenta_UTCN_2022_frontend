@@ -28,12 +28,20 @@ export const classes = {
       padding: 0,
     },
   },
+  typography: {
+    header: {
+      fontSize: "150px",
+    },
+  },
 };
 
 export const sxClasses = {
   select: {
     ".MuiInput-input:focus": {
       backgroundColor: "transparent",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "green",
     },
   },
   modal: {
@@ -43,5 +51,11 @@ export const sxClasses = {
     p: 2,
     px: 4,
     pb: 3,
+  },
+  header: {
+    fontSize: "150px",
+  },
+  input: {
+    "& .MuiInput-underline:after": { borderBottomColor: colors.appBackground },
   },
 };

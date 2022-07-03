@@ -6,7 +6,7 @@ import { Role, Roles, UserCreateDto } from "../../data-access/types/userTypes";
 import { ButtonContainer, FormContainer } from "./TeachersPage.styles";
 import { classes, sxClasses } from "../../common/style/styles";
 import { createUser } from "../../data-access/service";
-import { messages, validateResponseStatus } from "../../common";
+import { BigPoppins, messages, validateResponseStatus } from "../../common";
 import { useNotification } from "../../common/hooks/useNotification";
 import { Severity } from "../../data-access/types";
 
@@ -70,7 +70,7 @@ export const AddTeacherModal = ({ handleClose, open }: Props) => {
       BackdropComponent={Backdrop}
     >
       <Box sx={{ ...sxClasses.modal, width: "500px" }}>
-        <h1>Add user</h1>
+        <BigPoppins>Add user</BigPoppins>
         <FormContainer onSubmit={(e) => handleSubmit(e)}>
           <TextField
             label="Name"

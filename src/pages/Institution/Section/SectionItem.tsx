@@ -11,7 +11,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNotification } from "../../../common/hooks/useNotification";
-import { messages } from "../../../common";
+import { messages, Poppins, Roboto } from "../../../common";
 interface Props {
   item: InstitutionHierarchyType;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
@@ -112,7 +112,7 @@ const SectionItem = ({
           </Tooltip>
         </SectionItemEditContainer>
       ) : (
-        item.name
+        <Roboto>{item.name}</Roboto>
       )}
 
       {canShowChildren && !edit && (

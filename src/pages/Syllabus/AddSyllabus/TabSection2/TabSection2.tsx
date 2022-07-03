@@ -25,7 +25,7 @@ import {
   SECTION2_DEFAULT,
 } from "../../../../data-access/types";
 import { getUsers } from "../../../../data-access/service";
-import { messages, sxClasses } from "../../../../common";
+import { messages, Roboto, sxClasses } from "../../../../common";
 import { updateSection2, useAppDispatch } from "../../../../data-access/store";
 import { useNotification } from "../../../../common/hooks/useNotification";
 
@@ -101,7 +101,7 @@ export const TabSection2 = ({
   };
   return (
     <>
-      <p>2. Data about the subject</p>
+      <Roboto>2. Data about the subject</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <Autocomplete

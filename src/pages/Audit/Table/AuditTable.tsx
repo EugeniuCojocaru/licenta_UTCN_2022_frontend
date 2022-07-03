@@ -37,19 +37,19 @@ export const AuditTable = () => {
         >
           <TableRow>
             <TableCell>
-              <strong>User</strong>
+              <strong>USER</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Operation</strong>
+              <strong>OPERATION</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Entity</strong>
+              <strong>ENTITY</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>At date</strong>
+              <strong>AT DATE</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Notes</strong>
+              <strong>NOTES</strong>
             </TableCell>
           </TableRow>
         </TableHead>

@@ -34,16 +34,16 @@ const UserTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>
-              <strong>Name</strong>
+              <strong>NAME</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Email</strong>
+              <strong>EMAIL</strong>
             </TableCell>
             <TableCell align="left">
-              <strong>Role</strong>
+              <strong>ROLE</strong>
             </TableCell>
             <TableCell align="right">
-              <strong>Actions</strong>
+              <strong>ACTIONS</strong>
             </TableCell>
           </TableRow>
         </TableHead>

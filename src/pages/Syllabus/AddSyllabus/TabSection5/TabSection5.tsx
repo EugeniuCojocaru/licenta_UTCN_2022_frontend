@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { updateSection5, useAppDispatch } from "../../../../data-access/store";
@@ -40,7 +40,7 @@ export const TabSection5 = ({
   };
   return (
     <>
-      <p>5. Requirements *optional</p>
+      <Roboto>5. Requirements *optional</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <ContentInput

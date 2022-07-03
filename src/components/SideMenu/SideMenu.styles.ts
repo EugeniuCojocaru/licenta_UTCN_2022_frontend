@@ -32,6 +32,7 @@ export const ButtonContainer = styled.div<{ active: boolean }>`
   p {
     text-decoration: none;
     text-transform: none;
+    font-family: "Poppins", sans-serif;
   }
 
   &:hover {

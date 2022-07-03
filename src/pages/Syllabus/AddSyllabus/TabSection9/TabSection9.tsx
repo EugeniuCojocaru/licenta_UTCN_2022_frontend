@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 import { updateSection9, useAppDispatch } from "../../../../data-access/store";
 import {
@@ -34,10 +34,10 @@ export const TabSection9 = ({
   };
   return (
     <>
-      <p>
+      <Roboto>
         9. Bridging course contents with the expectations of the representatives
         of the community, professional associations and employers in the field
-      </p>
+      </Roboto>
 
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>

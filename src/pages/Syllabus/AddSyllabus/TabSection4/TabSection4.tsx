@@ -12,7 +12,7 @@ import {
 import ContentInput from "../../../../components/ContentInput/ContentInput";
 import { TabSectionFooter } from "../TabSectionFooter";
 import { InputsContainer, TabSectionContainer } from "../AddSyllabus.style";
-import { messages } from "../../../../common";
+import { messages, Roboto } from "../../../../common";
 import { useNotification } from "../../../../common/hooks/useNotification";
 
 interface Props {
@@ -52,7 +52,7 @@ export const TabSection4 = ({
   };
   return (
     <>
-      <p>4. Pre-requirements *optional</p>
+      <Roboto>4. Pre-requirements *optional</Roboto>
       <TabSectionContainer onSubmit={handleSubmit}>
         <InputsContainer>
           <Autocomplete
