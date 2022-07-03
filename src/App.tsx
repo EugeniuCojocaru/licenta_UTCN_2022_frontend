@@ -29,12 +29,12 @@ function App() {
     const token = getToken();
     if (isTokenValid(token)) {
       dispatch(setIsFatchingData(true));
-      token && fetchData(getUserId(token));
+      fetchData(getUserId(token || ""));
       dispatch(userIsLoggedIn());
     } else {
       clearRedux();
     }
-  }, []);
+  }, [getToken]);
   return (
     <ThemeProvider theme={theme}>
       <RouterContainer />

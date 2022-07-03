@@ -7,6 +7,7 @@ import { SelectType } from "../../data-access/types/componentsType";
 import { getStats1, getStats2 } from "../../data-access/service/auditService";
 import { StatsA } from "./StatsA";
 import { StatsB } from "./StatsB";
+import { atLeastAdmin } from "../../common/utils/authorizationHelper";
 interface Props {
   user: User;
 }
@@ -41,19 +42,19 @@ export const DashboardPage = ({ user }: Props) => {
 
   return (
     <Layout>
-      <BigPoppins>
-        Welcome, <strong>{user.name}</strong>!
-      </BigPoppins>
-      <RowD>
-        <Card>
-          <Roboto>User activity</Roboto>
-          <StatsA data={data1.slice(0, 5)} />
-        </Card>
-        <Card>
-          <Roboto>Activity per day for {month[new Date().getMonth()]}</Roboto>
-          <StatsB data={data2} />
-        </Card>
-      </RowD>
+      <BigPoppins>Welcome!</BigPoppins>
+      {atLeastAdmin() && (
+        <RowD>
+          <Card>
+            <Roboto>User activity</Roboto>
+            <StatsA data={data1.slice(0, 5)} />
+          </Card>
+          <Card>
+            <Roboto>Activity per day for {month[new Date().getMonth()]}</Roboto>
+            <StatsB data={data2} />
+          </Card>
+        </RowD>
+      )}
     </Layout>
   );
 };
