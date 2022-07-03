@@ -27,6 +27,7 @@ import {
 } from "../../../data-access/service/subjectService";
 import { useNavigate } from "react-router-dom";
 import {
+  atLeastEditor,
   messages,
   SYLLABUS_ADD_URL,
   validateResponseStatus,
@@ -216,44 +217,48 @@ export const SubjectTableRow = ({
           </>
         ) : (
           <>
-            <Tooltip title="Edit">
-              <IconButton onClick={() => handleEditEvent()}>
-                <EditIcon />
-              </IconButton>
-            </Tooltip>
-            {!hasSyllabus && (
-              <Tooltip title="Create syllabus">
-                <IconButton onClick={() => handleAddSyllabus()}>
-                  <AttachFileIcon />
-                </IconButton>
-              </Tooltip>
-            )}
-
-            {hasSyllabus && (
+            {atLeastEditor() && (
               <>
-                <Tooltip title="Edit syllabus">
-                  <IconButton onClick={() => handleGetSyllabus()}>
-                    <FileOpenIcon />
+                <Tooltip title="Edit">
+                  <IconButton onClick={() => handleEditEvent()}>
+                    <EditIcon />
                   </IconButton>
                 </Tooltip>
-
-                <Tooltip title="Remove syllabus">
-                  <IconButton onClick={() => handleDeleteSyllabus()}>
-                    <PlaylistRemoveIcon />
-                  </IconButton>
-                </Tooltip>
-                {isDownloading ? (
-                  <CircularProgress
-                    sx={{ color: colors.appBackground, height: "inherit" }}
-                  />
-                ) : (
-                  <Tooltip title="Download syllabus">
-                    <IconButton onClick={() => handleDownloadSyllabusPdf()}>
-                      <FileDownloadIcon />
+                {!hasSyllabus && (
+                  <Tooltip title="Create syllabus">
+                    <IconButton onClick={() => handleAddSyllabus()}>
+                      <AttachFileIcon />
                     </IconButton>
                   </Tooltip>
                 )}
+
+                {hasSyllabus && (
+                  <>
+                    <Tooltip title="Edit syllabus">
+                      <IconButton onClick={() => handleGetSyllabus()}>
+                        <FileOpenIcon />
+                      </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Remove syllabus">
+                      <IconButton onClick={() => handleDeleteSyllabus()}>
+                        <PlaylistRemoveIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </>
+                )}
               </>
+            )}
+            {hasSyllabus && isDownloading ? (
+              <CircularProgress
+                sx={{ color: colors.appBackground, height: "inherit" }}
+              />
+            ) : (
+              <Tooltip title="Download syllabus">
+                <IconButton onClick={() => handleDownloadSyllabusPdf()}>
+                  <FileDownloadIcon />
+                </IconButton>
+              </Tooltip>
             )}
             <Tooltip title="Syllabus versions">
               <IconButton onClick={() => handleShowHistory(id)}>

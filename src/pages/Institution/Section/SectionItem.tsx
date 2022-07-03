@@ -11,7 +11,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNotification } from "../../../common/hooks/useNotification";
-import { messages, Poppins, Roboto } from "../../../common";
+import { atLeastAdmin, messages, Poppins, Roboto } from "../../../common";
 interface Props {
   item: InstitutionHierarchyType;
   handleUpdate: (name: InstitutionHierarchyType) => Promise<boolean>;
@@ -79,10 +79,10 @@ const SectionItem = ({
   return (
     <SectionItemContainer
       id={item.id}
-      onDoubleClick={() => setEdit(true)}
+      onDoubleClick={() => atLeastAdmin() && setEdit(true)}
       onKeyPress={handleKeyPressed}
     >
-      {edit ? (
+      {edit && atLeastAdmin() ? (
         <SectionItemEditContainer>
           <TextField
             variant="standard"

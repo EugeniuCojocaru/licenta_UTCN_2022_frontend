@@ -23,6 +23,7 @@ import { useNotification } from "../../../common/hooks/useNotification";
 import { validateResponseStatus } from "../../../common";
 import { Severity } from "../../../data-access/types";
 import { sxClasses } from "../../../common/style/styles";
+import { atLeastAdmin } from "../../../common/utils/authorizationHelper";
 
 interface Props {
   row: User;
@@ -119,28 +120,29 @@ const UserTableRow = ({ row, refreshUI }: Props) => {
           mapRoleIdToString(role)
         )}
       </TableCell>
-
-      <TableCell align="right" width="150px">
-        {edit ? (
-          <>
-            <IconButton>
-              <CheckIcon onClick={() => handleEditUser()} />
-            </IconButton>
-            <IconButton onClick={() => handleEditEvent()}>
-              <EditOffIcon />
-            </IconButton>
-          </>
-        ) : (
-          <>
-            <IconButton onClick={() => handleEditEvent()}>
-              <EditIcon />
-            </IconButton>
-            <IconButton onClick={() => handleDeleteUser()}>
-              <PersonRemoveIcon />
-            </IconButton>
-          </>
-        )}
-      </TableCell>
+      {atLeastAdmin() && (
+        <TableCell align="right" width="150px">
+          {edit ? (
+            <>
+              <IconButton>
+                <CheckIcon onClick={() => handleEditUser()} />
+              </IconButton>
+              <IconButton onClick={() => handleEditEvent()}>
+                <EditOffIcon />
+              </IconButton>
+            </>
+          ) : (
+            <>
+              <IconButton onClick={() => handleEditEvent()}>
+                <EditIcon />
+              </IconButton>
+              <IconButton onClick={() => handleDeleteUser()}>
+                <PersonRemoveIcon />
+              </IconButton>
+            </>
+          )}
+        </TableCell>
+      )}
     </TableRow>
   );
 };

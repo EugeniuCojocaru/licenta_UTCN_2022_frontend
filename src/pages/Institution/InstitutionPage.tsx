@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Layout } from "../../components/Layout";
 import { DataContainer, PageLayout } from "./InstitutionPage.styles";
 import DepartmentSectionContainer from "./Section/DepartmentSectionContainer";

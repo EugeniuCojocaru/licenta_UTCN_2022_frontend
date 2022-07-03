@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { BigPoppins, classes, Poppins } from "../../common";
+import { atLeastEditor, BigPoppins, classes, Poppins } from "../../common";
 import { Layout } from "../../components/Layout";
 import { ButtonContainer, InButtonContainer } from "./SubjectPage.styles";
 import AddIcon from "@mui/icons-material/Add";
@@ -24,18 +24,20 @@ export const SubjectPage = () => {
   return (
     <Layout>
       <BigPoppins>SUBJECTS</BigPoppins>
-      <ButtonContainer>
-        <Button
-          variant="contained"
-          style={classes.button.primary}
-          onClick={() => setIsOpen(true)}
-        >
-          <InButtonContainer>
-            <AddIcon />
-            <Poppins>Add new</Poppins>
-          </InButtonContainer>
-        </Button>
-      </ButtonContainer>
+      {atLeastEditor() && (
+        <ButtonContainer>
+          <Button
+            variant="contained"
+            style={classes.button.primary}
+            onClick={() => setIsOpen(true)}
+          >
+            <InButtonContainer>
+              <AddIcon />
+              <Poppins>Add new</Poppins>
+            </InButtonContainer>
+          </Button>
+        </ButtonContainer>
+      )}
 
       <SubjectTable
         refreshUI={refreshUI}

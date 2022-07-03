@@ -26,6 +26,7 @@ import {
 
 import logo from "../../common/resources/logo.png";
 import { removeToken } from "../../common/utils/tokenHelper";
+import { atLeastAdmin } from "../../common/utils/authorizationHelper";
 import {
   resetAuth,
   resetSections,
@@ -82,13 +83,15 @@ export const SideMenu = () => {
         >
           <PeopleAltIcon />
         </SideMenuButton>
-        <SideMenuButton
-          label="AUDIT LOG"
-          active={activeElement}
-          handleClick={() => handleNavigateTo(AUDIT_URL, "Audit")}
-        >
-          <AssignmentIcon />
-        </SideMenuButton>
+        {atLeastAdmin() && (
+          <SideMenuButton
+            label="AUDIT LOG"
+            active={activeElement}
+            handleClick={() => handleNavigateTo(AUDIT_URL, "Audit")}
+          >
+            <AssignmentIcon />
+          </SideMenuButton>
+        )}
       </ButtonsContainer>
 
       <SideMenuButton

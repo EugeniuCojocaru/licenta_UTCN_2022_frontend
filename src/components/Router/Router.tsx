@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuditPage } from "../../pages/Audit/AuditPage";
 
 import {
-  DashboardPage,
   InstitutionPage,
   SubjectPage,
   TeacherPage,
@@ -11,6 +10,7 @@ import {
   LoginPage,
 } from "../../pages";
 import AccountActivationPage from "../../pages/Login/AccountActivation/AccountActivationPage";
+import DashboardPageContainer from "../../pages/Dashboard/DashboardPageContainer";
 interface Props {
   isSessionActive: boolean;
   isFetchingData: boolean;
@@ -28,8 +28,8 @@ const UnauthenticatedRoutes = () => (
 const AuthenticatedRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/*" element={<DashboardPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/*" element={<DashboardPageContainer />} />
+      <Route path="/dashboard" element={<DashboardPageContainer />} />
       <Route path="/syllabus/add" element={<AddSyllabusPage />} />
       <Route path="/institution" element={<InstitutionPage />} />
       <Route path="/subjects" element={<SubjectPage />} />

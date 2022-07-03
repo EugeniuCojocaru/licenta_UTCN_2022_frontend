@@ -14,6 +14,7 @@ import {
 
 import UserTableRow from "./UserTableRow";
 import { getUsers } from "../../../data-access/service/userService";
+import { atLeastAdmin } from "../../../common/utils/authorizationHelper";
 
 const UserTable = () => {
   const [data, setData] = useState<User[]>([]);
@@ -42,9 +43,11 @@ const UserTable = () => {
             <TableCell align="left">
               <strong>ROLE</strong>
             </TableCell>
-            <TableCell align="right">
-              <strong>ACTIONS</strong>
-            </TableCell>
+            {atLeastAdmin() && (
+              <TableCell align="right">
+                <strong>ACTIONS</strong>
+              </TableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>

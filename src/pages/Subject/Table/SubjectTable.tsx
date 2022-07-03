@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { Subject } from "../../../data-access/types";
 import { getSubjects } from "../../../data-access/service/subjectService";
 import { SubjectTableRow } from "./SubjectTableRow";
+import { atLeastEditor } from "../../../common";
 interface Props {
   refreshUI: boolean;
   handleRefreshUI: () => void;
@@ -51,6 +52,7 @@ export const SubjectTable = ({
             <TableCell align="left">
               <strong>NAME</strong>
             </TableCell>
+
             <TableCell align="right" sx={{ minWidth: 200 }}>
               <strong>ACTIONS</strong>
             </TableCell>

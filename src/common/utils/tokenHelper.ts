@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { TokenType, TOKEN_DEFAULT } from "../../data-access/types";
+import { Role, TokenType, TOKEN_DEFAULT } from "../../data-access/types";
 import jwt_decode from "jwt-decode";
 export const getToken = (): string | undefined => {
   return Cookies.get("Token");
@@ -22,4 +22,8 @@ export const isTokenValid = (token: string | undefined): boolean => {
 export const getUserId = (token: string): string => {
   const tokenData: TokenType = jwt_decode(token);
   return tokenData.sub;
+};
+export const getRoleFromToken = (token: string): Role => {
+  const tokenData: TokenType = jwt_decode(token);
+  return tokenData.role;
 };

@@ -12,6 +12,8 @@ import {
 import SectionItem from "./SectionItem";
 import { classes } from "../../../common/style/styles";
 import { useNotification } from "../../../common/hooks/useNotification";
+import { atLeastAdmin } from "../../../common";
+
 interface PropType {
   labelTextField: string;
   title: string;
@@ -102,7 +104,7 @@ export const Section = ({
         ))}
       </ItemsContainer>
 
-      {showAddButton && loadAddButton()}
+      {showAddButton && atLeastAdmin() && loadAddButton()}
     </>
   );
 };

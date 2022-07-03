@@ -27,6 +27,8 @@ export const mapRoleIdToString = (roleId: Role): string => {
   switch (roleId) {
     case 10:
       return "Admin";
+    case 1:
+      return "Editor";
     default:
       return "User";
   }

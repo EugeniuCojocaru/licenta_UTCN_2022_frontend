@@ -4,6 +4,7 @@ import {
   ACTIVATE_ACCOUNT_URL,
   BigPoppins,
   classes,
+  getRoleFromToken,
   Poppins,
   validateResponseStatus,
 } from "../../common";
@@ -45,6 +46,8 @@ export const LoginPage = () => {
     showNotification(Severity.Success, "Login successfully");
     setState(LOGIN_DEFAULT);
     Cookies.set("Token", data);
+    const role = getRoleFromToken(data);
+    window.sessionStorage.setItem("role", role.toString());
     dispatch(userIsLoggedIn());
   };
   const loginFailed = () => {

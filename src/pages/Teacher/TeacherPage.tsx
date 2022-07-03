@@ -9,25 +9,27 @@ import { AddTeacherModal } from "./AddTeacherModal";
 
 import { ButtonContainer, InButtonContainer } from "./TeachersPage.styles";
 import { classes } from "../../common/style/styles";
-import { BigPoppins, Poppins } from "../../common";
+import { atLeastAdmin, BigPoppins, Poppins } from "../../common";
 
 export const TeacherPage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Layout>
       <BigPoppins>USERS</BigPoppins>
-      <ButtonContainer>
-        <Button
-          variant="contained"
-          style={classes.button.primary}
-          onClick={() => setIsOpen(true)}
-        >
-          <InButtonContainer>
-            <AddIcon />
-            <Poppins>Add new</Poppins>
-          </InButtonContainer>
-        </Button>
-      </ButtonContainer>
+      {atLeastAdmin() && (
+        <ButtonContainer>
+          <Button
+            variant="contained"
+            style={classes.button.primary}
+            onClick={() => setIsOpen(true)}
+          >
+            <InButtonContainer>
+              <AddIcon />
+              <Poppins>Add new</Poppins>
+            </InButtonContainer>
+          </Button>
+        </ButtonContainer>
+      )}
       <UserTable />
       {isOpen && (
         <AddTeacherModal open={isOpen} handleClose={() => setIsOpen(false)} />
